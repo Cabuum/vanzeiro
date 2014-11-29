@@ -1,6 +1,6 @@
 /** Spacing system **/
 /* Landscape phones and down */
-  @media (max-width: 767px) { 
+  @media (max-width: 767px) {
 	.xs-no-padding{
 		padding:0px;
 	}
@@ -156,7 +156,7 @@
   }
 
   /* Large desktop */
-  @media (min-width: 1200px) { ... }
+/*  @media (min-width: 1200px) { ... } */
 @media (min-width: 1600px) {
 .container {
     width: 1170px;
