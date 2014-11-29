@@ -1,6 +1,6 @@
 <% content_for :page_level_css do %>
     <%= stylesheet_link_tag '/assets/bootstrap-select2/select2.min',
-    '/assets/jquery-datatable/jquery.dataTables' %>
+                            '/assets/jquery-datatable/jquery.dataTables' %>
 <% end %>
 
 <!-- BEGIN CONTENT -->
@@ -22,48 +22,47 @@
             <div class="grid-body ">
               <table class="table" id="movimentacao">
                 <thead>
-                  <tr>
-                    <th>Descrição</th>
-                    <th>Categoria</th>
-                    <th>"de" ou "para" quem!</th>
-                    <th>Valor</th>
-                    <th>Pago?</th>
-                    <th>Vencimento</th>
-                    <th></th>
-                  </tr>
+                <tr>
+                  <th>Descrição</th>
+                  <!--<th>Categoria</th>-->
+                  <th>"de" ou "para" quem!</th>
+                  <th>Valor</th>
+                  <th>Pago?</th>
+                  <th>Vencimento</th>
+                  <th></th>
+                </tr>
                 </thead>
 
                 <tbody>
                 <% @movements.each do |movement| %>
                     <tr   data-toggle="modal" data-target="#myModal" data-id="<%= movement.id %>">
                       <td><%= movement.description %></td>
-                      <td><%= movement.category.name %></td>
+                      <!--<td><%# movement.category.name %></td>-->
                       <td><%= movement.from_of %></td>
                       <td><%= number_to_currency movement.value %></td>
                       <td><%= to_readable_paid movement.paid %></td>
-                      <td><%= 'due_date_formatted movement.expiration '%></td>
+                      <td><%= due_date_formatted movement.expiration %></td>
                       <td class="center index-non-table "><%= link_to raw('<i class="fa fa-remove index-non-table"></i>'), movement,
-                                                                                                        method: :delete, data: { confirm: 'Deseja excluir?' } %></td>
+                                                                      method: :delete, data: { confirm: 'Deseja excluir?' } %></td>
                     </tr>
                 <% end %>
                 </tbody>
               </table>
               <script type="text/javascript">
-              document.addEventListener("DOMContentLoaded", function(event) {
-                $('table td').not('td.index-non-table').click(function(){
-                  var objectId = $(this).parent( "tr" ).data('id');
-                  $.getJSON( '<%= request.fullpath %>/'+ objectId +'.json', function( data ) {
-                    console.log(data);
-                    $.each( data, function( key, val ) {
-                      if(key == 'description') {
-                        $('#'+key).text(val);
-                      }else {
-                        $('#'+key).val(val);
-                      }
-                    });
+                  document.addEventListener("DOMContentLoaded", function(event) {
+                      $('table td').not('td.index-non-table').click(function(){
+                          var objectId = $(this).parent( "tr" ).data('id');
+                          $.getJSON( '<%= request.fullpath %>/'+ objectId +'.json', function( data ) {
+                              $.each( data, function( key, val ) {
+                                  if(key == 'description') {
+                                      $('#'+key).text(val);
+                                  }else {
+                                      $('#'+key).val(val);
+                                  }
+                              });
+                          });
+                      });
                   });
-                });
-              });
               </script>
               <!-- Modal -->
               <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="description" aria-hidden="true">
@@ -72,8 +71,8 @@
                     <div class="modal-header">
                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                       <br>
-                          <h4 id="description" class="semi-bold"></h4>
-                          <p class="no-margin">Confira abaixo as informações do movimento. </p>
+                      <h4 id="description" class="semi-bold"></h4>
+                      <p class="no-margin">Confira abaixo as informações do movimento. </p>
                       <br>
                     </div>
                     <div class="modal-body">
@@ -95,7 +94,7 @@
 
                       <div class="row form-row">
                         <div class="col-md-6">
-                        <label class="form-label">Pago?</label>
+                          <label class="form-label">Pago?</label>
                           <input id="paid" type="text" class="form-control" disabled="disabled">
                         </div>
                         <div class="col-md-6">
@@ -109,28 +108,29 @@
                     </div>
                   </div>
                   <!-- /.modal-content -->
+                </div>
+              </div>
             </div>
           </div>
         </div>
+        <!-- END PLACE PAGE CONTENT HERE -->
       </div>
-
-      <!-- END PLACE PAGE CONTENT HERE -->
     </div>
+    <!-- END PAGE CONTAINER -->
   </div>
-  <!-- END PAGE CONTAINER -->
-</div>
-<!-- END CONTENT -->
+  <!-- END CONTENT -->
 
-<!-- BEGIN PAGE LEVEL JS -->
-<% content_for :page_level_js do %>
-    <%= javascript_include_tag '/assets/bootstrap-select2/select2.min',
-                               '/assets/jquery-datatable/jquery.dataTables.min',
-                               '/assets/jquery-datatable/dataTables.tableTools.min',
-                               '/assets/datatables-responsive/datatables.responsive',
-                               '/assets/datatables-responsive/lodash.min',
-                               '/assets/datatables',
-                               '/assets/jquery-scrollbar/jquery.scrollbar.min',
-                               '/assets/jquery-block-ui/jqueryblockui',
-                               '/assets/jquery-numberAnimate/jquery.animateNumbers' %>
-<% end %>
-<!-- END PAGE LEVEL JS -->
+  <!-- BEGIN PAGE LEVEL JS -->
+  <% content_for :page_level_js do %>
+      <%= javascript_include_tag '/assets/bootstrap-select2/select2.min',
+                                 '/assets/jquery-datatable/jquery.dataTables.min',
+                                 '/assets/jquery-datatable/dataTables.tableTools.min',
+                                 '/assets/datatables-responsive/datatables.responsive',
+                                 '/assets/datatables-responsive/lodash.min',
+                                 '/assets/datatables',
+                                 '/assets/jquery-scrollbar/jquery.scrollbar.min',
+                                 '/assets/jquery-block-ui/jqueryblockui',
+                                 '/assets/jquery-numberAnimate/jquery.animateNumbers' %>
+  <% end %>
+  <!-- END PAGE LEVEL JS -->
+</div>
