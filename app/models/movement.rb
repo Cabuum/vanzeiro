@@ -4,8 +4,8 @@ class Movement < ActiveRecord::Base
 
   self.inheritance_column = nil
 
-  scope :default, -> (user_id) { where("MONTH(movements.expiration) =
-                                       #{Time.now.month} AND movements.user_id = #{user_id}") }
+  scope :default, -> (user_id) { where("MONTH(`movements`.expiration) =
+                                       #{Time.now.month} AND `movements`.user_id = #{user_id}") }
 
   # Method to get only incomes and sum by current month.
   scope :incoming, -> (user_id) { default(user_id).where(type: MovementCategory::INCOME) }

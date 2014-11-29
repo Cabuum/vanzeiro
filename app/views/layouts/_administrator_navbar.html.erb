@@ -6,13 +6,16 @@
     <%= link_to eu_path do %>
         <div class="user-info-wrapper">
           <div class="profile-wrapper">
-            <%= image_tag(current_user.image_url(:thumb).to_s, data: {src: current_user.image_url(:thumb).to_s, :'src-retina' => current_user.image_url(:thumb2x).to_s}) if current_user.image? %>
+            <%= image_tag(current_user.image_url(:thumb).to_s,
+                          data: {src: current_user.image_url(:thumb).to_s,
+                                 :'src-retina' => current_user.image_url(:thumb2x).to_s}) if current_user.image? %>
           </div>
           <div class="user-info">
             <div class="greeting">Bem vindo</div>
-            <div class="username"> <%= current_user.name.split(' ')[0] %>
-              <span class="semi-bold"><%= current_user.name.split(' ')[1] %></span>
-            </div>
+            <div class="username"><%= current_user.name.split(' ')[0] %><span class="semi-bold"> <%= current_user.name.split(' ')[1] %></span></div>
+            <div class="status">Status<a href="#">
+              <div class="status-icon green"></div>
+              Online</a></div>
           </div>
         </div>
     <% end %>

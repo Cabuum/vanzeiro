@@ -36,7 +36,7 @@ class MovementsController < ApplicationController
 
   def destroy
     @movement.destroy
-    redirect_to movements_url, t('movements.delete.success')
+    redirect_to movements_url, notice: t('movements.delete.success')
   end
 
   private

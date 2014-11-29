@@ -201,7 +201,7 @@ var passenger = $('#passenger').dataTable({
     "aaSorting": [[ 3, "desc" ]],
     "oLanguage": {
         "sLengthMenu": "_MENU_ ",
-        "sInfo": "Showing <b>_START_ to _END_</b> of _TOTAL_ entries"
+        "sInfo": "Exibindo <b>_START_ à _END_</b> de _TOTAL_ resultados"
     }
 });
 
@@ -234,7 +234,7 @@ var movimentacao = $('#movimentacao').dataTable({
     "aaSorting": [[ 3, "desc" ]],
     "oLanguage": {
         "sLengthMenu": "_MENU_ ",
-        "sInfo": "Showing <b>_START_ to _END_</b> of _TOTAL_ entries"
+        "sInfo": "Exibindo <b>_START_ à _END_</b> de _TOTAL_ resultados"
     }
 });
 
@@ -282,7 +282,7 @@ var contract = $('#contract').dataTable({
     "aaSorting": [[ 3, "desc" ]],
     "oLanguage": {
         "sLengthMenu": "_MENU_ ",
-        "sInfo": "Showing <b>_START_ to _END_</b> of _TOTAL_ entries"
+        "sInfo": "Exibindo <b>_START_ à _END_</b> de _TOTAL_ resultados"
     }
 });
 
