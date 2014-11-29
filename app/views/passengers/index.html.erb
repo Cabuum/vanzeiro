@@ -51,7 +51,7 @@
                         <% end %>
                       </td>
                       <td class="center index-non-table "><%= link_to raw('<i class="fa fa-remove index-non-table"></i>'), passenger,
-                                                                                                        method: :delete, data: { confirm: 'Deseja excluir?' } %></td>
+                                                                      method: :delete, data: { confirm: 'Deseja excluir?' } %></td>
                     </tr>
                 <% end %>
                 </tbody>
@@ -160,9 +160,9 @@
 <!-- END CONTENT -->
 
 <% if notice %>
-<script type="text/javascript">
-  document.addEventListener("DOMContentLoaded", function(event) {
-    Messenger().post("<%= notice %>!</a>");
-  });
-</script>
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function(event) {
+            Messenger().post("<%= notice %>!</a>");
+        });
+    </script>
 <% end %>

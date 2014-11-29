@@ -43,3 +43,11 @@
 </div>
 
 <%= link_to 'Voltar', contracts_path, class: 'btn btn-primary' %>
+
+<% if notice %>
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function(event) {
+            Messenger().post("<%= notice %>!</a>");
+        });
+    </script>
+<% end %>

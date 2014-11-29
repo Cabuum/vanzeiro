@@ -33,3 +33,11 @@
 <br>
 
 <%= link_to 'New Plan', new_plan_path %>
+
+<% if notice %>
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function(event) {
+            Messenger().post("<%= notice %>!</a>");
+        });
+    </script>
+<% end %>

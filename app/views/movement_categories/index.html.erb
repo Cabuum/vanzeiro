@@ -41,4 +41,11 @@
     </div>
   </div>
 </div>
-</div>
+
+<% if notice %>
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function(event) {
+            Messenger().post("<%= notice %>!</a>");
+        });
+    </script>
+<% end %>

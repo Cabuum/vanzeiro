@@ -61,11 +61,11 @@
                   <div class="user-description-box">
                     <h4 class="semi-bold no-margin"><%= @user.name %></h4>
                     <h6 class="no-margin"><%= @user.fantasy_name %></h6>
-                    <br>
+                    <br />
                     <p><i class="fa fa-phone"></i><%= @user.phone %></p>
                     <p><i class="fa fa-envelope"></i><%= @user.email %></p>
-                    <p><i class="fa fa-legal"></i><%= @user.social_reason %></p>
-                    <p><i class="fa fa-barcode"></i><%= @user.document %></p>
+                    <p><%= "<i class='fa fa-legal'></i> #{@user.social_reason}".html_safe if @user.social_reason? %></p>
+                    <p><%= "<i class='fa fa-barcode'></i> #{@user.document}".html_safe if @user.document? %></p>
                   </div>
                   <div style="margin: 10px 15px; padding: 20px;">
                     <div class="grid-title no-border">
@@ -128,3 +128,9 @@
                                '/assets/jquery-numberAnimate/jquery.animateNumbers' %>
 <% end %>
 <!-- END PAGE LEVEL JS -->
+
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function(event) {
+        Messenger().post("Adicione primeiramente uma conta bancária, sem ela você não pode gerar contratos!</a>");
+    });
+</script>
