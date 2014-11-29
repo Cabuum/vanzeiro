@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyString
+  movement_category_id: 
+  from_of: MyString
+  value: 9.99
+  paid: false
+  expiration: 2014-10-29
+
+two:
+  description: MyString
+  movement_category_id: 
+  from_of: MyString
+  value: 9.99
+  paid: false
+  expiration: 2014-10-29

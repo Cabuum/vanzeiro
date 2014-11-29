@@ -1,0 +1,135 @@
+<% content_for :page_level_css do %>
+    <%= stylesheet_link_tag '/assets/bootstrap-select2/select2.min',
+                            '/assets/jquery-datatable/jquery.dataTables' %>
+<% end %>
+
+<!-- BEGIN CONTENT -->
+<div class="page-container row-fluid">
+
+  <%= render 'layouts/administrator_navbar' %>
+
+  <!-- BEGIN PAGE CONTAINER-->
+  <div class="page-content">
+    <div class="content">
+      <!-- BEGIN PlACE PAGE CONTENT HERE -->
+      <div class="row-fluid">
+        <div class="span12">
+          <div class="grid simple ">
+            <div class="grid-title">
+              <h4>Lista de <span class="semi-bold">contratos</span></h4>
+              <div class="tools">
+                <a href="javascript:;" class="collapse"></a>
+                <a href="#grid-config" data-toggle="modal" class="config"></a>
+                <a href="javascript:window.location.reload();" class="reload"></a>
+                <a href="javascript:;" class="remove"></a>
+              </div>
+            </div>
+            <div class="grid-body">
+              <table class="table table-striped" id="contract">
+                <thead>
+                <tr>
+                  <th>Passageiro</th>
+                  <th>Banco</th>
+                  <th>Tempo</th>
+                  <th>Término</th>
+                  <th>Valor Mensal</th>
+                  <th style="width: 18%">Progresso</th>
+                  <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <% @contracts.each do |contract| %>
+                    <tr class="index-table" title="Clique para visualizar!" data-id="<%= contract.id %>" data-passegerid="<%= contract.passenger.id %>">
+                      <td><%= contract.passenger.passenger_name %></td>
+                      <td><%= contract.account.bank.full_name %></td>
+                      <td><%= distance_of_time_in_words(contract.start, contract.closing_date) %></td>
+                      <td><%= to_last_month contract %></td>
+                      <td><%= number_to_currency contract.value %></td>
+                      <td>
+                        <% percentage = contract.until_the_end %>
+                        <div class="progress progress-warning">
+                          <div data-percentage="<%= percentage[:value] %>%"
+                               class="progress-bar progress-bar-<%= percentage[:css] %> animate-progress-bar">
+                          </div>
+                        </div>
+                      </td>
+                      <td class="center index-non-table "><%= link_to raw('<i class="fa fa-remove index-non-table"></i>'), contract,
+                                                                                                        method: :delete, data: { confirm: 'Deseja excluir?' } %></td>
+                    </tr>
+                <% end %>
+                </tbody>
+              </table>
+              <script type="text/javascript">
+                  document.addEventListener("DOMContentLoaded", function(event) {
+                      $('table td').not('td.index-non-table').click(function(){
+                          var objectId = $(this).parent( "tr" ).data('id');
+                          $.getJSON( '<%= request.fullpath %>/'+ objectId +'.json', function( data ) {
+                              $.each( data, function( key, val ) {
+                                  if(key == 'passenger_name') {
+                                      $('#'+key).text(val);
+                                  } else {
+                                      $('#'+key).val(val);
+                                  }
+                              });
+                              $('#myModal').modal('show');
+                          });
+                      });
+                  });
+              </script>
+              <!-- Modal -->
+              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                      <br>
+                      <h4 id="passenger_name" class="semi-bold"></h4>
+                      <p class="no-margin">Confira abaixo as informações do contrato. </p>
+                      <br>
+                    </div>
+                    <div class="modal-body">
+
+                      <div class="row form-row">
+                        <div class="col-md-4">
+                          <label class="form-label">Banco</label>
+                          <input id="bank" type="text" class="form-control" disabled="disabled">
+                        </div>
+                        <div class="col-md-4">
+                          <label class="form-label">Tempo</label>
+                          <input id="time" type="text" class="form-control" disabled="disabled">
+                        </div>
+                        <div class="col-md-4">
+                          <label class="form-label">Valor</label>
+                          <input id="value" type="text" class="form-control" disabled="disabled">
+                        </div>
+                      </div>
+
+                      <div class="row form-row">
+                        <div class="col-md-6">
+                          <label class="form-label">Inicío</label>
+                          <input id="start" type="text" class="form-control" disabled="disabled">
+                        </div>
+                        <div class="col-md-6">
+                          <label class="form-label">Término</label>
+                          <input id="closing_date" type="text" class="form-control" disabled="disabled">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    </div>
+                  </div>
+                  <!-- /.modal-content -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- END PLACE PAGE CONTENT HERE -->
+        </div>
+      </div>
+      <!-- END PAGE CONTAINER -->
+    </div>
+    <!-- END CONTENT -->
+  </div>
+</div>

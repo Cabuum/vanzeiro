@@ -1,0 +1,53 @@
+<%= form_for(@plan) do |f| %>
+    <% if @plan.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@plan.errors.count, 'erro') %> prohibited this plan from being saved:</h2>
+
+          <ul>
+            <% @plan.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :price %><br>
+      <%= f.text_field :price %>
+    </div>
+    <div class="field">
+      <%= f.label :description %><br>
+      <%= f.text_field :description %>
+    </div>
+    <div class="field">
+      <%= f.label :full_description %><br>
+      <%= f.text_area :full_description %>
+    </div>
+    <div class="field">
+      <%= f.label :clause %><br />
+      <%= f.check_box :clause %>
+    </div>
+    <div class="field">
+      <%= f.label :clause2 %><br />
+      <%= f.check_box :clause2 %>
+    </div>
+    <div class="field">
+      <%= f.label :clause3 %><br />
+      <%= f.check_box :clause3 %>
+    </div>
+    <div class="field">
+      <%= f.label :clause4 %><br />
+      <%= f.check_box :clause4 %>
+    </div>
+    <div class="field">
+      <%= f.label :selected %><br>
+      <%= f.check_box :selected %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>

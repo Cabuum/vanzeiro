@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Business day for payments:</strong>
+  <%= @my_configuration.business_day_for_payments %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @my_configuration.user %>
+</p>
+
+<%= link_to 'Edit', edit_my_configuration_path(@my_configuration) %> |
+<%= link_to 'Back', my_configurations_path %>

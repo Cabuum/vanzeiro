@@ -1,0 +1,27 @@
+<h1>Listing my_configurations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Business day for payments</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @my_configurations.each do |my_configuration| %>
+      <tr>
+        <td><%= my_configuration.business_day_for_payments %></td>
+        <td><%= my_configuration.user %></td>
+        <td><%= link_to 'Show', my_configuration %></td>
+        <td><%= link_to 'Edit', edit_my_configuration_path(my_configuration) %></td>
+        <td><%= link_to 'Destroy', my_configuration, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New My configuration', new_my_configuration_path %>

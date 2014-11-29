@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  administrator_id: 
+  responsible_cpf: MyString
+  responsible_name: MyString
+  responsible_phone: MyString
+  responsible_email: MyString
+  passenger_birthday: 2014-08-28
+  passenger_cpf: MyString
+  passenger_phone: MyString
+  passenger_name: MyString
+  passenger_email: MyString
+  passenger_address: MyString
+  contract_start: 2014-08-28
+  contract_order: 2014-08-28
+
+two:
+  administrator_id: 
+  responsible_cpf: MyString
+  responsible_name: MyString
+  responsible_phone: MyString
+  responsible_email: MyString
+  passenger_birthday: 2014-08-28
+  passenger_cpf: MyString
+  passenger_phone: MyString
+  passenger_name: MyString
+  passenger_email: MyString
+  passenger_address: MyString
+  contract_start: 2014-08-28
+  contract_order: 2014-08-28

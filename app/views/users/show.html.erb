@@ -1,0 +1,131 @@
+<!-- BEGIN CONTENT -->
+<div class="page-container row-fluid">
+
+  <%= render 'layouts/administrator_navbar' %>
+
+  <!-- BEGIN PAGE CONTAINER-->
+  <div class="page-content">
+    <div class="content">
+      <!-- BEGIN PlACE PAGE CONTENT HERE -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class=" tiles white col-md-12 no-padding">
+            <div class="tiles green cover-pic-wrapper">
+              <div class="overlayer bottom-right">
+                <div class="overlayer-wrapper">
+                  <div class="padding-10 hidden-xs">
+                    <%= link_to raw('<i class="fa fa-edit"></i>&nbsp;&nbsp; Editar Perfil'), editar_path, class: 'btn btn-primary btn-small' %>
+                  </div>
+                </div>
+              </div>
+              <img src="/assets/cover_pic.png" alt="">
+            </div>
+            <div class="tiles white">
+
+              <div class="row">
+                <div class="col-md-3 col-sm-3" >
+                  <div class="user-profile-pic">
+                    <%= image_tag(current_user.image_url(:thumb).to_s, data: {src: current_user.image_url(:thumb).to_s,
+                                                                              :'src-retina' => current_user.image_url(:thumb2x).to_s}) if current_user.image? %>
+                  </div>
+                  <div class="user-mini-description">
+                    <div class="grid simple">
+                      <div class="grid-title no-border">
+                        <h4><span class="semi-bold">Configurações</span></h4>
+                      </div>
+                      <div class="grid-body no-border">
+                        <div class="row-fluid">
+                          <%= form_for(@user.configuration, :url => {
+                                                                  :controller => 'my_configurations',
+                                                                  :action => 'update',
+                                                                  :id => @user.configuration.id }) do |f| %>
+                              <p>Altere aqui suas configurações pré definidas para:</p>
+                              <br>
+                              <label class="form-label">Vencimento de Boletos</label>
+                              <%= f.number_field :business_day_for_payments, class: 'form-control', min: 1, max: 31 %>
+                              <br>
+                              <label class="form-label">Novos contratos</label>
+                              <%= f.text_field :default_value, class: 'form-control' %>
+                              <br>
+                              <label class="form-label">Juros de atraso</label>
+                              <%= f.text_field :default_interest, class: 'form-control' %>
+                              <br>
+                              <%= f.hidden_field :user_id, :value => current_user.id %>
+                              <%= f.submit 'Salvar', class: 'btn btn-block btn-primary '%>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-8 col-sm-8">
+                  <div class="user-description-box">
+                    <h4 class="semi-bold no-margin"><%= @user.name %></h4>
+                    <h6 class="no-margin"><%= @user.fantasy_name %></h6>
+                    <br>
+                    <p><i class="fa fa-phone"></i><%= @user.phone %></p>
+                    <p><i class="fa fa-envelope"></i><%= @user.email %></p>
+                    <p><i class="fa fa-legal"></i><%= @user.social_reason %></p>
+                    <p><i class="fa fa-barcode"></i><%= @user.document %></p>
+                  </div>
+                  <div style="margin: 10px 15px; padding: 20px;">
+                    <div class="grid-title no-border">
+                      <h4><span class="semi-bold">Contas bancárias</span></h4>
+                    </div>
+                    <%= link_to raw('Adicionar'), new_account_path, class: 'btn btn-primary btn-small' %>
+                    <table class="table" id="banks">
+                      <thead>
+                      <tr>
+                        <th>Nome</th>
+                        <th>Agência</th>
+                        <th>Conta Corrente</th>
+                        <th>Convênio</th>
+                        <th colspan="3">Opções</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <% @user.accounts.each do |account| %>
+                          <tr>
+                            <td><%= account.bank.full_name %></td>
+                            <td><%= account.agency %></td>
+                            <td><%= account.account %></td>
+                            <td><%= account.agreement %></td>
+                            <td>
+                              <%= link_to 'Editar', edit_account_path(account),
+                                          class: 'btn btn-primary center-block' %>
+                            </td>
+                            <td>
+                              <%= link_to 'Excluir', account, method: :delete, data: { confirm: 'Deseja excluir?' },
+                                          class: 'btn btn-danger center-block' %>
+                            </td>
+                          </tr>
+                      <% end %>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END PLACE PAGE CONTENT HERE -->
+    </div>
+  </div>
+  <!-- END PAGE CONTAINER -->
+</div>
+<!-- END CONTENT -->
+
+<!-- BEGIN PAGE LEVEL JS -->
+<% content_for :page_level_js do %>
+    <%= javascript_include_tag '/assets/bootstrap-select2/select2.min',
+                               '/assets/jquery-datatable/jquery.dataTables.min',
+                               '/assets/jquery-datatable/dataTables.tableTools.min',
+                               '/assets/datatables-responsive/datatables.responsive',
+                               '/assets/datatables-responsive/lodash.min',
+                               '/assets/datatables',
+                               '/assets/jquery-scrollbar/jquery.scrollbar.min',
+                               '/assets/jquery-block-ui/jqueryblockui',
+                               '/assets/jquery-numberAnimate/jquery.animateNumbers' %>
+<% end %>
+<!-- END PAGE LEVEL JS -->

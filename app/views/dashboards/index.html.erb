@@ -1,0 +1,32 @@
+<!-- BEGIN CONTENT -->
+<div class="page-container row-fluid">
+
+  <%= render 'layouts/administrator_navbar' %>
+  <!-- BEGIN PAGE CONTAINER-->
+  <div class="page-content">
+    <div class="content">
+      <!-- BEGIN PAGE TITLE -->
+      <div class="page-title">
+      	 <h3>Início</h3>
+      </div>
+      <!-- END PAGE TITLE -->
+      <!-- BEGIN PlACE PAGE CONTENT HERE -->
+      <div id="container">
+        <div class="row 2col">
+          <div class="col-md-3 col-sm-6 spacing-bottom-sm spacing-bottom">
+            <div class="tiles green added-margin">
+              <div class="tiles-body">
+                <div class="controller"> <a href="javascript:;" class="reload"></a> <a href="javascript:;" class="remove"></a> </div>
+                <div class="tiles-title"> TOTAL DE PASSAGEIROS </div>
+                <div class="heading"><span class="animate-number" data-value="<%= @TotalPassengers %>" data-animation-duration="1000">0</span> </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END PLACE PAGE CONTENT HERE -->
+    </div>
+  </div>
+  <!-- END PAGE CONTAINER -->
+</div>
+<!-- END CONTENT -->

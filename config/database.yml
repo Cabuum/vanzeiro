@@ -1,0 +1,19 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  username: dba
+  password: b44ad54c2712ae1d23647cb63919ed2e
+  socket: /var/run/mysqld/mysqld.sock
+
+development:
+  <<: *default
+  database: mvp_development
+
+test:
+  <<: *default
+  database: mvp_test
+
+production:
+  <<: *default
+  database: mvp_production

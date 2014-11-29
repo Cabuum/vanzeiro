@@ -1,0 +1,52 @@
+<div class="portlet-content">
+  <%= form_for(@account) do |f| %>
+      <% if @account.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@account.errors.count, 'error') %> prohibited this bank from being saved:</h2>
+            <ul>
+              <% @account.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <div class="form-group col-md-12">
+        <%= f.label 'Selecione um banco:' %><br />
+        <%= f.select :bank_id, @banks.collect {|bank|
+            [bank.full_name, bank.id] }, {}, {:class => 'form-control'}  %>
+      </div>
+      <div class="form-group col-md-4">
+        <%= f.label :agency, 'Agência' %><br />
+        <%= f.text_field :agency, :class => 'form-control', :maxlength => 4 %>
+      </div>
+      <div class="form-group col-md-4">
+        <%= f.label :account, 'Conta Corrente' %><br>
+        <%= f.text_field :account, :class => 'form-control', :maxlength => 6 %>
+      </div>
+      <div class="form-group col-md-4">
+        <%= f.label :agreement, 'Convênio' %><br>
+        <%= f.text_field :agreement, :class => 'form-control', :maxlength => 7 %>
+      </div>
+      <div class="form-group col-md-12">
+        <%= f.label '1° linha' %><br>
+        <%= f.text_field :instruction1, :class => 'form-control' %>
+        <%= f.label '2° linha' %><br>
+        <%= f.text_field :instruction2, :class => 'form-control' %>
+        <%= f.label '3° linha' %><br>
+        <%= f.text_field :instruction3, :class => 'form-control' %>
+        <%= f.label '4° linha' %><br>
+        <%= f.text_field :instruction4, :class => 'form-control' %>
+        <%= f.label '5° linha' %><br>
+        <%= f.text_field :instruction5, :class => 'form-control' %>
+        <%= f.label '6° linha' %><br>
+        <%= f.text_field :instruction6, :class => 'form-control' %>
+        <%= f.label '7° linha' %><br>
+        <%= f.text_field :instruction7, :class => 'form-control' %>
+      </div>
+      <div class="form-group col-md-6">
+        <%= f.submit 'Salvar conta bancária', :class => 'btn btn-success', id: 'submit_form' %>
+      </div>
+  <% end %>
+</div>

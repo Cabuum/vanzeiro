@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  contract_id: 
+  due_date: 2014-10-20
+  paid: false
+  payment_date: 2014-10-20
+
+two:
+  contract_id: 
+  due_date: 2014-10-20
+  paid: false
+  payment_date: 2014-10-20

@@ -1,0 +1,40 @@
+<%= form_for(@movement_category, html: {id: 'form_traditional_validation'}) do |f| %>
+    <% if @movement_category.errors.any? %>
+        <div class="form-group">
+          <h2><%= pluralize(@movement_category.errors.count, "erro") %> prohibited this movement_category from being saved:</h2>
+
+          <ul>
+            <% @movement_category.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <%= f.hidden_field :user_id, value: current_user.id %>
+
+    <div class="form-group">
+      <%= f.label :name, 'Nome', class: 'form-label' %>
+       <div class="input-with-icon  right">
+           <i class=""></i>
+        <%= f.text_field :name, class: 'form-control', required: true %>
+       </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :type, 'Tipo da movimentação' , class: 'form-label' %>
+       <div class="input-with-icon  right">
+           <i class=""></i>
+        <%= f.select :type, [['Receita', MovementCategory::INCOME],
+                             ['Despesa', MovementCategory::COSTS]],
+                     { }, { class: 'form-control', required: true } %>
+       </div>
+    </div>
+
+
+    <div class="form-actions">
+      <div class="pull-right">
+        <%= f.submit 'Salvar', class: 'btn btn-success btn-cons' %>
+      </div>
+    </div>
+<% end %>

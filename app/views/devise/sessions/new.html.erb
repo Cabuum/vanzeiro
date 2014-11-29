@@ -1,0 +1,107 @@
+<div class="container">
+  <div class="row login-container animated fadeInUp">
+    <div class="col-md-7 col-md-offset-2 tiles white no-padding">
+      <div class="p-t-30 p-l-40 p-b-20 xs-p-t-10 xs-p-l-10 xs-p-b-10">
+        <h2 class="normal">Entrar no Vanzeiro.com</h2>
+        <p>Use seu <%= link_to 'Facebook', omniauth_authorize_path(resource_name, :facebook) %>,
+          <%= link_to 'Google +', omniauth_authorize_path(resource_name, :google_oauth2) %>
+          ou seu email para começar. <br /></p>
+        <p class="p-b-20">Inicie agora mesmo! é gratis!</p>
+        <button type="button" class="btn btn-primary btn-cons" id="login_toggle">Login</button>
+        ou&nbsp;&nbsp;
+        <button type="button" class="btn btn-info btn-cons" id="register_toggle">
+          Crie sua conta!
+        </button>
+      </div>
+      <div class="tiles grey p-t-20 p-b-20 text-black">
+        <%= form_for(resource, url: session_path(resource_name), html:
+                                     { id: 'form_login', class: 'animated fadeIn' }) do |f| %>
+
+            <% if resource.errors.has_key? :base %>
+                <%= resource.errors[:base].join(', ') %>
+            <% end %>
+
+            <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+              <div class="input-with-icon col-md-6 col-sm-6 ">
+                <i class=""></i>
+                <%= f.email_field :email, placeholder: 'voce@exemplo.com', class: 'form-control',
+                                  id: 'login_email', required: true %>
+              </div>
+
+              <div class="input-with-icon col-md-6 col-sm-6 ">
+                <i class=""></i>
+                <%= f.password_field :password, placeholder: '*************', class: 'form-control',
+                                     id: 'login_pwd', required: true %>
+                <%= f.submit '', style: 'display:none;' %>
+              </div>
+
+            </div>
+            <div class="row p-t-10 m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+              <div class="control-group col-md-10">
+                <div class="checkbox checkbox check-success">
+                  <%- if devise_mapping.recoverable? and not controller_name.eql? 'passwords' %>
+                      <%= link_to 'Perdeu sua senha?', new_password_path(resource_name), tabindex: 99  %>
+                  <% end -%>
+                  &nbsp;&nbsp;
+                  <%= f.check_box :remember_me, as: :boolean if devise_mapping.rememberable? %>
+                  <%= f.label :remember_me, 'Lembre-se de mim'  %>
+                </div>
+              </div>
+            </div>
+        <% end %>
+
+        <%= form_for resource, url: registration_path(resource_name), html:
+                                     {id: 'form_register', style: 'display:none', class: 'animated fadeIn'} do |f| %>
+            <% if resource.errors.has_key? :base %>
+                <%= resource.errors[:base].join(', ') %>
+            <% end %>
+            <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+              <div class="col-md-6 col-sm-6">
+                <%= f.text_field :name, required: true, autofocus: true, class: 'form-control',
+                                 placeholder: 'Nome' %>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <%= f.text_field :document, required: true, class: 'form-control',
+                                 placeholder: 'CPF/CNPJ' %>
+              </div>
+            </div>
+
+            <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+              <div class="col-md-6 col-sm-6">
+                <%= f.password_field :password, required: true, class: 'form-control',
+                                     placeholder: 'Senha' %>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <%= f.password_field :password_confirmation, required: true,
+                                     class: 'form-control', placeholder: 'Confirme sua senha' %>
+              </div>
+            </div>
+
+            <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+              <div class="col-md-12">
+                <%= f.email_field :email, required: true, autofocus: true, class: 'form-control',
+                                  placeholder: 'Email' %>
+              </div>
+            </div>
+
+            <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+              <div class="col-md-6 col-sm-6">
+                <%= f.text_field :fantasy_name, class: 'form-control', placeholder: 'Nome Fantasia' %>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <%= f.text_field :phone, class: 'form-control', placeholder: 'Telefone' %>
+              </div>
+            </div>
+
+            <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+              <div class="col-md-12">
+                <%= f.text_field :social_reason, class: 'form-control',
+                                 placeholder: 'Razão Social' %>
+                <%= f.submit '', style: 'display:none' %>
+              </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

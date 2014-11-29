@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <meta charset="utf-8" />
+  <title>Webarch - Responsive Admin Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta content="" name="description" />
+  <meta content="" name="author" />
+  <!-- BEGIN CORE CSS FRAMEWORK -->
+  <%= stylesheet_link_tag    '/assets/boostrapv3/bootstrap.min', media: 'all' %>
+  <%= stylesheet_link_tag    '/assets/boostrapv3/bootstrap-theme.min', media: 'all' %>
+  <%= stylesheet_link_tag    '/assets/font-awesome/font-awesome.min', media: 'all' %>
+  <%= stylesheet_link_tag    '/assets/animate.min', media: 'all' %>
+  <%= stylesheet_link_tag    '/assets/pace/pace-theme-flash', media: 'screen' %>
+  <!-- END CORE CSS FRAMEWORK -->
+  <!-- BEGIN CSS TEMPLATE -->
+  <%= stylesheet_link_tag    '/assets/style', media: 'all' %>
+  <%= stylesheet_link_tag    '/assets/responsive', media: 'all' %>
+  <%= stylesheet_link_tag    '/assets/custom-icon-set', media: 'all' %>
+  <!-- END CSS TEMPLATE -->
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="error-body no-top">
+<div class="error-wrapper container">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-offset-1 col-xs-10">
+      <div class="error-container" >
+        <div class="error-main">
+          <div class="error-number"> 404 </div>
+          <div class="error-description"> Nós te perdemos em meio as nuvens! </div>
+          <div class="error-description-mini">
+            A página que você procurou não está mais entre nós :(
+          </div>
+          <br />
+          <div class="row">
+            <div class="input-with-icon col-md-12"> <i class="fa fa-search"></i>
+              <input type="text" class="form-control" id="form1Name" name="form1Name">
+            </div>
+          </div>
+          <br />
+          <button class="btn btn-primary btn-cons" type="button">Search</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="footer">
+  <div class="error-container">
+    <ul class="footer-links">
+      <li><a href="#">Template Guidelines</a></li>
+      <li><a href="#">Copyrights & Privacy </a></li>
+      <li><a href="#">Help & FAQ</a></li>
+      <li><a href="#">Contact Us</a></li>
+      <li><a href="#">Reports</a></li>
+      <li><a href="#">Search</a></li>
+      <li><a href="#">Buy theme</a></li>
+    </ul>
+    <br>
+    <ul class="footer-links small-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About Us </a></li>
+      <li><a href="#">UI Elements</a></li>
+      <li><a href="#">Charts</a></li>
+      <li><a href="#">Mobile Apps</a></li>
+      <li><a href="#">Responsive Design</a></li>
+      <li><a href="#">Design</a></li>
+    </ul>
+    <br>
+    <div class="copyright"> All work copyright of respective owner, 2013 webarch Incorporated </div>
+  </div>
+</div>
+<!-- END CONTAINER -->
+<!-- BEGIN CORE JS FRAMEWORK-->
+<%= javascript_include_tag '/assets/boostrapv3/bootstrap.min' %>
+<%= javascript_include_tag '/assets/jquery-1.8.3.min' %>
+<%= javascript_include_tag '/assets/pace/pace.min' %>
+<!-- BEGIN CORE TEMPLATE JS -->
+<!-- END CORE TEMPLATE JS -->
+</body>
+</html>

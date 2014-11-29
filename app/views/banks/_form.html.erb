@@ -1,0 +1,35 @@
+<%= form_for(@bank, html: {id: 'form_traditional_validation'}) do |f| %>
+    <% if @bank.errors.any? %>
+        <div class="form-group">
+          <h2><%= pluralize(@bank.errors.count, "erro") %> prohibited this bank from being saved:</h2>
+
+          <ul>
+            <% @bank.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+  <div class="form-group">
+    <%= f.label :full_name, 'Nome completo', class: 'form-label' %>
+     <div class="input-with-icon  right">
+         <i class=""></i>
+      <%= f.text_field :full_name, class: 'form-control', required: true %>
+     </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :name, 'Nome', class: 'form-label' %>
+     <div class="input-with-icon  right">
+         <i class=""></i>
+      <%= f.text_field :name, class: 'form-control', required: true %>
+     </div>
+  </div>
+
+  <div class="form-actions">
+    <div class="pull-right">
+      <%= f.submit 'Salvar', class: 'btn btn-success btn-cons' %>
+    </div>
+  </div>
+<% end %>

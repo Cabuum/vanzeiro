@@ -1,0 +1,31 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1><strong><%= @event.title %></strong> </h1>
+    <p class="text-right">
+      <%= link_to 'Editar', edit_event_path(@event), :class => 'btn btn-primary' %>
+      <%= link_to 'Excluir', events_path, method: :delete,
+          data: { confirm: 'Deseja realmente excluir?' }, :type => 'button',
+          :class => 'btn btn-danger' %>
+      <%= link_to 'Voltar', root_path, :class => 'btn btn-primary' %>
+    </p>
+    <p id="notice"><%= notice %></p>
+  </div>
+  <div class="panel-body">
+    <div class="portlet-content">
+      <%= form_for(@event) do |f| %>
+          <div class="form-group col-md-6">
+            <%= f.label 'Data de inicio' %>
+            <%= f.text_field :start_time, :class => 'form-control', :disabled => true %>
+          </div>
+          <div class="form-group col-md-6">
+            <%= f.label 'Data de termino' %>
+            <%= f.text_field :end_time, :class => 'form-control', :disabled => true %>
+          </div>
+          <div class="form-group col-md-12">
+            <%= f.label 'Descricao' %>
+            <div class="well well-sm"><%= @event.description %></div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>

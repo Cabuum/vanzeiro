@@ -1,0 +1,160 @@
+<!-- BEGIN CONTENT -->
+<div class="page-container row-fluid">
+
+  <%= render 'layouts/administrator_navbar' %>
+
+  <!-- BEGIN PAGE CONTAINER-->
+  <div class="page-content">
+    <div class="content">
+      <!-- BEGIN PlACE PAGE CONTENT HERE -->
+      <div class="row-fluid">
+        <div class="span12">
+          <div class="grid simple ">
+            <div class="grid-title">
+              <h4>Lista de <span class="semi-bold">passageiros</span></h4>
+              <div class="tools">
+                <a href="javascript:;" class="collapse"></a>
+                <a href="#grid-config" data-toggle="modal" class="config"></a>
+                <a href="javascript:window.location.reload();" class="reload"></a>
+                <a href="javascript:;" class="remove"></a>
+              </div>
+            </div>
+            <div class="grid-body ">
+              <table class="table" id="passenger">
+                <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Email</th>
+                  <th>Telefone</th>
+                  <th>CPF</th>
+                  <th style="width:23%">Progr. último contrato</th>
+                  <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <% @passengers.each do | passenger | %>
+                    <tr class="index-table" title="Clique para visualizar!" data-id="<%= passenger.id %>">
+                      <td><%= passenger.passenger_name %></td>
+                      <td><%= passenger.passenger_email %></td>
+                      <td><%= passenger.passenger_phone %></td>
+                      <td><%= passenger.passenger_cpf %></td>
+                      <td>
+                        <% if passenger.last_contract.nil? %>
+                            Sem contratos!
+                        <% else %>
+                            <% percentage = passenger.last_contract.until_the_end %>
+                            <div class="progress progress-warning">
+                              <div data-percentage="<%= percentage[:value] %>%"
+                                   class="progress-bar progress-bar-<%= percentage[:css] %> animate-progress-bar">
+                              </div>
+                            </div>
+                        <% end %>
+                      </td>
+                      <td class="center index-non-table "><%= link_to raw('<i class="fa fa-remove index-non-table"></i>'), passenger,
+                                                                                                        method: :delete, data: { confirm: 'Deseja excluir?' } %></td>
+                    </tr>
+                <% end %>
+                </tbody>
+              </table>
+              <script type="text/javascript">
+                  document.addEventListener("DOMContentLoaded", function(event) {
+                      $('table td').not('td.index-non-table').click(function(){
+                          var objectId = $(this).parent( "tr" ).data('id');
+                          $.getJSON( '<%= request.fullpath %>/'+ objectId +'.json', function( data ) {
+                              $.each( data, function( key, val ) {
+                                  if(key == 'passenger_name') {
+                                      $('#'+key).text(val);
+                                  } else {
+                                      $('#'+key).val(val);
+                                  }
+                              });
+                              $('#myModal').modal('show');
+                          });
+                      });
+                  });
+              </script>
+              <!-- Modal -->
+              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="passenger_name" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                      <br>
+                      <h4 id="passenger_name" class="semi-bold"></h4>
+                      <p class="no-margin">Confira abaixo as informações do passageiro </p>
+                      <br>
+                    </div>
+                    <div class="modal-body">
+
+                      <div class="row form-row">
+                        <div class="col-md-8">
+                          <label class="form-label">Email</label>
+                          <input id="passenger_email" type="email" class="form-control" disabled="disabled">
+                        </div>
+                        <div class="col-md-4">
+                          <label class="form-label">Phone</label>
+                          <input id="passenger_phone" type="phone" class="form-control" disabled="disabled">
+                        </div>
+                      </div>
+
+                      <div class="row form-row">
+                        <div class="col-md-4">
+                          <label class="form-label">CPF</label>
+                          <input id="passenger_cpf" type="text" class="form-control" disabled="disabled">
+                        </div>
+                        <div class="col-md-8">
+                          <label class="form-label">Endereço</label>
+                          <input id="passenger_address" type="text" class="form-control" disabled="disabled">
+                        </div>
+                      </div>
+
+                      <div class="row form-row">
+                        <div class="col-md-12">
+                          <h4  class="semi-bold text-center">Responsável</h4>
+                          <hr>
+                        </div>
+                      </div>
+
+                      <div class="row form-row">
+                        <div class="col-md-6">
+                          <label class="form-label">Nome</label>
+                          <input id="responsible_name" type="text" class="form-control" disabled="disabled">
+                        </div>
+                        <div class="col-md-6">
+                          <label class="form-label">Email</label>
+                          <input id="responsible_email" type="text" class="form-control" disabled="disabled">
+                        </div>
+                      </div>
+
+                      <div class="row form-row">
+                        <div class="col-md-6">
+                          <label class="form-label">CPF</label>
+                          <input id="responsible_cpf" type="text" class="form-control" disabled="disabled">
+                        </div>
+                        <div class="col-md-6">
+                          <label class="form-label">Telefone</label>
+                          <input id="responsible_phone" type="text" class="form-control" disabled="disabled">
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    </div>
+                  </div>
+                  <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+              </div>
+              <!-- /.modal -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- END PLACE PAGE CONTENT HERE -->
+    </div>
+  </div>
+  <!-- END PAGE CONTAINER -->
+</div>
+<!-- END CONTENT -->

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  passenger_id: 
+  bank_id: 
+  interest: 
+  start: 2014-10-20
+  end: 2014-10-20
+  value: 
+  is_alive: false
+
+two:
+  user_id: 
+  passenger_id: 
+  bank_id: 
+  interest: 
+  start: 2014-10-20
+  end: 2014-10-20
+  value: 
+  is_alive: false

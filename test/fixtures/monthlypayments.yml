@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  passenger_id: 
+  value: 1.5
+  expiration: 2014-08-28
+  interest: 1.5
+
+two:
+  passenger_id: 
+  value: 1.5
+  expiration: 2014-08-28
+  interest: 1.5

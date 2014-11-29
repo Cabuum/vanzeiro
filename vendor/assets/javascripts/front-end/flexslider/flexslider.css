@@ -1,0 +1,166 @@
+/*
+ * jQuery FlexSlider v2.2.0
+ * http://www.woothemes.com/flexslider/
+ *
+ * Copyright 2012 WooThemes
+ * Free to use under the GPLv2 license.
+ * http://www.gnu.org/licenses/gpl-2.0.html
+ *
+ * Contributing author: Tyler Smith (@mbmufffin)
+ */
+
+/* Browser Resets */
+.flex-container a:active,
+.flexslider a:active,
+.flex-container a:focus,
+.flexslider a:focus  {outline: none;}
+.slides,
+.flex-control-nav,
+.flex-direction-nav {margin: 0; padding: 0; list-style: none;} 
+
+/* FlexSlider Necessary Styles */ 
+.flexslider {overflow: hidden; margin: 0; padding: 0;}
+.flexslider .slides > li {display: none; /*-webkit-backface-visibility: hidden;*/} /* Hide the slides before the JS is loaded. Avoids image jumping */
+.flexslider .slides img {width: 100%; display: block;}
+.flex-pauseplay span {text-transform: capitalize;}
+
+/* Clearfix for the .slides element */
+.slides:after {content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0;} 
+html[xmlns] .slides {display: block;} 
+* html .slides {height: 1%;}
+
+/* No JavaScript Fallback */
+/* If you are not using another script, such as Modernizr, make sure you
+ * include js that eliminates this class on page load */
+.no-js .slides > li:first-child {display: block;}
+.flexslider .slides > li:first-child { display: block; }
+
+/* FlexSlider Default Theme */
+.flexslider { position: relative;  zoom: 1;}
+.flex-viewport {max-height: 2000px; /*-webkit-transition: all 1s ease; -moz-transition: all 1s ease; transition: all 1s ease;*/}
+.loading .flex-viewport {max-height: 300px;}
+.flexslider .slides {zoom: 1;}
+.carousel li {margin-right: 5px}
+
+/* Direction Nav */
+.flex-direction-nav { height: 0; }
+.flex-direction-nav a { background: url(../images/sprite.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0.4); width: 35px; height: 35px; position: absolute; top: 10px !important; text-indent: -999em; border-radius: 2px 2px 2px 2px; z-index: 10; }
+.flex-direction-nav a:hover {  }
+.flex-direction-nav li .flex-prev { right: 49px; background-position: 0 -169px; }
+.flex-direction-nav li .flex-next { right: 10px; background-position: -35px -169px; }
+.flex-direction-nav .flex-disabled { opacity: .3; filter:alpha(opacity=30); cursor: default; }
+
+/* Fullwidth FlexSlider Necessary Styles */
+.fullwidth .flexslider { margin-bottom:-2px; max-height: 600px; }
+.fullwidth .flexslider .flex-direction-nav a { background: url(../images/sprite.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0.1); top: 50% !important; width: 50px; height: 100px; position: absolute; text-indent: -999em; margin-top: -50px; }
+.fullwidth .flexslider .flex-direction-nav a:hover { background-color: rgba(0, 0, 0, 0.4) }
+.fullwidth .flexslider .flex-direction-nav .flex-prev { left: 0; background-position: 0 -215px; border-radius: 0 3px 3px 0; }
+.fullwidth .flexslider .flex-direction-nav .flex-next { right: 0; background-position: -50px -215px; border-radius: 3px 0 0 3px; }
+.fullwidth .flexslider .flex-direction-nav .flex-disabled { opacity: .3; filter:alpha(opacity=30); cursor: default; }
+
+/* Control Nav */
+.flex-control-nav {	width: 100%; position:absolute; bottom: 20px; text-align:center; z-index:999; }
+.flex-control-nav li { margin: 0 0 0 5px; display: inline-block; zoom: 1; *display: inline; }
+.flex-control-nav li:first-child { margin: 0; }
+.flex-control-nav li a { width: 15px; height: 15px; display: block; cursor: pointer; text-indent: -999em;  background: none repeat scroll 0 0 #fff; border: 2px solid #fff; border-radius: 20px 20px 20px 20px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); opacity:0.5; filter:alpha(opacity=50); }
+.flex-control-nav li a:hover { background: #fff; border: 2px solid #fff; opacity:1; filter:alpha(opacity=100); }
+.flex-control-nav li a.flex-active { background: transparent; border: 2px solid #fff; cursor: default; opacity:1; filter:alpha(opacity=100); }
+
+/* Pause/Play */
+.flex-pauseplay a { display: block; width: 20px; height: 20px; position: absolute; bottom: 5px; left: 10px; opacity: 0.8; z-index: 10; overflow: hidden; cursor: pointer; }
+.flex-pauseplay a:before  { display: inline-block; content: ""; }
+.flex-pauseplay a:hover  { opacity: 1; }
+.flex-pauseplay a.flex-play:before { content: ""; }
+
+/* Caption style */
+/* IE rgba() hack */
+.flex-caption { zoom: 1; }
+.flex-caption {
+	width: 100%;
+	position: absolute;
+	top: 25%;
+}
+.flex-caption div {
+	width: 1130px;
+	margin: 0 auto;
+}
+.flex-caption.transparent.light-font span {
+	color:#fff;
+	text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.3);
+}
+.flex-caption.transparent.dark-font span {
+	color:#333;
+}
+.flex-caption.transparent.light-font h2 span, .flex-caption.transparent.dark-font h2 span {
+    line-height: 27px !important;
+    padding: 0;
+}
+.flex-caption.light {
+	color:#333;
+	margin-left: 10px;
+}
+.flex-caption.light span {
+	background: none repeat scroll 0 0 rgba(222, 222, 222, 0.5);
+    box-shadow: 10px 0 0 rgba(222, 222, 222, 0.5), -10px 0 0 rgba(222, 222, 222, 0.5);
+}
+.flex-caption.dark {
+	color:#fff;
+	margin-left: 10px;
+}
+.flex-caption.dark span {
+	background: none repeat scroll 0 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 10px 0 0 rgba(0, 0, 0, 0.3), -10px 0 0 rgba(0, 0, 0, 0.3);
+}
+.flex-caption h2 span {    
+    line-height: 56px !important;
+    padding: 5px 0;
+}
+.flex-caption.center {
+	text-align: center;
+}
+.flex-caption.light .button, .flex-caption.dark .button {
+	margin-left: -10px;
+}
+.flex-caption .uppercase {
+	font-size:32px;
+	font-weight: 300;
+	text-transform: uppercase;
+	margin: 0;
+	letter-spacing: -1px;
+}
+.flex-caption .lowercase {
+	font-weight: 300;
+	font-size: 18px;
+	line-height: 27px;
+	margin: 25px 0;
+}
+.flex-caption {
+  animation: 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) 0s normal none 1 avia-btt;
+    opacity: 1;
+}
+
+
+/*---------------960 Screen size---------------*/
+@media only screen and (min-width: 959px) and (max-width: 1170px) {
+.flex-caption div { width: 900px; }
+}
+
+/*---------------iPad portrait---------------*/
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+.flex-caption div { width: 650px; }
+.flex-caption h2 span { line-height: 42px !important; }
+.flex-caption .uppercase { font-size:22px; }
+.flex-caption .lowercase { font-size: 13px;line-height: 17px; }
+.flex-control-nav { display: none; }
+}
+
+/*---------------iPhone landscape---------------*/
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+.flex-caption div, .flex-control-nav { display:none; }
+}
+
+/*---------------iPhone portrait---------------*/
+@media only screen and (min-width: 320px) and (max-width: 479px) {
+.fullwidth .flexslider { max-height: 400px; }
+.flex-caption div, .flex-control-nav { display:none; }
+}

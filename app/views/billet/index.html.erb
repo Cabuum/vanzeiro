@@ -1,0 +1,6 @@
+<p id="notice"><%= notice %></p>
+<% if current_user.blank? %>
+    <%= render 'home/shared/visitor' %>
+<% else %>
+    <%= render 'home/shared/user' %>
+<% end %>
