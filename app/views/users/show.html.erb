@@ -41,13 +41,13 @@
                               <p>Altere aqui suas configurações pré definidas para:</p>
                               <br>
                               <label class="form-label">Vencimento de Boletos em dias úteis</label>
-                              <%= f.number_field :business_day_for_payments, class: 'form-control', min: 1, max: 31 %>
+                              <%= f.number_field :business_day_for_payments, class: 'form-control', min: 1, max: 31, required: 'true' %>
                               <br>
                               <label class="form-label">Novos contratos</label>
-                              <%= f.text_field :default_value, class: 'form-control' %>
+                              <%= f.number_field :default_value, class: 'form-control', required: 'true' %>
                               <br>
                               <label class="form-label">Valor por dia de atraso em juros</label>
-                              <%= f.text_field :default_interest, class: 'form-control' %>
+                              <%= f.number_field :default_interest, class: 'form-control', required: 'true' %>
                               <br>
                               <%= f.hidden_field :user_id, :value => current_user.id %>
                               <%= f.submit 'Salvar', class: 'btn btn-block btn-primary '%>
