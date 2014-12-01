@@ -42,7 +42,7 @@ gem 'capistrano-bundler', '~> 1.1.2'
 gem 'capistrano-rails', '~> 1.1.1'
 
 # Add this if you're using rvm
-gem 'capistrano-rvm', github: "capistrano/rvm"
+gem 'capistrano-rvm', github: 'capistrano/rvm'
 
 # Use billets in this app.
 gem 'brcobranca', '~> 4.0.0'

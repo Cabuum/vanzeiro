@@ -14,7 +14,7 @@
       <!-- BEGIN PlACE PAGE CONTENT HERE -->
       <div class="row-fluid">
         <div class="span12">
-          <div class="grid simple ">
+          <div class="grid simple">
             <div class="grid-title">
               <h4>Lista de <span class="semi-bold">contratos</span></h4>
               <div class="tools">
@@ -25,6 +25,15 @@
               </div>
             </div>
             <div class="grid-body">
+              <!-- ALERT -->
+              <div class="alert alert-warning">
+                <button class="close" data-dismiss="alert"></button>
+                Para criar um novo contrato você precisa cadastrar ao menos um passageiro e também uma conta corrente. <br />
+                As suas contas são encontradas no seu <%= link_to 'perfil', eu_path %>. <b>Atenção:</b> Ao gerar um contrato ele não pode ser mais alterado, apenas excluído, e pode ser de no máximo seis meses duração!<br />
+                Todos os boletos continuam valendo pois eles nã tem registro, direcione seu passageiro para que fique atento. <br />
+                Estamos cogitando mudar para o UOL PagSeguro, opine sobre isso em sugestões!
+              </div>
+              <!-- / ALERT -->
               <table class="table table-striped" id="contract">
                 <thead>
                 <tr>
@@ -54,7 +63,7 @@
                         </div>
                       </td>
                       <td class="center index-non-table "><%= link_to raw('<i class="fa fa-remove index-non-table"></i>'), contract,
-                                                                                                        method: :delete, data: { confirm: 'Deseja excluir?' } %></td>
+                                                                      method: :delete, data: { confirm: 'Deseja excluir?' } %></td>
                     </tr>
                 <% end %>
                 </tbody>
