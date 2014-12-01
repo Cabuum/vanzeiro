@@ -83,6 +83,6 @@
         </div>
     <% end %>
     <div class="pull-right">
-      <%= f.submit 'Salvar', class: 'btn btn-danger btn-cons', id: 'submit_form' %>
+      <%= f.submit 'Salvar', class: 'btn btn-danger btn-cons', id: 'submit_form', onsubmit: "setTimeout('delayedRedirect()', 3000)" %>
     </div>
 <% end %>

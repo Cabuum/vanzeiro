@@ -47,7 +47,6 @@ Rails.application.routes.draw do
   end
 
   scope '/billet' do
-    get '/download_pdf'
     get '/generate_billet/:format/:id' => 'billet#generate_billet'
     get '/multiple_billet/:format/:id' => 'billet#multiple_billet'
   end
