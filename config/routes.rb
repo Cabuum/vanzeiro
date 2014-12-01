@@ -23,7 +23,6 @@ Rails.application.routes.draw do
     resources :accounts, :path => 'contas'
     resources :events, :path => 'eventos'
     resources :users, :path => 'usuarios'
-    resources :spectator, :path => '/admin/espectadores'
 
     resources :passengers, :path => 'passageiros' do
       resources :contracts, :path => 'contrato' do
@@ -35,6 +34,7 @@ Rails.application.routes.draw do
 
     scope '/admin' do
       resources :suggestions, :path => 'sugestoes'
+      resources :spectator, :path => 'espectadores'
       resources :banks, :path => 'bancos'
       resources :plans, :path => 'planos'
       resources :newsletters
@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   end
 
   scope '/billet' do
+    get '/download_pdf'
     get '/generate_billet/:format/:id' => 'billet#generate_billet'
     get '/multiple_billet/:format/:id' => 'billet#multiple_billet'
   end

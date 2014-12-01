@@ -25,6 +25,6 @@ class RegistrationsController < Devise::RegistrationsController
   protected
 
     def after_update_path_for(resource)
-      eu_path(resource)
+      eu_path
     end
 end

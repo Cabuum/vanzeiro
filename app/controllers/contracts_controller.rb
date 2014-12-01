@@ -20,18 +20,12 @@ class ContractsController < ApplicationController
   def create
     @contract = Contract.new contract_params
 
-    respond_to do |format|
-
-      if @contract.save
-
-        @contract.generate_installments
-        format.response { redirect_to controller: :billet, action: :multiple_billet, id: @contract.id, format: :pdf }
-        format.html { redirect_to contracts_path }
-        # TODO: fazer com que quando gere o boleto ele volte MESMO pra cá;
-      else
-        get_initial_options
-        format.html { render :new }
-      end
+    if @contract.save
+      @contract.generate_installments
+      redirect_to controller: :billet, action: :multiple_billet, id: @contract.id, format: :pdf
+    else
+      get_initial_options
+      render :new
     end
   end
 
@@ -53,6 +47,7 @@ class ContractsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def contract_params
-    params.require(:contract).permit(:value, :passenger_id, :account_id, :interest, :start, :user_id, :closing_date)
+    params.require(:contract).permit(:value, :passenger_id, :account_id, :interest,
+                                     :start, :user_id, :closing_date)
   end
 end

@@ -25,13 +25,12 @@ class BilletController < ApplicationController
     contract = Contract.find params[:id]
     format = params[:format].to_sym
 
-    @billets = []
+    billets = []
     contract.installments.each do |installment|
-      @billets << set_billet(installment)
+      billets << set_billet(installment)
     end
 
-    send_data Brcobranca::Boleto::Base.lote(@billets), :filename =>
-        "contrato_n_#{contract.id}.#{format}"
+    send_data Brcobranca::Boleto::Base.lote(billets), filename: "contrato_n_#{contract.id}.#{format}"
   end
 
   private
@@ -63,6 +62,9 @@ class BilletController < ApplicationController
     @archive.instrucao6 = installment.contract.account.instruction6
     @archive.instrucao7 = installment.contract.account.instruction7
     @archive.sacado_endereco = installment.contract.passenger.passenger_address
+
+    p '------------------------------------------------------------------------------------------------------------------------------------'
+    p @archive
 
     @archive
   end
