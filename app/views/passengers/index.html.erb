@@ -28,7 +28,6 @@
                   <th>Telefone</th>
                   <th>CPF</th>
                   <th style="width:23%">Progr. último contrato</th>
-                  <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -50,8 +49,6 @@
                             </div>
                         <% end %>
                       </td>
-                      <td class="center index-non-table "><%= link_to raw('<i class="fa fa-remove index-non-table"></i>'), passenger,
-                                                                      method: :delete, data: { confirm: 'Deseja excluir?' } %></td>
                     </tr>
                 <% end %>
                 </tbody>
@@ -60,10 +57,12 @@
                   document.addEventListener("DOMContentLoaded", function(event) {
                       $('table td').not('td.index-non-table').click(function(){
                           var objectId = $(this).parent( "tr" ).data('id');
-                          $.getJSON( '<%= request.fullpath %>/'+ objectId +'.json', function( data ) {
+                          $.getJSON( '<%= request.fullpath %>/'+ objectId +'.json', function(data) {
                               $.each( data, function( key, val ) {
                                   if(key == 'passenger_name') {
                                       $('#'+key).text(val);
+                                  } else if (key == 'id') {
+                                      $('#' + key).attr('href', '/passageiros/' + val);
                                   } else {
                                       $('#'+key).val(val);
                                   }
@@ -74,77 +73,9 @@
                   });
               </script>
               <!-- Modal -->
-              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="passenger_name" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                      <br>
-                      <h4 id="passenger_name" class="semi-bold"></h4>
-                      <p class="no-margin">Confira abaixo as informações do passageiro </p>
-                      <br>
-                    </div>
-                    <div class="modal-body">
-
-                      <div class="row form-row">
-                        <div class="col-md-8">
-                          <label class="form-label">Email</label>
-                          <input id="passenger_email" type="email" class="form-control" disabled="disabled">
-                        </div>
-                        <div class="col-md-4">
-                          <label class="form-label">Phone</label>
-                          <input id="passenger_phone" type="phone" class="form-control" disabled="disabled">
-                        </div>
-                      </div>
-
-                      <div class="row form-row">
-                        <div class="col-md-4">
-                          <label class="form-label">CPF</label>
-                          <input id="passenger_cpf" type="text" class="form-control" disabled="disabled">
-                        </div>
-                        <div class="col-md-8">
-                          <label class="form-label">Endereço</label>
-                          <input id="passenger_address" type="text" class="form-control" disabled="disabled">
-                        </div>
-                      </div>
-
-                      <div class="row form-row">
-                        <div class="col-md-12">
-                          <h4  class="semi-bold text-center">Responsável</h4>
-                          <hr>
-                        </div>
-                      </div>
-
-                      <div class="row form-row">
-                        <div class="col-md-6">
-                          <label class="form-label">Nome</label>
-                          <input id="responsible_name" type="text" class="form-control" disabled="disabled">
-                        </div>
-                        <div class="col-md-6">
-                          <label class="form-label">Email</label>
-                          <input id="responsible_email" type="text" class="form-control" disabled="disabled">
-                        </div>
-                      </div>
-
-                      <div class="row form-row">
-                        <div class="col-md-6">
-                          <label class="form-label">CPF</label>
-                          <input id="responsible_cpf" type="text" class="form-control" disabled="disabled">
-                        </div>
-                        <div class="col-md-6">
-                          <label class="form-label">Telefone</label>
-                          <input id="responsible_phone" type="text" class="form-control" disabled="disabled">
-                        </div>
-                      </div>
-
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                    </div>
-                  </div>
-                  <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
+              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="passenger_name"
+                   aria-hidden="true">
+                <%= render 'passengers/show' %>
               </div>
               <!-- /.modal -->
             </div>

@@ -1,0 +1,72 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <br>
+      <h4 id="passenger_name" class="semi-bold"></h4>
+      <p class="no-margin">Confira abaixo as informações do passageiro </p>
+      <br>
+    </div>
+    <div class="modal-body">
+
+      <div class="row form-row">
+        <div class="col-md-8">
+          <label for="passenger_email" class="form-label">Email</label>
+          <input id="passenger_email" type="email" class="form-control" disabled="disabled">
+        </div>
+        <div class="col-md-4">
+          <label for="passenger_phone" class="form-label">Phone</label>
+          <input id="passenger_phone" type="phone" class="form-control" disabled="disabled">
+        </div>
+      </div>
+
+      <div class="row form-row">
+        <div class="col-md-4">
+          <label for="passenger_cpf" class="form-label">CPF</label>
+          <input id="passenger_cpf" type="text" class="form-control" disabled="disabled">
+        </div>
+        <div class="col-md-8">
+          <label for="passenger_address" class="form-label">Endereço</label>
+          <input id="passenger_address" type="text" class="form-control" disabled="disabled">
+        </div>
+      </div>
+
+      <div class="row form-row">
+        <div class="col-md-12">
+          <h4 class="semi-bold text-center">Responsável</h4>
+          <hr />
+        </div>
+      </div>
+
+      <div class="row form-row">
+        <div class="col-md-6">
+          <label for="responsible_name" class="form-label">Nome</label>
+          <input id="responsible_name" type="text" class="form-control" disabled="disabled">
+        </div>
+        <div class="col-md-6">
+          <label for="responsible_email" class="form-label">Email</label>
+          <input id="responsible_email" type="text" class="form-control" disabled="disabled">
+        </div>
+      </div>
+
+      <div class="row form-row">
+        <div class="col-md-6">
+          <label for="responsible_cpf" class="form-label">CPF</label>
+          <input id="responsible_cpf" type="text" class="form-control" disabled="disabled">
+        </div>
+        <div class="col-md-6">
+          <label for="responsible_phone" class="form-label">Telefone</label>
+          <input id="responsible_phone" type="text" class="form-control" disabled="disabled">
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <%= link_to 'Deletar passageiro!', '', class: 'btn btn-danger', method: :delete,
+                  data: { confirm: 'Deseja excluir?' }, id: 'id' %>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+    </div>
+  </div>
+  <!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->

@@ -1,54 +1,64 @@
-<div class="portlet-content">
-  <%= form_for(@account) do |f| %>
-      <% if @account.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(@account.errors.count, 'error') %> prohibited this bank from being saved:</h2>
-            <ul>
-              <% @account.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-              <% end %>
-            </ul>
+<%= form_for(@account, html: { class: 'form-no-horizontal-spacing', id: 'form-condensed' }) do |f| %>
+    <div class="row column-seperation">
+      <div class="col-md-6">
+        <h4>Informações básicas</h4>
+        <div class="row form-row">
+          <div class="col-md-12">
+            <%= f.hidden_field :user_id, :value => current_user.id %>
+            <%= f.label 'Selecione um banco:' %><br />
+            <%= f.select :bank_id, @banks.collect {|bank| [bank.full_name, bank.id] }, {},
+                         {class: 'form-control select2'} %>
           </div>
-      <% end %>
+        </div>
+        <br />
+        <div class="row form-row">
+          <div class="col-md-6">
+            <%= f.text_field :agency, class: 'form-control', maxlength: 4, required: true, placeholder: 'Agência' %>
+          </div>
+          <div class="col-md-6">
+            <!--<span class="help">ex: ""</span>-->
+            <%= f.text_field :nick, class: 'form-control', maxlength: 30, required: true, placeholder: 'Apelido, ex: "Caixa - Pessoal"' %>
+          </div>
+          <div class="col-md-6">
+            <%= f.text_field :account, class: 'form-control', maxlength: 6, placeholder: 'C/Corrente' %>
+          </div>
+          <div class="col-md-6">
+            <%= f.text_field :agreement, class: 'form-control', maxlength: 7, placeholder: 'Convênio' %>
+          </div>
+        </div>
+      </div>
 
-      <%= f.hidden_field :user_id, :value => current_user.id %>
-      <div class="form-group col-md-12">
-        <%= f.label 'Selecione um banco:' %><br />
-        <%= f.select :bank_id, @banks.collect {|bank|
-            [bank.full_name, bank.id] }, {}, {:class => 'form-control'}  %>
+      <div class="col-md-6">
+        <h4>Campos relacionados às observações: </h4>
+        <div class="row form-row">
+          <div class="col-md-12">
+            <span class="help">
+              Cada campo desse representa uma linha de conteúdo, dentro do espaço em
+              branco reservado à anotações dos boletos.
+            </span>
+            <%= f.text_field :instruction1, class: 'form-control', placeholder: '1° linha' %>
+            <%= f.text_field :instruction2, class: 'form-control', placeholder: '2° linha' %>
+            <%= f.text_field :instruction3, class: 'form-control', placeholder: '3° linha' %>
+            <%= f.text_field :instruction4, class: 'form-control', placeholder: '4° linha' %>
+            <%= f.text_field :instruction5, class: 'form-control', placeholder: '5° linha' %>
+            <%= f.text_field :instruction6, class: 'form-control', placeholder: '6° linha' %>
+            <%= f.text_field :instruction7, class: 'form-control', placeholder: '7° linha' %>
+          </div>
+        </div>
       </div>
-      <div class="form-group col-md-4">
-        <%= f.label :agency, 'Agência' %><br />
-        <%= f.text_field :agency, :class => 'form-control', :maxlength => 4 %>
-      </div>
-      <div class="form-group col-md-4">
-        <%= f.label :account, 'Conta Corrente' %><br>
-        <%= f.text_field :account, :class => 'form-control', :maxlength => 6 %>
-      </div>
-      <div class="form-group col-md-4">
-        <%= f.label :agreement, 'Convênio' %><br>
-        <%= f.text_field :agreement, :class => 'form-control', :maxlength => 7 %>
-      </div>
-      <div class="form-group col-md-12">
-        <span class="help"> Cada campo desse representa uma linha de conteúdo, dentro do espaço em
-          branco reservado à anotações dos boletos.</span>
-        <%= f.label '1° linha' %>
-        <%= f.text_field :instruction1, :class => 'form-control' %>
-        <%= f.label '2° linha' %>
-        <%= f.text_field :instruction2, :class => 'form-control' %>
-        <%= f.label '3° linha' %>
-        <%= f.text_field :instruction3, :class => 'form-control' %>
-        <%= f.label '4° linha' %>
-        <%= f.text_field :instruction4, :class => 'form-control' %>
-        <%= f.label '5° linha' %>
-        <%= f.text_field :instruction5, :class => 'form-control' %>
-        <%= f.label '6° linha' %>
-        <%= f.text_field :instruction6, :class => 'form-control' %>
-        <%= f.label '7° linha' %>
-        <%= f.text_field :instruction7, :class => 'form-control' %>
-      </div>
-      <div class="form-group col-md-6">
-        <%= f.submit 'Salvar conta bancária', :class => 'btn btn-success', id: 'submit_form' %>
-      </div>
-  <% end %>
-</div>
+    </div>
+    <% if @account.errors.any? %>
+        <div class="alert alert-block alert-error fade in col-md-10">
+          <button type="button" class="close" data-dismiss="alert"></button>
+          <h4 class="alert-heading"><i class="icon-warning-sign"></i> Atenção!</h4>
+          A sua tentativa gerou <a href="#" class="link">
+          <%= pluralize(@account.errors.count,'erro') %>: </a>
+          <% @account.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+          <% end %>
+        </div>
+    <% end %>
+    <div class="pull-right">
+      <%= f.submit 'Salvar', class: 'btn btn-danger btn-cons', id: 'submit_form' %>
+    </div>
+<% end %>

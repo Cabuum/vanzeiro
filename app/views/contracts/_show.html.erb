@@ -1,0 +1,45 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <br />
+      <h4 id="passenger_name" class="semi-bold"></h4>
+      <p class="no-margin">Confira abaixo as informações do contrato. </p>
+      <br />
+    </div>
+    <div class="modal-body">
+
+      <div class="row form-row">
+        <div class="col-md-6">
+          <label for="bank" class="form-label">Banco</label>
+          <input id="bank" type="text" class="form-control" disabled="disabled">
+        </div>
+        <div class="col-md-3">
+          <label for="time" class="form-label">Tempo</label>
+          <input id="time" type="text" class="form-control" disabled="disabled">
+        </div>
+        <div class="col-md-3">
+          <label for="value" class="form-label">Valor</label>
+          <input id="value" type="text" class="form-control" disabled="disabled">
+        </div>
+      </div>
+
+      <div class="row form-row">
+        <div class="col-md-6">
+          <label for="start" class="form-label">Inicío</label>
+          <input id="start" type="text" class="form-control" disabled="disabled">
+        </div>
+        <div class="col-md-6">
+          <label for="closing_date" class="form-label">Término</label>
+          <input id="closing_date" type="text" class="form-control" disabled="disabled">
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <%= link_to 'Cancelar contrato', '', class: 'btn btn-danger', method: :delete, id: 'id',
+                  data: { confirm: 'Deseja excluir?' } %>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+    </div>
+  </div>
+  <!-- /.modal-content -->
+</div>

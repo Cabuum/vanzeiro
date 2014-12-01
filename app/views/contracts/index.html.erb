@@ -43,7 +43,6 @@
                   <th>Término</th>
                   <th>Valor Mensal</th>
                   <th style="width: 18%">Progresso</th>
-                  <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -62,8 +61,6 @@
                           </div>
                         </div>
                       </td>
-                      <td class="center index-non-table "><%= link_to raw('<i class="fa fa-remove index-non-table"></i>'), contract,
-                                                                      method: :delete, data: { confirm: 'Deseja excluir?' } %></td>
                     </tr>
                 <% end %>
                 </tbody>
@@ -76,6 +73,8 @@
                               $.each( data, function( key, val ) {
                                   if(key == 'passenger_name') {
                                       $('#'+key).text(val);
+                                  } else if (key == 'id') {
+                                      $('#' + key).attr('href', '/contratos/' + val);
                                   } else {
                                       $('#'+key).val(val);
                                   }
@@ -87,49 +86,7 @@
               </script>
               <!-- Modal -->
               <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                      <br>
-                      <h4 id="passenger_name" class="semi-bold"></h4>
-                      <p class="no-margin">Confira abaixo as informações do contrato. </p>
-                      <br>
-                    </div>
-                    <div class="modal-body">
-
-                      <div class="row form-row">
-                        <div class="col-md-4">
-                          <label class="form-label">Banco</label>
-                          <input id="bank" type="text" class="form-control" disabled="disabled">
-                        </div>
-                        <div class="col-md-4">
-                          <label class="form-label">Tempo</label>
-                          <input id="time" type="text" class="form-control" disabled="disabled">
-                        </div>
-                        <div class="col-md-4">
-                          <label class="form-label">Valor</label>
-                          <input id="value" type="text" class="form-control" disabled="disabled">
-                        </div>
-                      </div>
-
-                      <div class="row form-row">
-                        <div class="col-md-6">
-                          <label class="form-label">Inicío</label>
-                          <input id="start" type="text" class="form-control" disabled="disabled">
-                        </div>
-                        <div class="col-md-6">
-                          <label class="form-label">Término</label>
-                          <input id="closing_date" type="text" class="form-control" disabled="disabled">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                    </div>
-                  </div>
-                  <!-- /.modal-content -->
-                </div>
+                <%= render 'contracts/show' %>
               </div>
             </div>
           </div>

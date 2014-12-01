@@ -13,7 +13,7 @@
           <div class="user-info">
             <div class="greeting">Bem vindo</div>
             <div class="username"><%= current_user.name.split(' ')[0] %><span class="semi-bold"> <%= current_user.name.split(' ')[1] %></span></div>
-            <div class="status">Status<a href="#">
+            <div class="status">Estado<a href="#">
               <div class="status-icon green"></div>
               Online</a></div>
           </div>
@@ -29,7 +29,6 @@
       </span>
     </p>
     <ul>
-
       <!-- BEGIN ONE LEVEL MENU -->
       <li class="">
         <%= link_to raw('<i class="fa fa-tachometer"></i> <span class="title">Dashboard</span>'), root_path %>

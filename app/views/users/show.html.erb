@@ -69,13 +69,22 @@
                   </div>
                   <div style="margin: 10px 15px; padding: 20px;">
                     <div class="grid-title no-border">
-                      <!-- ALERT -->
-                      <div class="alert alert-info">
-                        <button class="close" data-dismiss="alert"></button>
-                        Você precisa cadastrar ao menos uma conta para poder gerar novos contratos bancários.<br />
-                        Suportamos por enquanto apenas o Banco do Brasil e CAIXA.
-                      </div>
-                      <!-- / ALERT -->
+
+                      <% if current_user.accounts.count == 0 %>
+                          <!-- ALERT -->
+                          <div class="alert alert-info">
+                            <button class="close" data-dismiss="alert"></button>
+                            Você precisa cadastrar ao menos uma conta para poder gerar novos contratos bancários. <br />
+                            Suportamos por enquanto apenas o Banco do Brasil e CAIXA.
+                          </div>
+                          <!-- / ALERT -->
+                          <script type="text/javascript">
+                              document.addEventListener("DOMContentLoaded", function(event) {
+                                  Messenger().post("Adicione primeiramente uma conta bancária, sem ela você não pode gerar contratos!</a>");
+                              });
+                          </script>
+                      <% end %>
+
                       <h4><span class="semi-bold">Contas bancárias</span></h4>
                     </div>
                     <%= link_to raw('Adicionar'), new_account_path, class: 'btn btn-primary btn-small' %>
@@ -84,9 +93,8 @@
                       <tr>
                         <th>Nome</th>
                         <th>Agência</th>
-                        <th>Conta Corrente</th>
-                        <th>Convênio</th>
-                        <th colspan="3">Opções</th>
+                        <th>Apelido</th>
+                        <th>C/Corrente</th>
                       </tr>
                       </thead>
                       <tbody>
@@ -94,16 +102,8 @@
                           <tr>
                             <td><%= account.bank.full_name %></td>
                             <td><%= account.agency %></td>
+                            <td><%= account.nick %></td>
                             <td><%= account.account %></td>
-                            <td><%= account.agreement %></td>
-                            <td>
-                              <%= link_to 'Editar', edit_account_path(account),
-                                          class: 'btn btn-primary center-block' %>
-                            </td>
-                            <td>
-                              <%= link_to 'Excluir', account, method: :delete, data: { confirm: 'Deseja excluir?' },
-                                          class: 'btn btn-danger center-block' %>
-                            </td>
                           </tr>
                       <% end %>
                       </tbody>
@@ -135,9 +135,3 @@
                                '/assets/jquery-numberAnimate/jquery.animateNumbers' %>
 <% end %>
 <!-- END PAGE LEVEL JS -->
-
-<script type="text/javascript">
-    document.addEventListener("DOMContentLoaded", function(event) {
-        Messenger().post("Adicione primeiramente uma conta bancária, sem ela você não pode gerar contratos!</a>");
-    });
-</script>

@@ -61,15 +61,13 @@
                   <li>
                     <%= link_to raw('<i class="fa fa-male"></i>&nbsp;&nbsp; Perfil'), eu_path %>
                   </li>
-                  <!--- <li><a href="#">Mensagens&nbsp;&nbsp;<span class="badge badge-important animated bounceIn">2</span></a></li> -->
                   <li class="divider"></li>
                   <li>
                     <%= link_to raw('<i class="fa fa-power-off"></i>&nbsp;&nbsp;Sair'), sair_path %>
                   </li>
                 </ul>
-                <a class="pull-right" href="/admin/sugestoes" style="font-size: 18px; color: #4E5065; margin-top: -1px;">
-                  <div class="fa fa-lightbulb-o"></div>&nbsp;
-                </a>
+                <%= link_to raw('<div class="fa fa-lightbulb-o"></div>'), new_suggestion_path, title: 'Críticas e Sugestões!',
+                             class: 'pull-right', style: 'font-size: 18px; color: #4E5065; margin-top: -1px;' %>
               </li>
               <!-- END SETTINGS -->
             </ul>
