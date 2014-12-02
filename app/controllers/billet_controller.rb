@@ -36,6 +36,7 @@ class BilletController < ApplicationController
   private
 
   def set_billet(installment)
+    puts installment.contract.account.bank.name.to_sym
     @archive = case installment.contract.account.bank.name.to_sym
                  when :bb then Brcobranca::Boleto::BancoBrasil.new
                  else Brcobranca::Boleto::Caixa.new
