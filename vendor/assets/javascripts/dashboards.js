@@ -54,7 +54,7 @@ $(document).ready(function() {
 // yAxis.render();
 
 // graph.render();
-
+ if($('#ricksaw').length) {
     loadSalesSparkline();
 
     loadSampleChart();
@@ -179,5 +179,6 @@ $(document).ready(function() {
         height: '150px',
         lineColor: 'rgba(255, 255, 255, 0.2)',
         fillColor: 'rgba(255, 255, 255, 0.2)'});
+ }
 
 });
