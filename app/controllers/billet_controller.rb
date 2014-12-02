@@ -49,7 +49,7 @@ class BilletController < ApplicationController
     @archive.agencia = installment.contract.account.agency
     @archive.conta_corrente = installment.contract.account.account
     @archive.convenio = installment.contract.account.agreement
-    @archive.numero_documento = sprintf '%010d', installment.id
+    @archive.numero_documento = sprintf '%03d', installment.id
     @archive.dias_vencimento = current_user.configuration.business_day_for_payments.business_days
     .after(Date.new Time.now.year, installment.due_date.month).to_date
 
