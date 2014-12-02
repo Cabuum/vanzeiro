@@ -36,7 +36,6 @@ class BilletController < ApplicationController
   private
 
   def set_billet(installment)
-    puts installment.contract.account.bank.name.to_sym
     @archive = case installment.contract.account.bank.name.to_sym
                  when :bb then Brcobranca::Boleto::BancoBrasil.new
                  else Brcobranca::Boleto::Caixa.new
@@ -50,7 +49,12 @@ class BilletController < ApplicationController
     @archive.agencia = installment.contract.account.agency
     @archive.conta_corrente = installment.contract.account.account
     @archive.convenio = installment.contract.account.agreement
-    @archive.numero_documento = sprintf '%03d', installment.id
+    @archive.numero_documento = case installment.contract.account.bank.name.to_sym
+                                  when :caixa
+                                    sprintf '%015d', installment.id
+                                  else
+                                    sprintf '%03d', installment.id
+                                end
     @archive.dias_vencimento = current_user.configuration.business_day_for_payments.business_days
     .after(Date.new Time.now.year, installment.due_date.month).to_date
 
