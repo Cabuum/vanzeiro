@@ -3,5 +3,7 @@ class DashboardsController < ApplicationController
 
   def index
     @TotalPassengers = Passenger.count(:all)
+    @movements = Movement.default current_user.id
+    p @movements.count
   end
 end

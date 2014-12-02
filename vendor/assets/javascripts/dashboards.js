@@ -1,11 +1,63 @@
-/* Webarch Admin Dashboard 
+/* Webarch Admin Dashboard
  /* This JS is only for DEMO Purposes - Extract the code that you need
  -----------------------------------------------------------------*/
 $(document).ready(function() {
+
+// var novembro = new Date('11/01/2014').getTime();
+// var dezembro = new Date('12/01/2014').getTime();
+// var janeiro = new Date('01/01/2015').getTime();
+
+// var data = [ { x: novembro, y: 10 }, { x: dezembro, y: 50 }, { x: janeiro, y: 100 } ];
+// //new Date() / 1000;
+
+// var graph = new Rickshaw.Graph( {
+//         element: document.querySelector("#ricksaw"),
+//         width: 600,
+//         height: 300,
+//         renderer: 'bar',
+//         series: [ {
+//                 color: 'steelblue',
+//                 data: data
+//         },
+//         {
+//                 color: 'steelblue',
+//                 data: [{ x: dezembro, y: 50 }]
+//         } ]
+// } );
+
+// var xAxis = new Rickshaw.Graph.Axis.X({
+//   graph: graph,
+//   tickFormat: function(x){
+//     var date = new Date(x).getMonth();
+//     switch (date) {
+//         case 10:
+//             day = "novembro";
+//             break;
+//         case 11:
+//             day = "dezembro";
+//             break;
+//         case 0:
+//             day = "janeiro";
+//             break;
+//     }
+//      return day;
+//     }
+// })
+// xAxis.render();
+
+// var yAxis = new Rickshaw.Graph.Axis.Y({
+//   graph: graph,
+//   tickFormat: function(x){
+//      return x;
+//     }
+// })
+// yAxis.render();
+
+// graph.render();
+
     loadSalesSparkline();
 
     loadSampleChart();
-    loadSampleChartDemo2();
 
     function loadSampleChart(){
 
@@ -17,71 +69,71 @@ $(document).ready(function() {
         for (var i = 0; i < 50; i++) {
             random.addData(seriesData_5);
         }
-
-        rick = new Rickshaw.Graph( {
+        console.log(seriesData_5);
+        ricksaw = new Rickshaw.Graph( {
             element: document.querySelector('#ricksaw'),
             height: 200,
-            renderer: 'area',
+            renderer: 'bar',
             series: [
                 {
                     data: seriesData_5[0],
                     color: '#736086',
-                    name:'Downloads'
+                    name:'novembro/2014'
                 },{
                     data: seriesData_5[1],
                     color: '#f8a4a3',
-                    name:'Uploads'
+                    name:'dezembro/2014'
                 },
                 {
                     data: seriesData_5[2],
                     color: '#eceff1',
-                    name:'All'
+                    name:'janeiro/2015'
                 }
             ]
         } );
 
         var hoverDetail = new Rickshaw.Graph.HoverDetail( {
-            graph: rick
+            graph: ricksaw
         });
 
-        random.addData(seriesData_5);
-        rick.update();
+            random.addData(seriesData_5);
+        ricksaw.update();
 
         var ticksTreatment = 'glow';
 
         var xAxis = new Rickshaw.Graph.Axis.Time( {
-            graph: rick,
+            graph: ricksaw,
             ticksTreatment: ticksTreatment,
-            timeFixture: new Rickshaw.Fixtures.Time.Local()
+            timeFixture: new Rickshaw.Fixtures.Time()
         });
 
         xAxis.render();
 
         var yAxis = new Rickshaw.Graph.Axis.Y( {
-            graph: rick,
+            graph: ricksaw,
             tickFormat: Rickshaw.Fixtures.Number.formatKMBT,
             ticksTreatment: ticksTreatment
         });
 
         var legend = new Rickshaw.Graph.Legend( {
-            graph: rick,
+            graph: ricksaw,
             element: document.getElementById('legend')
         });
 
         yAxis.render();
 
         var shelving = new Rickshaw.Graph.Behavior.Series.Toggle( {
-            graph: rick,
+            graph: ricksaw,
             legend: legend
         } );
 
         var order = new Rickshaw.Graph.Behavior.Series.Order( {
-            graph: rick,
+            graph: ricksaw,
             legend: legend
         } );
 
         var highlighter = new Rickshaw.Graph.Behavior.Series.Highlight( {
-            graph: rick,
+            graph: ricksaw,
             legend: legend
         } );
 
@@ -96,104 +148,6 @@ $(document).ready(function() {
         });
         //Sparkline Charts
         $("#mini-chart-other").sparkline([1,4,6,2,0,5,6,4], {
-            type: 'bar',
-            height: '30px',
-            barWidth: 6,
-            barSpacing: 2,
-            barColor: '#0aa699',
-            negBarColor: '#0aa699'
-        });
-    }
-
-    function loadSampleChartDemo2(){
-
-
-        var seriesData_5 = [ [], [],[]];
-
-        var random = new Rickshaw.Fixtures.RandomData(50);
-
-        for (var i = 0; i < 50; i++) {
-            random.addData(seriesData_5);
-        }
-
-        rick = new Rickshaw.Graph( {
-            element: document.querySelector('#ricksaw_2'),
-            height: 200,
-            renderer: 'area',
-            series: [
-                {
-                    data: seriesData_5[0],
-                    color: '#736086',
-                    name:'Downloads'
-                },{
-                    data: seriesData_5[1],
-                    color: '#f8a4a3',
-                    name:'Uploads'
-                },
-                {
-                    data: seriesData_5[2],
-                    color: '#eceff1',
-                    name:'All'
-                }
-            ]
-        } );
-
-        var hoverDetail = new Rickshaw.Graph.HoverDetail( {
-            graph: rick
-        });
-
-        random.addData(seriesData_5);
-        rick.update();
-
-        var ticksTreatment = 'glow';
-
-        var xAxis = new Rickshaw.Graph.Axis.Time( {
-            graph: rick,
-            ticksTreatment: ticksTreatment,
-            timeFixture: new Rickshaw.Fixtures.Time.Local()
-        });
-
-        xAxis.render();
-
-        var yAxis = new Rickshaw.Graph.Axis.Y( {
-            graph: rick,
-            tickFormat: Rickshaw.Fixtures.Number.formatKMBT,
-            ticksTreatment: ticksTreatment
-        });
-
-        var legend = new Rickshaw.Graph.Legend( {
-            graph: rick,
-            element: document.getElementById('legend_2')
-        });
-
-        yAxis.render();
-
-        var shelving = new Rickshaw.Graph.Behavior.Series.Toggle( {
-            graph: rick,
-            legend: legend
-        } );
-
-        var order = new Rickshaw.Graph.Behavior.Series.Order( {
-            graph: rick,
-            legend: legend
-        } );
-
-        var highlighter = new Rickshaw.Graph.Behavior.Series.Highlight( {
-            graph: rick,
-            legend: legend
-        } );
-
-        //Sparkline Charts
-        $("#mini-chart-orders_2").sparkline([1,4,6,2,0,5,6,4,6], {
-            type: 'bar',
-            height: '30px',
-            barWidth: 6,
-            barSpacing: 2,
-            barColor: '#f35958',
-            negBarColor: '#f35958'
-        });
-        //Sparkline Charts
-        $("#mini-chart-other_2").sparkline([1,4,6,2,0,5,6,4], {
             type: 'bar',
             height: '30px',
             barWidth: 6,
