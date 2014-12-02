@@ -63,9 +63,6 @@ class BilletController < ApplicationController
     @archive.instrucao7 = installment.contract.account.instruction7
     @archive.sacado_endereco = installment.contract.passenger.passenger_address
 
-    p '------------------------------------------------------------------------------------------------------------------------------------'
-    p @archive
-
     @archive
   end
 end
