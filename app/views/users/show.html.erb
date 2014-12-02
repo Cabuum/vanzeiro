@@ -99,7 +99,7 @@
                       </thead>
                       <tbody>
                       <% @user.accounts.each do |account| %>
-                          <tr>
+                          <tr class="index-table" title="Clique para visualizar!" data-id="<%= account.id %>">
                             <td><%= account.bank.full_name %></td>
                             <td><%= account.agency %></td>
                             <td><%= account.nick %></td>
@@ -108,6 +108,33 @@
                       <% end %>
                       </tbody>
                     </table>
+                    <script type="text/javascript">
+                  document.addEventListener("DOMContentLoaded", function(event) {
+                      $('table td').not('td.index-non-table').click(function(){
+                          var objectId = $(this).parent( "tr" ).data('id');
+                          $.getJSON( '/contas/'+ objectId +'.json', function(data) {
+                              $.each( data, function( key, val ) {
+                                console.log(key);
+                                  if(key == 'nick') {
+                                      $('#'+key).text(val);
+                                  } else if (key == 'id') {
+                                      $('#' + key).attr('href', '/contas/' + val);
+                                      $('#editlink').attr('href', '/contas/' + val + '/editar');
+                                  } else {
+                                      $('#'+key).val(val);
+                                  }
+                              });
+                              $('#myModal').modal('show');
+                          });
+                      });
+                  });
+              </script>
+              <!-- Modal -->
+              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="nick"
+                   aria-hidden="true">
+                <%= render 'accounts/show' %>
+              </div>
+              <!-- /.modal -->
                   </div>
                 </div>
               </div>
