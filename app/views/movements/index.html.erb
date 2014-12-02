@@ -67,6 +67,7 @@
                                       $('#'+key).text(val);
                                   } else if (key == 'id') {
                                       $('#' + key).attr('href', '/fluxo-de-caixa/' + val);
+                                      $('#editlink').attr('href', '/fluxo-de-caixa/' + val + '/editar');
                                   } else {
                                       $('#'+key).val(val);
                                   }

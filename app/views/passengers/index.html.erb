@@ -63,6 +63,7 @@
                                       $('#'+key).text(val);
                                   } else if (key == 'id') {
                                       $('#' + key).attr('href', '/passageiros/' + val);
+                                      $('#editlink').attr('href', '/passageiros/' + val + '/editar');
                                   } else {
                                       $('#'+key).val(val);
                                   }

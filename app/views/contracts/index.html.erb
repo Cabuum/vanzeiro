@@ -75,6 +75,7 @@
                                       $('#'+key).text(val);
                                   } else if (key == 'id') {
                                       $('#' + key).attr('href', '/contratos/' + val);
+                                      $('#editlink').attr('href', '/contratos/' + val + '/editar');
                                   } else {
                                       $('#'+key).val(val);
                                   }
