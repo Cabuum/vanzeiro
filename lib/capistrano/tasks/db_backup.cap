@@ -1,0 +1,42 @@
+desc "Backup the database"
+namespace :db do
+    task :backup do
+        on roles(:db) do |host|
+            info 'init database backup'
+            backup_path = "#{fetch(:deploy_to)}/backups"
+            execute :mkdir, "-p #{backup_path}"
+            basename = 'database'
+
+            username, password, database, host = get_remote_database_config(fetch(:stage))
+            debug "#{username}, #{password}, #{database}"
+
+            filename = "#{basename}_#{fetch(:stage)}_#{database}_#{Time.now.strftime '%Y-%m-%d_%H:%M:%S'}.sql.bz2"
+            debug "We will backup to file: #{backup_path}/#{filename}"
+
+            hostcmd = host.nil? ? '' : "-h #{host}"
+            execute :mysqldump, "-u #{username} --password='#{password}' --databases #{database} #{hostcmd}
+                | bzip2 -9 > #{backup_path}/#{filename}"
+
+            purge_old_backups "#{basename}", "#{backup_path}"
+        end
+    end
+
+    def get_remote_database_config(db)
+        remote_config = capture("cat #{shared_path}/config/database.yml")
+        database = YAML::load(remote_config)
+        return database["#{db}"]['username'], database["#{db}"]['password'], database["#{db}"]['database'],
+            database["#{db}"]['host']
+    end
+
+  def purge_old_backups(basename,backup_path)
+    max_keep = fetch(:keep_db_backups, 5).to_i
+    backup_files = capture("ls -t #{backup_path}/#{basename}*").split.reverse
+    if max_keep >= backup_files.length
+      info "No old database backups to clean up"
+    else
+      info "Keeping #{max_keep} of #{backup_files.length} database backups"
+      delete_backups = (backup_files - backup_files.last(max_keep)).join(" ")
+      execute :rm, "-rf #{delete_backups}"
+    end
+  end
+end
