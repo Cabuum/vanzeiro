@@ -4,7 +4,7 @@
         <br />
         <div class="row form-row">
           <div class="col-md-12">
-            <%= f.text_field :title, class: 'form-control', maxlength: 100, required: true, placeholder: 'Título' %>
+            <%= f.text_field :title, class: 'form-control' , required: true, placeholder: 'Título' %>
             <%= f.hidden_field :email, value: current_user.email %>
           </div>
           <div class="col-md-12">

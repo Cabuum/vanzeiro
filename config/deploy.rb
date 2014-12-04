@@ -1,5 +1,5 @@
 # config valid only for Capistrano 3.1
-lock '3.1.0'
+lock '3.2.1'
 
 set :application, 'vanzeiro'
 set :repo_url, 'git@bitbucket.org:cabuum/vanzeiro-mvp.git'
@@ -34,13 +34,19 @@ set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public
 # Default value for keep_releases is 5
 set :keep_releases, 3
 
+#mx backup database
+set :keep_db_backups, 10
+
 namespace :deploy do
 
-  desc 'rails migrate'
-  task :rails_migrate do
+  puts fetch(:stage)
+  before :updating, 'db:backup'
+
+  #desc 'rails migrate'
+  #task :rails_migrate do
     #info 'executing rake migrate!'
     #execute :rm, 'rake db:migrate RAILS_ENV=production'
-  end
+  #end
 
   desc 'Restart application'
   task :restart do
@@ -51,7 +57,7 @@ namespace :deploy do
   end
 
   after :publishing, :restart
-  after :publishing, :rails_migrate
+  #after :publishing, :rails_migrate
   after :finishing, 'deploy:cleanup'
 
   #after :restart, :clear_cache do
