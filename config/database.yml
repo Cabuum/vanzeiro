@@ -2,8 +2,8 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: 5
-  username: dba
-  password: b44ad54c2712ae1d23647cb63919ed2e
+  username: root
+  password: olh234
   socket: /var/run/mysqld/mysqld.sock
 
 development:
