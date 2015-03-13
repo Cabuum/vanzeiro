@@ -43,3 +43,33 @@ bower_components/
 # Uploaded files
 
 /public/uploads
+
+Gemfile.lock
+*.swp
+*.*~
+/.bundle
+/log/*.log
+/tmp
+tmp/**/*
+tmp/*
+tmp
+db/*.sqlite3
+db/*.sqlite3-journal
+db/schema.rb
+config/database.yml
+config/unicorn.rb
+public/system/*
+public/upload/*
+public/assets/*
+coverage
+.DS_Store
+._.DS_Store
+*.mwb.baknode_modules
+node_modules
+stdout
+
+### RubyMine ###
+*.iml
+
+## Directory-based project format:
+.idea/
