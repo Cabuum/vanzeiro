@@ -1,88 +1,33 @@
 <%= form_for(@contract, html: {id: 'form_traditional_validation'}) do |f| %>
-    <div class="row column-seperation">
-      <div class="col-md-6">
-        <h4>Informações sobre passageiro e cobrança</h4>
-        <%= f.hidden_field :user_id, value: current_user.id %>
-
-        <div class="form-group">
-          <%= f.label :passenger_id, 'Nome do passageiro', class: 'form-label' %>
-          <div class="row">
-            <div class="col-md-12">
-              <%= f.select :passenger_id,
+    <%= f.hidden_field :user_id, value: current_user.id %>
+ <%= f.label :passenger_id, 'Nome do passageiro', class: 'form-label' %>
+<%= f.select :passenger_id,
                            @passengers.collect{|passenger| [passenger.passenger_name, passenger.id]}, { },
                            {class: 'select2', style: 'width:100%'} %>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :account_id, 'Banco para pagamento', class: 'form-label' %>
-          <div class="row">
-            <div class="col-md-12">
-              <%= f.select :account_id, @accounts.collect {|acc| [acc.nick, acc.id]}, { },
+<%= f.label :account_id, 'Banco para pagamento', class: 'form-label' %>
+<%= f.select :account_id, @accounts.collect {|acc| [acc.nick, acc.id]}, { },
                            {class: 'select2', style: 'width:100%'} %>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <h4>Valores & Datas</h4>
-        <div class="row form-row">
-          <div class="col-md-6 form-group">
-            <%= f.label :interest, 'Juros R$ (p/ dia)', class: 'form-label' %>
-            <span class="help">ex: "R$ 0,25"</span>
-            <div class="input-with-icon  right">
-              <i class=""></i>
-              <%= f.text_field :interest, class: 'form-control',
+<%= f.label :interest, 'Juros R$ (p/ dia)', class: 'form-label' %>
+<%= f.text_field :interest, class: 'form-control',
                                value: current_user.configuration.default_interest %>
-            </div>
-          </div>
-
-          <div class="col-md-6 form-group">
-            <%= f.label :value, 'Valor mensal', class: 'form-label' %>
-            <span class="help">ex: "R$ 110,20"</span>
-            <div class="input-with-icon  right">
-              <i class=""></i>
-              <%= f.text_field :value, class: 'form-control',
+<%= f.label :value, 'Valor mensal', class: 'form-label' %>
+<%= f.text_field :value, class: 'form-control',
                                value: current_user.configuration.default_value %>
-            </div>
-          </div>
-        </div>
+<%= f.label :start, 'Início do contrato' , class: 'form-label' %>
+<%= f.text_field :start, class: 'form-control' %>
+<%= f.label :closing_date, 'Término do contrato', class: 'form-label' %>
+<%= f.text_field :closing_date, class: 'form-control' %>
 
-        <div class="row form-row">
-          <div class="col-md-6 form-group">
-            <%= f.label :start, 'Início do contrato' , class: 'form-label' %>
-            <div class="input-with-icon right input-append success date no-padding" style="width: 85%;">
-              <i class=""></i>
-              <%= f.text_field :start, class: 'form-control' %>
-              <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
-            </div>
-          </div>
-
-          <div class="col-md-6 form-group">
-            <%= f.label :closing_date, 'Término do contrato', class: 'form-label' %>
-            <div class="input-with-icon right input-append success date no-padding" style="width: 85%;">
-              <i class=""></i>
-              <%= f.text_field :closing_date, class: 'form-control' %>
-              <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
-            </div>
-          </div>
-        </div>
-      </div>
+<% if @contract.errors.any? %>
+    <div class="alert alert-block alert-error fade in col-md-10">
+      <button type="button" class="close" data-dismiss="alert"></button>
+      <h4 class="alert-heading"><i class="icon-warning-sign"></i> Atenção!</h4>
+      A sua tentativa gerou <a href="#" class="link">
+      <%= pluralize(@contract.errors.count,'erro') %>: </a>
+      <% @contract.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+      <% end %>
     </div>
-    <% if @contract.errors.any? %>
-        <div class="alert alert-block alert-error fade in col-md-10">
-          <button type="button" class="close" data-dismiss="alert"></button>
-          <h4 class="alert-heading"><i class="icon-warning-sign"></i> Atenção!</h4>
-          A sua tentativa gerou <a href="#" class="link">
-          <%= pluralize(@contract.errors.count,'erro') %>: </a>
-          <% @contract.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-          <% end %>
-        </div>
-    <% end %>
-    <div class="pull-right">
-      <%= f.submit 'Salvar', class: 'btn btn-danger btn-cons', id: 'submit_form', onsubmit: "setTimeout('delayedRedirect()', 3000)" %>
-    </div>
+<% end %>
+<%= f.submit 'Salvar', class: 'btn btn-danger btn-cons', id: 'submit_form', onsubmit: "setTimeout('delayedRedirect()', 3000)" %>
 <% end %>

@@ -1,100 +1,26 @@
-<!-- BEGIN CONTENT -->
-<div class="page-container row-fluid">
-
-  <%= render 'layouts/administrator_navbar' %>
-
-  <!-- BEGIN PAGE CONTAINER-->
-  <div class="page-content">
-    <div class="content">
-      <!-- BEGIN PlACE PAGE CONTENT HERE -->
-      <div class="row-fluid">
-        <div class="span12">
-          <div class="grid simple ">
-            <div class="grid-title">
-              <h4>Lista de <span class="semi-bold">passageiros</span></h4>
-              <div class="tools">
-                <a href="javascript:;" class="collapse"></a>
-                <a href="#grid-config" data-toggle="modal" class="config"></a>
-                <a href="javascript:window.location.reload();" class="reload"></a>
-                <a href="javascript:;" class="remove"></a>
-              </div>
-            </div>
-            <div class="grid-body ">
-              <table class="table" id="passenger">
-                <thead>
-                <tr>
-                  <th>Nome</th>
-                  <th>Email</th>
-                  <th>Telefone</th>
-                  <th>CPF</th>
-                  <th style="width:23%">Progr. último contrato</th>
-                </tr>
-                </thead>
-                <tbody>
-                <% @passengers.each do | passenger | %>
-                    <tr class="index-table" title="Clique para visualizar!" data-id="<%= passenger.id %>">
-                      <td><%= passenger.passenger_name %></td>
-                      <td><%= passenger.passenger_email %></td>
-                      <td><%= passenger.passenger_phone %></td>
-                      <td><%= passenger.passenger_cpf %></td>
-                      <td>
-                        <% if passenger.last_contract.nil? %>
-                            Sem contratos!
-                        <% else %>
-                            <% percentage = passenger.last_contract.until_the_end %>
-                            <div class="progress progress-warning">
-                              <div data-percentage="<%= percentage[:value] %>%"
-                                   class="progress-bar progress-bar-<%= percentage[:css] %> animate-progress-bar">
-                              </div>
-                            </div>
-                        <% end %>
-                      </td>
-                    </tr>
-                <% end %>
-                </tbody>
-              </table>
-              <script type="text/javascript">
-                  document.addEventListener("DOMContentLoaded", function(event) {
-                      $('table td').not('td.index-non-table').click(function(){
-                          var objectId = $(this).parent( "tr" ).data('id');
-                          $.getJSON( '<%= request.fullpath %>/'+ objectId +'.json', function(data) {
-                              $.each( data, function( key, val ) {
-                                  if(key == 'passenger_name') {
-                                      $('#'+key).text(val);
-                                  } else if (key == 'id') {
-                                      $('#' + key).attr('href', '/passageiros/' + val);
-                                      $('#editlink').attr('href', '/passageiros/' + val + '/editar');
-                                  } else {
-                                      $('#'+key).val(val);
-                                  }
-                              });
-                              $('#myModal').modal('show');
-                          });
-                      });
-                  });
-              </script>
-              <!-- Modal -->
-              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="passenger_name"
-                   aria-hidden="true">
-                <%= render 'passengers/show' %>
-              </div>
-              <!-- /.modal -->
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- END PLACE PAGE CONTENT HERE -->
-    </div>
-  </div>
-  <!-- END PAGE CONTAINER -->
-</div>
-<!-- END CONTENT -->
-
+<%= render 'layouts/administrator_navbar' %>
+<%= link_to "novo", new_passenger_path %>
+<table class="table" id="passenger">
+  <thead>
+  <tr>
+    <th>Nome</th>
+    <th>Email</th>
+    <th>Telefone</th>
+    <th>CPF</th>
+    <th style="width:23%">Progr. último contrato</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @passengers.each do | passenger | %>
+      <tr class="index-table" title="Clique para visualizar!" data-id="<%= passenger.id %>">
+        <td><%= passenger.passenger_name %></td>
+        <td><%= passenger.passenger_email %></td>
+        <td><%= passenger.passenger_phone %></td>
+        <td><%= passenger.passenger_cpf %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
 <% if notice %>
-    <script type="text/javascript">
-        document.addEventListener("DOMContentLoaded", function(event) {
-            Messenger().post("<%= notice %>!</a>");
-        });
-    </script>
+<%= notice %>!
 <% end %>

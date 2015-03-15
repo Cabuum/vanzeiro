@@ -1,40 +1,7 @@
-<!-- BEGIN CONTENT -->
-<div class="page-container row-fluid">
-
-  <%= render 'layouts/administrator_navbar' %>
-
-  <!-- BEGIN PAGE CONTAINER-->
-  <div class="page-content">
-    <div class="content">
-      <!-- BEGIN PlACE PAGE CONTENT HERE -->
-      <div class="row">
-        <div class="col-md-12">
-          <div class="tiles white col-md-12 no-padding">
-            <div class="tiles green cover-pic-wrapper">
-              <div class="overlayer bottom-right">
-                <div class="overlayer-wrapper">
-                  <div class="padding-10 hidden-xs">
-                    <%= link_to raw('<i class="fa fa-edit"></i>&nbsp;&nbsp; Editar Perfil'), editar_path, class: 'btn btn-primary btn-small' %>
-                  </div>
-                </div>
-              </div>
-              <img src="/assets/cover_pic.png" alt="">
-            </div>
-            <div class="tiles white">
-              <div class="row">
-                <div class="col-md-3 col-sm-3" >
-                  <div class="user-profile-pic">
-                    <%= image_tag(current_user.image_url(:thumb).to_s, data: {src: current_user.image_url(:thumb).to_s,
+<%= render 'layouts/administrator_navbar' %>
+<%= image_tag(current_user.image_url(:thumb).to_s, data: {src: current_user.image_url(:thumb).to_s,
                                                                               :'src-retina' => current_user.image_url(:thumb2x).to_s}) if current_user.image? %>
-                  </div>
-                  <div class="user-mini-description">
-                    <div class="grid simple">
-                      <div class="grid-title no-border">
-                        <h4><span class="semi-bold">Configurações</span></h4>
-                      </div>
-                      <div class="grid-body no-border">
-                        <div class="row-fluid">
-                          <%= form_for(@user.configuration, :url => {
+<%= form_for(@user.configuration, :url => {
                                                                   :controller => 'my_configurations',
                                                                   :action => 'update',
                                                                   :id => @user.configuration.id }) do |f| %>
@@ -52,13 +19,7 @@
                               <%= f.hidden_field :user_id, :value => current_user.id %>
                               <%= f.submit 'Salvar', class: 'btn btn-block btn-primary '%>
                           <% end %>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-8 col-sm-8">
-                  <div class="user-description-box">
+
                     <h4 class="semi-bold no-margin"><%= @user.name %></h4>
                     <h6 class="no-margin"><%= @user.fantasy_name %></h6>
                     <br />
@@ -67,8 +28,6 @@
                     <p><%= "<i class='fa fa-legal'></i> #{@user.social_reason}".html_safe if @user.social_reason? %></p>
                     <p><%= "<i class='fa fa-barcode'></i> #{@user.document}".html_safe if @user.document? %></p>
                   </div>
-                  <div style="margin: 10px 15px; padding: 20px;">
-                    <div class="grid-title no-border">
 
                       <% if current_user.accounts.count == 0 %>
                           <!-- ALERT -->
@@ -108,65 +67,7 @@
                       <% end %>
                       </tbody>
                     </table>
-                    <script type="text/javascript">
-                  document.addEventListener("DOMContentLoaded", function(event) {
-                      $('table td').not('td.index-non-table').click(function(){
-                          var objectId = $(this).parent( "tr" ).data('id');
-                          $.getJSON( '/contas/'+ objectId +'.json', function(data) {
-                              $.each( data, function( key, val ) {
-                                console.log(key);
-                                  if(key == 'nick') {
-                                      $('#'+key).text(val);
-                                  } else if (key == 'id') {
-                                      $('#' + key).attr('href', '/contas/' + val);
-                                      $('#editlink').attr('href', '/contas/' + val + '/editar');
-                                  } else {
-                                      $('#'+key).val(val);
-                                  }
-                              });
-                              $('#myModal').modal('show');
-                          });
-                      });
-                  });
-              </script>
-              <!-- Modal -->
-              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="nick"
-                   aria-hidden="true">
-                <%= render 'accounts/show' %>
-              </div>
-              <!-- /.modal -->
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- END PLACE PAGE CONTENT HERE -->
-    </div>
-  </div>
-  <!-- END PAGE CONTAINER -->
-</div>
-<!-- END CONTENT -->
-
-<!-- BEGIN PAGE LEVEL JS -->
-<% content_for :page_level_js do %>
-    <%= javascript_include_tag '/assets/bootstrap-select2/select2.min',
-                               '/assets/jquery-datatable/jquery.dataTables.min',
-                               '/assets/jquery-datatable/dataTables.tableTools.min',
-                               '/assets/datatables-responsive/datatables.responsive',
-                               '/assets/datatables-responsive/lodash.min',
-                               '/assets/datatables',
-                               '/assets/jquery-scrollbar/jquery.scrollbar.min',
-                               '/assets/jquery-block-ui/jqueryblockui',
-                               '/assets/jquery-numberAnimate/jquery.animateNumbers' %>
-<% end %>
-<!-- END PAGE LEVEL JS -->
 
 <% if notice %>
-    <script type="text/javascript">
-        document.addEventListener("DOMContentLoaded", function(event) {
-            Messenger().post("<%= notice %>!</a>");
-        });
-    </script>
+<%= notice %>!
 <% end %>

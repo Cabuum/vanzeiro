@@ -13,10 +13,3 @@
  *= require_tree .
  *= require_self
  */
-
-.index-table {
-    cursor: pointer;
-}
-.index-non-table{
-    cursor: default !important;
-}

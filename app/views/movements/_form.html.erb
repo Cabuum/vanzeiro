@@ -1,65 +1,29 @@
 <%= form_for(@movement, html: {id: 'form_traditional_validation'}) do |f| %>
-    <div class="row column-seperation">
-      <div class="col-md-6">
-        <div class="row form-row">
-          <div class="col-md-12 form-group">
-            <%= f.hidden_field :user_id, value: current_user.id %>
-            <%= f.label :description, 'Descrição', class: 'form-label' %>
-            <span class="help">ex: "água, energia elétrica, pneus, combustível"</span>
-            <%= f.text_field :description, maxlength: 255, class: 'form-control', required: true, rows: 3 %>
-          </div>
-        </div>
-        <div class="row form-row">
-          <div class="col-md-6">
-            <%= f.label :type, 'Tipo da movimentação', class: 'form-label' %>
-            <%= f.select :type, [['Lucros', MovementCategory::INCOME], ['Despesas', MovementCategory::COSTS]],
-                         class: 'form-control', required: true , include_blank: false %>
-          </div>
-          <div class="col-md-6">
-            <%= f.label :paid, 'Já foi pago?', class: 'form-label'  %>
-            <%= f.select :paid, [['Sim', true], ['Não', false]], { },
-                         { class: 'form-control', style: 'width:100%' } %>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="row form-row">
-          <div class="col-md-12 form-group">
-            <%= f.label :value, 'Valor', class: 'form-label' %>
-            <span class="help">ex: "R$ 247,55"</span>
-            <%= f.text_field :value, required: true, class: 'form-control' %>
-          </div>
-        </div>
 
-        <div class="row form-row">
-          <div class="col-md-6">
-            <%= f.label :from_of, '', class: 'form-label', id: 'movement_label_from_of' %>
-            <%= f.text_field :from_of, maxlength: 100, class: 'form-control' %>
-          </div>
-          <div class="col-md-6">
-            <%= f.label :expiration, 'Vencimento' , class: 'form-label' %>
-            <div class="input-with-icon  right input-append  success date no-padding" style="width: 85%;">
-              <i class=""></i>
-              <%= f.text_field :expiration,  class: 'form-control' %>
-              <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
-            </div>
-          </div>
-        </div>
+<%= f.hidden_field :user_id, value: current_user.id %>
+<%= f.label :description, 'Descrição', class: 'form-label' %>
 
-      </div>
+<%= f.text_field :description, maxlength: 255, class: 'form-control', required: true, rows: 3 %>
+
+<%= f.label :type, 'Tipo da movimentação', class: 'form-label' %>
+<%= f.select :type, [['Lucros', MovementCategory::INCOME], ['Despesas', MovementCategory::COSTS]] %>
+
+<%= f.label :paid, 'Já foi pago?'  %>
+<%= f.select :paid, [['Sim', true], ['Não', false]], { }, { class: 'form-control', style: 'width:100%' } %>
+<%= f.label :value, 'Valor', class: 'form-label' %>
+<%= f.text_field :value, required: true, class: 'form-control' %>
+<%= f.label :from_of, '', class: 'form-label', id: 'movement_label_from_of' %>
+<%= f.text_field :from_of, maxlength: 100, class: 'form-control' %>
+<%= f.label :expiration, 'Vencimento' , class: 'form-label' %>
+<%= f.text_field :expiration,  class: 'form-control' %>
+
+<% if @movement.errors.any? %>
+   A sua tentativa gerou <a href="#" class="link">
+      <%= pluralize(@movement.errors.count,'erro') %>: </a>
+      <% @movement.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+      <% end %>
     </div>
-    <% if @movement.errors.any? %>
-        <div class="alert alert-block alert-error fade in col-md-10">
-          <button type="button" class="close" data-dismiss="alert"></button>
-          <h4 class="alert-heading"><i class="icon-warning-sign"></i> Atenção!</h4>
-          A sua tentativa gerou <a href="#" class="link">
-          <%= pluralize(@movement.errors.count,'erro') %>: </a>
-          <% @movement.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-          <% end %>
-        </div>
-    <% end %>
-    <div class="pull-right">
-      <%= f.submit 'Salvar', class: 'btn btn-danger btn-cons', id: 'submit_form' %>
-    </div>
+<% end %>
+<%= f.submit 'Salvar', class: 'btn btn-danger btn-cons', id: 'submit_form' %>
 <% end %>

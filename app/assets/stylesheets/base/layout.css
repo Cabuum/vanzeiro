@@ -1,0 +1,22 @@
+.vanzeiro {
+  background: #2980B9;
+}
+.header {
+  background: #2C3E50;
+  max-height: 100px;
+}
+.header-title,
+.header-menu,
+.header-profile-menu {
+  display: inline-block;
+  padding: 15px;
+}
+.header-title {
+  margin: 0;
+}
+.header-menu a {
+  padding: 15px;
+}
+.vanzeiro-container {
+  margin-top: 25px;
+}

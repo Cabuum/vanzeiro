@@ -1,47 +1,25 @@
-<!-- BEGIN CONTENT -->
-<div class="page-container row-fluid">
-
-  <%= render 'layouts/administrator_navbar' %>
-  <!-- BEGIN PAGE CONTAINER-->
-  <div class="page-content">
-    <div class="content">
-      <!-- BEGIN PAGE TITLE -->
-      <div class="page-title">
-        <h3>Início</h3>
-      </div>
-      <!-- END PAGE TITLE -->
-      <!-- BEGIN PlACE PAGE CONTENT HERE -->
-      <div id="container">
-        <div class="row 2col">
-          <!-- ALERT -->
-          <div class="alert alert-warning">
-            <button class="close" data-dismiss="alert"></button>
-            Calma!! Nós sabemos que isto ainda é pouco, e estamos trabalhando para acrescentar novas funcionalidades <br />
-            e painéis melhores e mais úteis do que este.
-          </div>
-          <!-- / ALERT -->
-          <div class="col-md-3 col-sm-6 spacing-bottom-sm spacing-bottom">
-            <div class="tiles green added-margin">
-              <div class="tiles-body">
-                <div class="controller"> <a href="javascript:;" class="reload"></a> <a href="javascript:;" class="remove"></a> </div>
-                <div class="tiles-title"> TOTAL DE PASSAGEIROS </div>
-                <div class="heading"><span class="animate-number" data-value="<%= @passengers %>" data-animation-duration="1000">0</span> </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- END PLACE PAGE CONTENT HERE -->
+<%= render 'layouts/administrator_navbar' %>
+  <div class="container vanzeiro-container">
+    <div class="col-md-4">
+      <article class="dash-item">
+        <h1>Passageiros</h1>
+        <p>23</p>
+      </article>
+    </div>
+    <div class="col-md-4">
+      <article class="dash-item">
+        <h1>Movimentações</h1>
+        <p>Receitas: +55</p>
+        <p>Despesas: -22</p>
+      </article>
+    </div>
+    <div class="col-md-3">
+      <article class="dash-item">
+        <h1>Contratos</h1>
+        <p>5</p>
+      </article>
     </div>
   </div>
-  <!-- END PAGE CONTAINER -->
-</div>
-<!-- END CONTENT -->
-
 <% if notice %>
-    <script type="text/javascript">
-        document.addEventListener("DOMContentLoaded", function(event) {
-            Messenger().post("<%= notice %>!</a>");
-        });
-    </script>
+  <%= notice %>!
 <% end %>

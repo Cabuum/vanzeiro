@@ -57,9 +57,5 @@ Rails.application.routes.draw do
     get '/sair' => 'devise/sessions#destroy'
   end
 
-  get '/planos' => 'home#plan', as: :pricing
-  get '/contato' => 'home#contact'
-  post '/contato' => 'home#send_contact'
-
   root 'home#index'
 end

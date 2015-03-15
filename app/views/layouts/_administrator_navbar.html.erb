@@ -1,64 +1,17 @@
-<!-- BEGIN SIDEBAR -->
-<!-- BEGIN MENU -->
-<div class="page-sidebar" id="main-menu">
-  <div class="page-sidebar-wrapper scrollbar-dynamic" id="main-menu-wrapper">
-    <!-- BEGIN MINI-PROFILE -->
-    <%= link_to eu_path do %>
-        <div class="user-info-wrapper">
-          <div class="profile-wrapper">
-            <%= image_tag(current_user.image_url(:thumb).to_s,
-                          data: {src: current_user.image_url(:thumb).to_s,
-                                 :'src-retina' => current_user.image_url(:thumb2x).to_s}) if current_user.image? %>
-          </div>
-          <div class="user-info">
-            <div class="greeting">Bem vindo</div>
-            <div class="username"><%= current_user.name.split(' ')[0] %><span class="semi-bold"> <%= current_user.name.split(' ')[1] %></span></div>
-            <div class="status">Estado<a href="#">
-              <div class="status-icon green"></div>
-              Online</a></div>
-          </div>
-        </div>
-    <% end %>
-    <!-- END MINI-PROFILE -->
-    <!-- BEGIN SIDEBAR MENU -->
-    <p class="menu-title">VISUALIZAR
-      <span class="pull-right">
-        <a href="javascript:;">
-          <i class="fa fa-refresh"></i>
-        </a>
-      </span>
-    </p>
-    <ul>
-      <!-- BEGIN ONE LEVEL MENU -->
-      <li class="">
-        <%= link_to raw('<i class="fa fa-tachometer"></i> <span class="title">Dashboard</span>'), root_path %>
-      </li>
-      <!-- END ONE LEVEL MENU -->
+<header class="header">
+  <div class="container">
+    <h1 class="header-title"><%=link_to 'Vanzeiro', root_path %></h1>
+    <nav class="header-menu">
+      <%= link_to raw('Dashboard'), root_path %>
+      <%= link_to raw('Passageiros'), passengers_path %>
+      <%= link_to raw('Fluxo de caixa'), movements_path %>
+      <%= link_to raw('Contratos'), contracts_path %>
+    </nav>
+    <div class="header-profile-menu">
+      <%= link_to eu_path do %>
 
-      <!-- BEGIN ONE LEVEL MENU -->
-      <li class="">
-        <%= link_to raw('<i class="fa fa-users"></i> <span class="title">Passageiros</span>'), passengers_path %>
-      </li>
-      <!-- END ONE LEVEL MENU -->
-
-      <!-- BEGIN ONE LEVEL MENU -->
-      <li class="">
-        <%= link_to raw('<i class="fa fa-money"></i> <span class="title">Fluxo de caixa</span>'), movements_path %>
-      </li>
-      <!-- END ONE LEVEL MENU -->
-
-      <!-- BEGIN ONE LEVEL MENU -->
-      <li class="">
-        <%= link_to raw('<i class="fa fa-file-text"></i> <span class="title">Contratos</span>
-                         <span class="label label-success pull-right ">NOVO</span>'), contracts_path %>
-      </li>
-      <!-- END ONE LEVEL MENU -->
-
-    </ul>
-    <!-- END SIDEBAR MENU -->
+      Bem vindo <%= current_user.name.split(' ')[0] %> <%= current_user.name.split(' ')[1] %>
+      <% end %>
+    </div>
   </div>
-</div>
-<!-- BEGIN SCROLL UP HOVER -->
-<a href="#" class="scrollup">Scroll</a>
-<!-- END SCROLL UP HOVER -->
-<!-- END MENU -->
+</header>

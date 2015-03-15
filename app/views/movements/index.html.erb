@@ -1,115 +1,31 @@
-<% content_for :page_level_css do %>
-    <%= stylesheet_link_tag '/assets/bootstrap-select2/select2.min',
-                            '/assets/jquery-datatable/jquery.dataTables' %>
-<% end %>
+<%= render 'layouts/administrator_navbar' %>
 
-<!-- BEGIN CONTENT -->
-<div class="page-container row-fluid">
+<%= link_to "Novo", new_movement_path %>
 
-  <%= render 'layouts/administrator_navbar' %>
+<table class="table" id="movimentacao">
+  <thead>
+  <tr>
+    <th>Descrição</th>
+    <th>"de" ou "para" quem!</th>
+    <th>Valor</th>
+    <th>Pago?</th>
+    <th>Vencimento</th>
+  </tr>
+  </thead>
 
-  <!-- BEGIN PAGE CONTAINER-->
-  <div class="page-content">
-    <div class="content">
-      <!-- BEGIN PlACE PAGE CONTENT HERE -->
-      <div class="row-fluid">
-        <div class="span12">
-          <div class="grid simple">
-            <div class="grid-title">
-              <h4>Lista de <span class="semi-bold">movimentação</span></h4>
-              <div class="tools">
-                <a href="javascript:;" class="collapse"></a>
-                <a href="#grid-config" data-toggle="modal" class="config"></a>
-                <a href="javascript:;" class="reload"></a>
-                <a href="javascript:;" class="remove"></a>
-              </div>
-            </div>
-            <div class="grid-body">
-              <!-- ALERT -->
-              <div class="alert alert-info">
-                <button class="close" data-dismiss="alert"></button>
-                Sabemos que essa não é a melhor forma de visualizar seus gastos e receitas.<br />
-                Já estamos pensando em algo muito mais bonito e funcional, apenas precisamos validar
-                nossa ideia!<br/>
-                Você sempre pode ajudar nas decisões, enviando dicas e críticas.
-              </div>
-              <!-- / ALERT -->
-              <table class="table" id="movimentacao">
-                <thead>
-                <tr>
-                  <th>Descrição</th>
-                  <th>"de" ou "para" quem!</th>
-                  <th>Valor</th>
-                  <th>Pago?</th>
-                  <th>Vencimento</th>
-                </tr>
-                </thead>
-
-                <tbody>
-                <% @movements.each do |movement| %>
-                    <tr   data-toggle="modal" data-target="#myModal" data-id="<%= movement.id %>">
-                      <td><%= movement.description %></td>
-                      <td><%= movement.from_of %></td>
-                      <td><%= number_to_currency movement.value %></td>
-                      <td><%= to_readable_paid movement.paid %></td>
-                      <td><%= due_date_formatted movement.expiration %></td>
-                    </tr>
-                <% end %>
-                </tbody>
-              </table>
-              <script type="text/javascript">
-                  document.addEventListener("DOMContentLoaded", function(event) {
-                      $('table td').not('td.index-non-table').click(function(){
-                          var objectId = $(this).parent( "tr" ).data('id');
-                          $.getJSON( '<%= request.fullpath %>/'+ objectId +'.json', function( data ) {
-                              $.each( data, function( key, val ) {
-                                  if(key == 'description') {
-                                      $('#'+key).text(val);
-                                  } else if (key == 'id') {
-                                      $('#' + key).attr('href', '/fluxo-de-caixa/' + val);
-                                      $('#editlink').attr('href', '/fluxo-de-caixa/' + val + '/editar');
-                                  } else {
-                                      $('#'+key).val(val);
-                                  }
-                              });
-                          });
-                      });
-                  });
-              </script>
-              <!-- Modal -->
-              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="description"
-                   aria-hidden="true">
-                <%= render 'movements/show' %>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- END PLACE PAGE CONTENT HERE -->
-      </div>
-    </div>
-    <!-- END PAGE CONTAINER -->
-  </div>
-  <!-- END CONTENT -->
-
-  <!-- BEGIN PAGE LEVEL JS -->
-  <% content_for :page_level_js do %>
-      <%= javascript_include_tag '/assets/bootstrap-select2/select2.min',
-                                 '/assets/jquery-datatable/jquery.dataTables.min',
-                                 '/assets/jquery-datatable/dataTables.tableTools.min',
-                                 '/assets/datatables-responsive/datatables.responsive',
-                                 '/assets/datatables-responsive/lodash.min',
-                                 '/assets/datatables',
-                                 '/assets/jquery-scrollbar/jquery.scrollbar.min',
-                                 '/assets/jquery-block-ui/jqueryblockui',
-                                 '/assets/jquery-numberAnimate/jquery.animateNumbers' %>
+  <tbody>
+  <% @movements.each do |movement| %>
+      <tr   data-toggle="modal" data-target="#myModal" data-id="<%= movement.id %>">
+        <td><%= movement.description %></td>
+        <td><%= movement.from_of %></td>
+        <td><%= number_to_currency movement.value %></td>
+        <td><%= to_readable_paid movement.paid %></td>
+        <td><%= due_date_formatted movement.expiration %></td>
+      </tr>
   <% end %>
-  <!-- END PAGE LEVEL JS -->
-</div>
+  </tbody>
+</table>
 
 <% if notice %>
-    <script type="text/javascript">
-        document.addEventListener("DOMContentLoaded", function(event) {
-            Messenger().post("<%= notice %>!</a>");
-        });
-    </script>
+<%= notice %>!
 <% end %>

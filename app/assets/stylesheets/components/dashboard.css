@@ -1,0 +1,7 @@
+.dash-item {
+  background: #3498DB;
+  padding: 10px 20px;
+  -webkit-box-shadow: 0px 0px 9px 5px rgba(50, 50, 50, 0.52);
+  -moz-box-shadow:    0px 0px 9px 5px rgba(50, 50, 50, 0.52);
+  box-shadow:         0px 0px 9px 5px rgba(50, 50, 50, 0.52);
+}

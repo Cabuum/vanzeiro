@@ -1,5 +1,5 @@
 <%= form_for(@passenger, html: { class: 'form-no-horizontal-spacing', id: 'form-condensed' }) do |f| %>
-    <div class="row column-seperation">
+    <div class="row">
       <div class="col-md-6">
         <h4>Informações Básicas</h4>
         <div class="row form-row">
@@ -7,7 +7,7 @@
             <%= f.text_field :passenger_name, class: 'form-control', placeholder: 'Nome', required: true %>
           </div>
         </div>
-        <div class="row form-row">
+        <div class="row">
           <div class="col-md-6">
             <%= f.email_field :passenger_email, class: 'form-control', placeholder: 'Email', required: true  %>
           </div>
@@ -16,7 +16,7 @@
           </div>
         </div>
 
-        <div class="row form-row">
+        <div class="row">
           <div class="col-md-6">
             <div class="input-with-icon right input-append success date no-padding" style="width: 85%;">
               <i class=""></i>
@@ -29,7 +29,7 @@
           </div>
         </div>
 
-        <div class="row form-row">
+        <div class="row">
           <div class="col-md-12">
             <%= f.text_field :passenger_address, class: 'form-control', placeholder: 'Endereço' %>
           </div>
@@ -38,22 +38,22 @@
 
       <div class="col-md-6">
         <h4>Responsável</h4>
-        <div class="row form-row">
+        <div class="row">
           <div class="col-md-12">
             <%= f.text_field :responsible_name, class: 'form-control', placeholder: 'Nome do responsável' %>
           </div>
         </div>
-        <div class="row form-row">
+        <div class="row">
           <div class="col-md-12">
             <%= f.email_field :responsible_email, class: 'form-control', placeholder: 'Email do responsável' %>
           </div>
         </div>
-        <div class="row form-row">
+        <div class="row">
           <div class="col-md-12">
             <%= f.text_field :responsible_cpf, class: 'form-control', placeholder: 'CPF do responsável' %>
           </div>
         </div>
-        <div class="row form-row">
+        <div class="row">
           <div class="col-md-12">
             <%= f.text_field :responsible_phone, class: 'form-control', placeholder: 'Telefone do responsável' %>
           </div>
