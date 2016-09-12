@@ -1,10 +1,9 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.4'
+gem 'rails', '4.2.7.1'
 
 # Use mysql as the database for Active Record
-gem 'mysql2'
 gem 'sqlite3'
 # Use SCSS for stylesheets
 #gem 'sass-rails', '~> 4.0.3'
