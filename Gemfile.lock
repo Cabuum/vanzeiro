@@ -170,6 +170,8 @@ GEM
     parseline (1.0.3)
     pg (0.18.4)
     pkg-config (1.1.7)
+    quiet_assets (1.1.0)
+      railties (>= 3.1, < 5.0)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -262,6 +264,7 @@ DEPENDENCIES
   omniauth-oauth2
   omniauth-twitter
   pg
+  quiet_assets
   rails (= 4.2.7.1)
   rmagick
   spring

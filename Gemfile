@@ -82,3 +82,7 @@ gem 'cancan'
 
 # for contact form
 gem 'mail_form'
+
+group :development do
+  gem 'quiet_assets'
+end
