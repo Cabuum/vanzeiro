@@ -13,7 +13,10 @@
 
 ActiveRecord::Schema.define(version: 20141201182023) do
 
-  create_table "accounts", force: true do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "bank_id"
     t.string   "agency"
@@ -34,7 +37,7 @@ ActiveRecord::Schema.define(version: 20141201182023) do
   add_index "accounts", ["bank_id"], name: "index_accounts_on_bank_id", using: :btree
   add_index "accounts", ["user_id"], name: "index_accounts_on_user_id", using: :btree
 
-  create_table "authorizations", force: true do |t|
+  create_table "authorizations", force: :cascade do |t|
     t.string   "provider",   limit: 20
     t.string   "uid"
     t.integer  "user_id"
@@ -45,14 +48,14 @@ ActiveRecord::Schema.define(version: 20141201182023) do
     t.datetime "updated_at"
   end
 
-  create_table "banks", force: true do |t|
+  create_table "banks", force: :cascade do |t|
     t.string   "full_name",  limit: 30
     t.string   "name",       limit: 10
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "contracts", force: true do |t|
+  create_table "contracts", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "passenger_id"
     t.integer  "account_id"
@@ -69,7 +72,7 @@ ActiveRecord::Schema.define(version: 20141201182023) do
   add_index "contracts", ["passenger_id"], name: "index_contracts_on_passenger_id", using: :btree
   add_index "contracts", ["user_id"], name: "index_contracts_on_user_id", using: :btree
 
-  create_table "events", force: true do |t|
+  create_table "events", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "title",       limit: 180
     t.text     "description"
@@ -81,7 +84,7 @@ ActiveRecord::Schema.define(version: 20141201182023) do
 
   add_index "events", ["user_id"], name: "index_events_on_user_id", using: :btree
 
-  create_table "installments", force: true do |t|
+  create_table "installments", force: :cascade do |t|
     t.integer  "contract_id"
     t.date     "due_date"
     t.boolean  "paid",         default: true
@@ -92,7 +95,7 @@ ActiveRecord::Schema.define(version: 20141201182023) do
 
   add_index "installments", ["contract_id"], name: "index_installments_on_contract_id", using: :btree
 
-  create_table "movement_categories", force: true do |t|
+  create_table "movement_categories", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "name",       limit: 40
     t.integer  "type"
@@ -102,9 +105,9 @@ ActiveRecord::Schema.define(version: 20141201182023) do
 
   add_index "movement_categories", ["user_id"], name: "index_movement_categories_on_user_id", using: :btree
 
-  create_table "movements", force: true do |t|
+  create_table "movements", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "description"
+    t.string   "description", limit: 255
     t.string   "from_of",     limit: 100
     t.decimal  "value",                   precision: 10, scale: 2
     t.boolean  "paid",                                             default: false
@@ -116,7 +119,7 @@ ActiveRecord::Schema.define(version: 20141201182023) do
 
   add_index "movements", ["user_id"], name: "index_movements_on_user_id", using: :btree
 
-  create_table "my_configurations", force: true do |t|
+  create_table "my_configurations", force: :cascade do |t|
     t.integer  "business_day_for_payments"
     t.integer  "user_id"
     t.integer  "start_school_year"
@@ -129,7 +132,7 @@ ActiveRecord::Schema.define(version: 20141201182023) do
 
   add_index "my_configurations", ["user_id"], name: "index_my_configurations_on_user_id", using: :btree
 
-  create_table "newsletters", force: true do |t|
+  create_table "newsletters", force: :cascade do |t|
     t.string   "mail"
     t.boolean  "skills",     default: true
     t.boolean  "discounts",  default: true
@@ -137,7 +140,7 @@ ActiveRecord::Schema.define(version: 20141201182023) do
     t.datetime "updated_at"
   end
 
-  create_table "passengers", force: true do |t|
+  create_table "passengers", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "responsible_cpf",    limit: 14
     t.string   "responsible_name",   limit: 40
@@ -155,7 +158,7 @@ ActiveRecord::Schema.define(version: 20141201182023) do
 
   add_index "passengers", ["user_id"], name: "index_passengers_on_user_id", using: :btree
 
-  create_table "plans", force: true do |t|
+  create_table "plans", force: :cascade do |t|
     t.string   "name"
     t.decimal  "price",            precision: 10, scale: 2
     t.string   "description"
@@ -169,14 +172,14 @@ ActiveRecord::Schema.define(version: 20141201182023) do
     t.datetime "updated_at"
   end
 
-  create_table "spectators", force: true do |t|
+  create_table "spectators", force: :cascade do |t|
     t.string   "mail",       limit: 80
     t.string   "phone",      limit: 15
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "suggestions", force: true do |t|
+  create_table "suggestions", force: :cascade do |t|
     t.text     "description"
     t.string   "title"
     t.string   "email"
@@ -184,7 +187,7 @@ ActiveRecord::Schema.define(version: 20141201182023) do
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                              default: "", null: false
     t.string   "encrypted_password",                 default: "", null: false
     t.string   "reset_password_token"
