@@ -5,10 +5,8 @@ ruby '2.3.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.7.1'
 
-# Use mysql as the database for Active Record
-# gem 'pg'
-gem 'mysql2'
-gem 'sqlite3'
+# Use pg as the database for Active Record
+gem 'pg'
 # Use SCSS for stylesheets
 #gem 'sass-rails', '~> 4.0.3'
 
@@ -92,7 +90,6 @@ group :development do
 end
 
 group :production do
-  gem 'pg'
   gem 'rails_12factor'
   gem 'passenger'
 end
