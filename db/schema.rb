@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20141201182023) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "accounts", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "bank_id"
@@ -34,8 +31,8 @@ ActiveRecord::Schema.define(version: 20141201182023) do
     t.string   "nick",         limit: 30
   end
 
-  add_index "accounts", ["bank_id"], name: "index_accounts_on_bank_id", using: :btree
-  add_index "accounts", ["user_id"], name: "index_accounts_on_user_id", using: :btree
+  add_index "accounts", ["bank_id"], name: "index_accounts_on_bank_id"
+  add_index "accounts", ["user_id"], name: "index_accounts_on_user_id"
 
   create_table "authorizations", force: :cascade do |t|
     t.string   "provider",   limit: 20
@@ -68,9 +65,9 @@ ActiveRecord::Schema.define(version: 20141201182023) do
     t.datetime "updated_at"
   end
 
-  add_index "contracts", ["account_id"], name: "index_contracts_on_account_id", using: :btree
-  add_index "contracts", ["passenger_id"], name: "index_contracts_on_passenger_id", using: :btree
-  add_index "contracts", ["user_id"], name: "index_contracts_on_user_id", using: :btree
+  add_index "contracts", ["account_id"], name: "index_contracts_on_account_id"
+  add_index "contracts", ["passenger_id"], name: "index_contracts_on_passenger_id"
+  add_index "contracts", ["user_id"], name: "index_contracts_on_user_id"
 
   create_table "events", force: :cascade do |t|
     t.integer  "user_id"
@@ -82,7 +79,7 @@ ActiveRecord::Schema.define(version: 20141201182023) do
     t.datetime "updated_at"
   end
 
-  add_index "events", ["user_id"], name: "index_events_on_user_id", using: :btree
+  add_index "events", ["user_id"], name: "index_events_on_user_id"
 
   create_table "installments", force: :cascade do |t|
     t.integer  "contract_id"
@@ -93,7 +90,7 @@ ActiveRecord::Schema.define(version: 20141201182023) do
     t.datetime "updated_at"
   end
 
-  add_index "installments", ["contract_id"], name: "index_installments_on_contract_id", using: :btree
+  add_index "installments", ["contract_id"], name: "index_installments_on_contract_id"
 
   create_table "movement_categories", force: :cascade do |t|
     t.integer  "user_id"
@@ -103,7 +100,7 @@ ActiveRecord::Schema.define(version: 20141201182023) do
     t.datetime "updated_at"
   end
 
-  add_index "movement_categories", ["user_id"], name: "index_movement_categories_on_user_id", using: :btree
+  add_index "movement_categories", ["user_id"], name: "index_movement_categories_on_user_id"
 
   create_table "movements", force: :cascade do |t|
     t.integer  "user_id"
@@ -117,7 +114,7 @@ ActiveRecord::Schema.define(version: 20141201182023) do
     t.integer  "type"
   end
 
-  add_index "movements", ["user_id"], name: "index_movements_on_user_id", using: :btree
+  add_index "movements", ["user_id"], name: "index_movements_on_user_id"
 
   create_table "my_configurations", force: :cascade do |t|
     t.integer  "business_day_for_payments"
@@ -130,7 +127,7 @@ ActiveRecord::Schema.define(version: 20141201182023) do
     t.datetime "updated_at"
   end
 
-  add_index "my_configurations", ["user_id"], name: "index_my_configurations_on_user_id", using: :btree
+  add_index "my_configurations", ["user_id"], name: "index_my_configurations_on_user_id"
 
   create_table "newsletters", force: :cascade do |t|
     t.string   "mail"
@@ -156,7 +153,7 @@ ActiveRecord::Schema.define(version: 20141201182023) do
     t.datetime "updated_at"
   end
 
-  add_index "passengers", ["user_id"], name: "index_passengers_on_user_id", using: :btree
+  add_index "passengers", ["user_id"], name: "index_passengers_on_user_id"
 
   create_table "plans", force: :cascade do |t|
     t.string   "name"
@@ -208,7 +205,7 @@ ActiveRecord::Schema.define(version: 20141201182023) do
     t.string   "image"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end

@@ -6,7 +6,9 @@ ruby '2.3.1'
 gem 'rails', '4.2.7.1'
 
 # Use mysql as the database for Active Record
-gem 'pg'
+# gem 'pg'
+gem 'mysql2'
+gem 'sqlite3'
 # Use SCSS for stylesheets
 #gem 'sass-rails', '~> 4.0.3'
 
@@ -90,6 +92,7 @@ group :development do
 end
 
 group :production do
+  gem 'pg'
   gem 'rails_12factor'
   gem 'passenger'
 end

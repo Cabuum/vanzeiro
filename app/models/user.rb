@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable,
          :rememberable, :trackable, :validatable, :omniauthable
 
+  after_create :generate_my_configuration
+
   validates_presence_of :email
 
   has_many :authorizations, dependent: :destroy
@@ -49,5 +51,10 @@ class User < ActiveRecord::Base
       authorization.save
     end
     authorization.user
+  end
+
+  def generate_my_configuration
+    create_configuration(business_day_for_payments: 4, start_school_year: 1,
+                        end_school_year: 12, default_value: 100.00, default_interest: 0.25)
   end
 end
