@@ -3,7 +3,7 @@ class MovementsController < ApplicationController
   before_action :set_movement, only: [:edit, :update, :destroy]
 
   def index
-    @movements = Movement.default current_user.id
+    @movements = Movement.current_month.by_user(current_user.id)
   end
 
   def new
