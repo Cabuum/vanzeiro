@@ -236,7 +236,7 @@ Devise.setup do |config|
   config.sign_out_via = :get
 
   config.omniauth :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'],
-                  {:scope => 'email, offline_access', :provider_ignores_state => true,
+                  {:scope => 'email, public_profile', :provider_ignores_state => true,
                    :client_options => {:ssl =>
                                            {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}}
 
