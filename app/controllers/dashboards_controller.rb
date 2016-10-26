@@ -9,6 +9,6 @@ class DashboardsController < ApplicationController
   
   def index_methods
     @passengers = Passenger.where(user_id: current_user.id).count
-    @movements = Movement.default current_user.id
+    @movements = Movement.current_month.by_user(current_user.id)
   end
 end
