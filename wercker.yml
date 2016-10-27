@@ -4,15 +4,11 @@ services:
 build:
   steps:
     - script:
-      name: configuring bundle
+      name: Configuring Bundle
       code: bundle config build.nokogiri --use-system-libraries
 
     - bundle-install
     - rails-database-yml
-
-    - script:
-        name: rubocop (static code analyzer)
-        code: bundle exec rubocop -D
 
     - script:
         name: setup database
@@ -26,6 +22,4 @@ deploy:
     steps:
       - heroku-deploy:
           key-name: DEPLOYMENT_KEY
-          install-toolbelt: true
-          retry: true
           run: rake db:migrate
