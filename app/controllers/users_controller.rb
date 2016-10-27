@@ -1,6 +1,7 @@
+# frozen_string_literal: true
 class UsersController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :validate_auth_for_user, only: [:edit, :update]
+  before_action :authenticate_user!
+  before_action :validate_auth_for_user, only: [:edit, :update]
 
   def show
     @user = current_user
@@ -14,7 +15,7 @@ class UsersController < ApplicationController
     @user = User.find(current_user.id)
     if @user.update(user_params)
       # Sign in the user by passing validation in case their password changed
-      sign_in @user, :bypass => true
+      sign_in @user, bypass: true
       redirect_to root_path
     else
       render 'devise/registrations/edit'

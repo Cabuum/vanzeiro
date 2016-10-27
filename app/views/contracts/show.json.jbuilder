@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 json.extract! @contract, :id, :interest
 json.value number_to_currency @contract.value
 json.start @contract.start.strftime('%d/%m/%y')

@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 class InstallmentsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @installments = if params.has_key?(:contract_id)
+    @installments = if params.key?(:contract_id)
                       Installment.where contract_id: params[:contract_id]
                     else
                       Installment.current_month
@@ -13,11 +14,7 @@ class InstallmentsController < ApplicationController
     @installment = Installment.find(params[:id])
     @installment.paid = params[:paid]
 
-    @installment.payment_date = if @installment.paid
-                                  Time.now
-                                else
-                                  nil
-                                end
+    @installment.payment_date = (Time.now if @installment.paid)
     if @installment.save
 
       redirect_to passenger_contract_installments_path(@installment.contract.passenger.id,

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class MovementCategory < ActiveRecord::Base
   # Constants to don't forgive the values of type attr.
   COSTS = 2
@@ -6,7 +7,7 @@ class MovementCategory < ActiveRecord::Base
   # Say to ActiveRecord that there are no column be inherited on another model,
   # because the :type attr, is a keyword.
   self.inheritance_column = nil
-  #has_many :movements, dependent: :destroy
+  # has_many :movements, dependent: :destroy
 
-  validates_presence_of :type, :name
+  validates :type, :name, presence: true
 end

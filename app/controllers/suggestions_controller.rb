@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class SuggestionsController < ApplicationController
   before_action :set_suggestion, only: [:show, :edit, :update]
 
@@ -32,6 +33,7 @@ class SuggestionsController < ApplicationController
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_suggestion
     @suggestion = Suggestion.find(params[:id])

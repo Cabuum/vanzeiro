@@ -1,7 +1,6 @@
+# frozen_string_literal: true
 class NewslettersController < ApplicationController
-
   def index
-
   end
 
   def new

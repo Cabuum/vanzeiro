@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class MyConfigurationsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_my_configuration, only: [:show, :edit, :update]
@@ -19,6 +20,7 @@ class MyConfigurationsController < ApplicationController
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_my_configuration
     @my_configuration = MyConfiguration.find(params[:id])
