@@ -52,7 +52,7 @@ Rails.application.routes.draw do
   end
 
   devise_scope :user do
-    get '/entrar' => 'devise/sessions#new'
+    get '/entrar' => 'devise/sessions#new', as: :entrar
     get '/editar' => 'devise/registrations#edit'
     get '/sair' => 'devise/sessions#destroy'
   end

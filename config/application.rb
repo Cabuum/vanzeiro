@@ -11,7 +11,8 @@ module VanzeiroMVP
     config.assets.enabled = true
     config.assets.compile = true
     config.exceptions_app = self.routes
-
+    # Add autoload custom classes
+    config.autoload_paths << Rails.root.join('lib')
     # Add the fonts path
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts', 'videos')
     
