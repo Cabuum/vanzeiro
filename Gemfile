@@ -7,6 +7,7 @@ gem 'rails', '4.2.7.1'
 
 gem 'pg'
 
+gem 'therubyracer'
 gem 'uglifier', '>= 1.3.0'
 gem 'carrierwave'
 gem 'rmagick'
