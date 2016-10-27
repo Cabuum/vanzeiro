@@ -4,7 +4,7 @@ RSpec.describe User, type: :model do
   context 'associations' do
     it { is_expected.to have_many(:authorizations) }
     it { is_expected.to have_many(:accounts) }
-    it { is_expected.to have_one(:configuration).class_name(MyConfiguration) }
+    it { is_expected.to have_one(:setting).class_name(Setting) }
   end
 
   context 'model validations' do
@@ -47,14 +47,14 @@ RSpec.describe User, type: :model do
     context 'create callbacks' do
       subject { User.new._create_callbacks.map(&:filter) }
 
-      it { is_expected.to include(:generate_my_configuration) }
+      it { is_expected.to include(:generate_settings) }
     end
 
-    describe '#generate_my_configuration' do
+    describe '#generate_settings' do
       it 'after creating a user generate a new config' do
         expect do
           User.create(password: '12345678', email: 'ahorsewithno@name.com')
-        end.to change(MyConfiguration, :count).by(1)
+        end.to change(Setting, :count).by(1)
       end
     end
   end
