@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 guard 'livereload' do
   watch(%r{app/views/.+\.(erb|haml|slim)$})
   watch(%r{app/helpers/.+\.rb})

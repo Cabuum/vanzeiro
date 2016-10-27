@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 class CustomFailure < Devise::FailureApp
   def redirect_url
     entrar_path

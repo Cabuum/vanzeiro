@@ -13,11 +13,11 @@ class ImageUploader < CarrierWave::Uploader::Base
     process resize_to_fill: [312, 312]
   end
 
- def extension_whitelist
+  def extension_whitelist
     %w(jpg jpeg gif png)
-  end
+   end
 
   def filename
-    "file.#{file.extension}"
+    "file.#{file.extension}" if file
   end
 end

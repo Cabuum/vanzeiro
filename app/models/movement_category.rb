@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 class MovementCategory < ActiveRecord::Base
   # Constants to don't forgive the values of type attr.
   COSTS = 2

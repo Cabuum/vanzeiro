@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 class SuggestionsController < ApplicationController
   before_action :set_suggestion, only: [:show, :edit, :update]
 

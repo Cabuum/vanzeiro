@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_before_action :authenticate_user!
 

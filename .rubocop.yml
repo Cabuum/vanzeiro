@@ -10,6 +10,9 @@ Rails/HasAndBelongsToMany:
 Style/ClassAndModuleChildren:
   Enabled: false
 
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
 AllCops:
   TargetRubyVersion: 2.3
   Exclude:

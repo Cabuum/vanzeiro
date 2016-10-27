@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 class Movement < ActiveRecord::Base
   before_save :negative_costs
   before_update :negative_costs

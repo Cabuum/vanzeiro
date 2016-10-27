@@ -38,4 +38,20 @@ RSpec.describe User, type: :model do
   end
 
   context 'scopes'
+
+  context 'activerecord callbacks' do
+    context 'create callbacks' do
+      subject { User.new._create_callbacks.map(&:filter) }
+
+      it { is_expected.to include(:generate_my_configuration) }
+    end
+
+    describe '#generate_my_configuration' do
+      it 'after creating a user generate a new config' do
+        expect do
+          User.create(name: 'Horse', password: '12345678', email: 'no@name.com')
+        end.to change(MyConfiguration, :count).by(1)
+      end
+    end
+  end
 end
