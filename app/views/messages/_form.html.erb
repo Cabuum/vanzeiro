@@ -1,0 +1,8 @@
+
+<%= form_tag reply_conversation_path(conversation), method: :post do %>
+    <div class="input-with-icon  right"> <i class=""></i>
+     <%= text_area_tag 'body', nil, cols: 2, class: 'form-control', placeholder: 'Type your message here!', required: true %>
+    </div>
+    <br>
+  <%= submit_tag "Send Message", class: 'btn btn-primary' %>
+<% end %>

@@ -333,3 +333,39 @@ function fnFormatDetails ( oTable, items ) {
 
     return sOut;
 }
+
+
+/*
+ * CODE FOR CONVERSATIONS
+ */
+
+var conversation = $('#conversation').dataTable({
+    "paging": false,
+    "sDom": "<'row'<'col-md-6'l <'toolbar'>><'col-md-6'f>r>t<'row'<'col-md-12'p i>>",
+    "oTableTools": {
+        "aButtons": [
+            {
+                "sExtends":    "collection",
+                "sButtonText": "<i class='fa fa-cloud-download'></i>",
+                "aButtons":    [ "csv", "xls", "pdf", "copy"]
+            }
+        ]
+    },
+    "aoColumnDefs": [
+        { "bSortable": false, "aTargets": [ 0 ] }
+    ],
+    "aaSorting": [[ 3, "desc" ]],
+    "oLanguage": {
+        "sLengthMenu": "_MENU_ ",
+        "sInfo": "Exibindo <b>_START_ à _END_</b> de _TOTAL_ resultados"
+    }
+});
+
+$('#conversation_wrapper .dataTables_filter input').addClass("input-medium ");
+$('#conversation_wrapper .dataTables_filter').addClass("input-medium text-right");
+$('#conversation_wrapper .dataTables_length select').addClass("select2-wrapper span12");
+$("#conversation_wrapper div.toolbar").html('<div class="table-tools-actions">' +
+    '<a href="/messages/new" class="btn btn-primary" style="margin-left:0.6em">Adicionar</a></div>');
+/*
+ * END CODE FOR CONVERSATIONS
+ */

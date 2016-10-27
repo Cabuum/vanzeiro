@@ -59,5 +59,25 @@ Rails.application.routes.draw do
   get '/contato' => 'home#contact'
   post '/contato' => 'home#send_contact'
 
+  # Message path
+  get "/messages" => redirect("/conversations")
+  resources :messages do
+    # post '/create/:id' => 'messages#create'
+    member do
+      post :new
+    end
+  end
+  resources :conversations do
+    member do
+      post :reply
+      post :trash
+      post :untrash
+    end
+    collection do
+      get :trashbin
+      post :empty_trash
+    end
+  end
+
   root 'home#index'
 end

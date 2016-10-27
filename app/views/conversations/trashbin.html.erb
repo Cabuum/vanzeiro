@@ -1,0 +1,43 @@
+<br \> <br \>
+<div class="container">
+  <div class="well">
+    <div class="title">
+      <h1>Conversations</h1></div>
+        Click on the subject to open the conversation. You can click on the <i class="fa fa-inbox fa-2x"></i> icon to send a conversation back to your Inbox folder. You can delete all messages in your Trash folder by clicking on the red "Empty Trash" button (this button is only available if there are conversations in your Trash folder).
+      <p><h2> <a href="<%= conversations_path %>"><%= @conversations.count %> Inbox </a> | <a href="<%= trashbin_conversations_path %>"> <%= @trashcount.count %> Trash </a> </h2></p>
+    <br>
+    <h3>Trash</h3> &nbsp; &nbsp;<% if @trashcount.count > 0 %><%= button_to 'Empty Trash', 'empty_trash', :confirm => 'Empty trash?', :class => 'btn btn-primary btn-danger' %><%end%>
+    <br \>
+    <% if @trash == nil || @trash.empty? %>
+    <i>Your Trash folder is currently empty</i>
+    <%end%>
+    <table width="900" border="0" cellspacing="0" cellpadding="0" style="background-color:#9FC; border-radius:10px;" align="center">
+  <tr>
+    <th scope="col" class="emailTH">SENDER</th>
+    <th scope="col" class="emailTH">SUBJECT</th>
+    <th scope="col" class="emailTH">DATE</th>
+    <th scope="col" class="emailTH"></th>
+  </tr>
+    <% @trash.each do |conversation| %>
+<tr>
+    <td class="emailTD">
+    <% conversation.participants.each do |participant| %>
+      <% if participant != current_user %>
+        <% end %>
+        <% if participant != current_user %>
+          <b> <%= participant.name %> </b>
+          <% end %> <% end %>
+    </td>
+    <td class="emailsubjectTD"> <%= link_to conversation.subject, conversation_path(conversation) %> </td>
+    <td class="emailTD"><%= conversation.updated_at.strftime("%a, %m/%e/%Y %I:%M %p") %></td>
+    <td class="emailtrashTD">
+      <%= link_to '<i class="fa fa-inbox fa-2x"></i>'.html_safe, {:controller => "conversations", :action => "untrash", :id => conversation.id},  :title => "Move to Inbox", :method=>'post' %>  
+    </td>
+  </tr>
+   <% end %>
+</table>
+  </span>
+   <%= will_paginate @trash %>
+</div>
+</div>
+</div>
