@@ -47,6 +47,7 @@ group :test, :development do
   gem 'zeus'
 
   gem 'dotenv'
+  gem 'rspec'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'forgery'

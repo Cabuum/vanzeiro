@@ -13,7 +13,6 @@ SimpleCov.start 'rails' do
 end
 
 require 'rails/all'
-require 'rspec/rails'
 require 'factory_girl'
 require 'forgery'
 require 'shoulda/matchers'
@@ -43,8 +42,6 @@ Shoulda::Matchers.configure do |config|
 end
 
 RSpec.configure do |config|
-  config.use_transactional_fixtures = false
-
   config.before(:suite) { DatabaseCleaner.clean_with :truncation }
   config.before(:each) { DatabaseCleaner.strategy = :transaction }
   config.before(:each) { DatabaseCleaner.start }
@@ -52,9 +49,6 @@ RSpec.configure do |config|
 
   config.include FactoryGirl::Syntax::Methods
   config.include Devise::TestHelpers, type: :controller
-
-  config.infer_spec_type_from_file_location!
-  config.raise_errors_for_deprecations!
 
   config.before(:each, type: :controller) do
     @current_user = FactoryGirl.create(:user)
