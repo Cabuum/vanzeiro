@@ -9,8 +9,12 @@ gem 'pg'
 
 gem 'therubyracer'
 gem 'uglifier', '>= 1.3.0'
-gem 'carrierwave'
+
+gem 'carrierwave', '0.10.0'
+gem 'carrierwave-base64'
 gem 'rmagick'
+gem 'fog'
+
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
@@ -55,6 +59,10 @@ group :test, :development do
   gem 'shoulda-matchers'
   gem 'database_cleaner'
   gem 'simplecov', require: false
+end
+
+group :test do
+  gem 'codeclimate-test-reporter', require: nil
 end
 
 group :production do

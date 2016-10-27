@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
@@ -7,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module VanzeiroMVP
+module Vanzeiro
   class Application < Rails::Application
     config.assets.enabled = true
     config.assets.compile = true
