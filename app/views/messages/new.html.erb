@@ -1,0 +1,49 @@
+<!-- BEGIN CONTENT -->
+<div class="page-container row-fluid">
+
+  <%= render 'layouts/administrator_navbar' %>
+
+  <!-- BEGIN PAGE CONTAINER-->
+  <div class="page-content">
+    <div class="content">
+      <!-- BEGIN PlACE PAGE CONTENT HERE -->
+      <ul class="breadcrumb">
+        <li>
+          <p>Você esta em:</p>
+        </li>
+        <li><%= link_to 'Chamados', conversations_path %> </li>
+        <li><%= link_to 'Novo chamado', new_message_path, class: 'active' %> </li>
+      </ul>
+      <div class="row-fluid">
+        <div class="col-md-12">
+          <div class="page-title">
+            <h3>Novo - <span class="semi-bold">Chamado</span></h3>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="grid simple">
+            <div class="grid-title no-border">
+              <h4>Descreva seu problema abaixo <span class="semi-bold">iremos responder o mais rapido possível</span>.</h4>
+              <div class="tools"> <a href="javascript:;" class="reload"></a> </div>
+            </div>
+            <div class="grid-body no-border">
+              <p><%= form_tag({controller: 'messages', action: 'create'}, method: :post) do %></p>
+                    <%= label_tag :subject, 'Assunto' %>
+                    <p><%= text_field_tag :subject %></p>
+                    <%= label :body, 'Descrição' %>
+                    <p><%= text_area_tag :body %></p>
+                    <%= hidden_field_tag(:id, 1) %>
+                    <%= submit_tag 'Abrir chamado', class: "btn btn-primary" %>
+                <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- END PLACE PAGE CONTENT HERE -->
+    </div>
+  </div>
+  <!-- END PAGE CONTAINER -->
+</div>
+<!-- END CONTENT -->
+

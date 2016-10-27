@@ -1,0 +1,15 @@
+<div class="container">
+  <div class ="well">
+    <% @conversations.each do |conversation| %>
+        <ol class="posts">
+          <li>
+            <p><%= conversation.subject %></p>
+            <p><%= conversation.created_at%></p>
+
+          </li>
+          </ol>
+    <% end %>
+  </div>
+
+  <%= link_to 'My Conversations', :conversations %>
+</div>

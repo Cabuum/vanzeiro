@@ -297,6 +297,9 @@ GEM
     mail_form (1.5.1)
       actionmailer (>= 3.2, < 5)
       activemodel (>= 3.2, < 5)
+    mailboxer (0.14.0)
+      carrierwave (>= 0.5.8)
+      rails (>= 4.2.0)
     method_source (0.8.2)
     mime-types (3.1)
       mime-types-data (~> 3.2015)
@@ -467,6 +470,7 @@ GEM
     unicode-display_width (1.1.1)
     warden (1.2.6)
       rack (>= 1.0)
+    will_paginate (3.1.5)
     xml-simple (1.1.5)
     zeus (0.15.10)
       method_source (>= 0.6.7)
@@ -502,6 +506,7 @@ DEPENDENCIES
   kaminari
   koala
   mail_form
+  mailboxer
   omniauth
   omniauth-facebook
   omniauth-google-oauth2
@@ -521,10 +526,11 @@ DEPENDENCIES
   therubyracer
   turbolinks
   uglifier (>= 1.3.0)
+  will_paginate
   zeus
 
 RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.13.1
+   1.13.6

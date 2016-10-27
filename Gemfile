@@ -36,6 +36,8 @@ gem 'font-awesome-rails'
 gem 'cancan'
 gem 'mail_form'
 
+gem 'mailboxer'
+gem 'will_paginate'
 group :development do
   gem 'quiet_assets'
 end

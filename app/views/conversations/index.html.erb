@@ -1,0 +1,73 @@
+<!-- BEGIN CONTENT -->
+<div class="page-container row-fluid">
+
+  <%= render 'layouts/administrator_navbar' %>
+
+  <!-- BEGIN PAGE CONTAINER-->
+  <div class="page-content">
+    <div class="content">
+      <!-- BEGIN PlACE PAGE CONTENT HERE -->
+      <ul class="breadcrumb">
+        <li>
+          <p>Você esta em:</p>
+        </li>
+        <li><%= link_to 'Chamados', conversations_path, class: 'active' %> </li>
+      </ul>
+      <div class="row-fluid">
+        <div class="span12">
+          <div class="grid simple ">
+            <div class="grid-title">
+              <h4>Lista de <span class="semi-bold">Chamados</span></h4>
+              <div class="tools">
+                <a href="javascript:;" class="collapse"></a>
+                <a href="javascript:window.location.reload();" class="reload"></a>
+              </div>
+            </div>
+            <div class="grid-body ">
+              <table class="table" id="conversation">
+                <thead>
+                <tr>
+                  <th>Assunto</th>
+                  <th>Data</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% @conversations.each do |conversation| %>
+                    <tr>
+                      <td>
+                        <% if conversation.is_read?(current_user) %>
+                            <%= link_to conversation.subject, conversation_path(conversation) %>
+                        <% else %>
+                            <b><%= link_to conversation.subject, conversation_path(conversation) %></b>
+                      <% end %>
+                        </td>
+                        <td>
+                          <% if conversation.is_read?(current_user) %>
+                              <%= conversation.updated_at.strftime("%a, %m/%e/%Y %I:%M %p") %>
+                          <% else %>
+                              <b> <%= conversation.updated_at.strftime("%a, %m/%e/%Y %I:%M %p") %></b>
+                          <% end %>
+                        </td>
+                    </tr>
+                <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- END PLACE PAGE CONTENT HERE -->
+    </div>
+  </div>
+  <!-- END PAGE CONTAINER -->
+</div>
+<!-- END CONTENT -->
+
+<% if notice %>
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", function(event) {
+        Messenger().post("<%= notice %>!</a>");
+      });
+    </script>
+<% end %>

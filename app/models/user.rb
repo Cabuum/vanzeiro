@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable,
          :rememberable, :trackable, :validatable, :omniauthable
 
+  acts_as_messageable
+
   after_create :generate_my_configuration
 
   validates :email, presence: true
@@ -57,5 +59,13 @@ class User < ActiveRecord::Base
   def generate_my_configuration
     create_configuration(business_day_for_payments: 4, start_school_year: 1,
                          end_school_year: 12, default_value: 100.00, default_interest: 0.25)
+  end
+
+  def mailboxer_email(object)
+    #Check if an email should be sent for that object
+    #if true
+    return email
+    #if false
+    #return nil
   end
 end
