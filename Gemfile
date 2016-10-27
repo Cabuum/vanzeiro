@@ -9,8 +9,12 @@ gem 'pg'
 
 gem 'therubyracer'
 gem 'uglifier', '>= 1.3.0'
-gem 'carrierwave'
+
+gem 'carrierwave', '0.10.0'
+gem 'carrierwave-base64'
 gem 'rmagick'
+gem 'fog'
+
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
