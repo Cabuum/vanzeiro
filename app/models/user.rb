@@ -1,10 +1,11 @@
+# frozen_string_literal: true
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable,
          :rememberable, :trackable, :validatable, :omniauthable
 
   after_create :generate_my_configuration
 
-  validates_presence_of :email
+  validates :email, presence: true
 
   has_many :authorizations, dependent: :destroy
   has_many :accounts, dependent: :destroy
@@ -42,7 +43,7 @@ class User < ActiveRecord::Base
         user.password = Devise.friendly_token[0, 20]
         user.name = auth.info.name
         user.email = auth.info.email
-        user.remote_image_url = auth.info.image.gsub('http://','https://')
+        user.remote_image_url = auth.info.image.gsub('http://', 'https://')
         user.save!
       end
 
@@ -55,6 +56,6 @@ class User < ActiveRecord::Base
 
   def generate_my_configuration
     create_configuration(business_day_for_payments: 4, start_school_year: 1,
-                        end_school_year: 12, default_value: 100.00, default_interest: 0.25)
+                         end_school_year: 12, default_value: 100.00, default_interest: 0.25)
   end
 end

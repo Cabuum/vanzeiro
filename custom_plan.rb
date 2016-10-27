@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'zeus/rails'
 
 class CustomPlan < Zeus::Rails

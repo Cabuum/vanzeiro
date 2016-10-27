@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
@@ -17,7 +18,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
 
     if @event.save
-      redirect_to events_path, :notice => t('events.create.success')
+      redirect_to events_path, notice: t('events.create.success')
     else
       render :new
     end
@@ -25,7 +26,7 @@ class EventsController < ApplicationController
 
   def update
     if @event.update(account_params)
-      redirect_to events_path, :notice => t('events.update.success')
+      redirect_to events_path, notice: t('events.update.success')
     else
       render :edit
     end
@@ -37,6 +38,7 @@ class EventsController < ApplicationController
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_event
     @event = Event.find(params[:id])

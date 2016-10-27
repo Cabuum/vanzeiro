@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 source 'https://rubygems.org'
 
 ruby '2.3.1'
@@ -14,7 +15,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'kaminari'
 gem 'jbuilder', '~> 2.0'
-gem 'spring',        group: :development
+gem 'spring', group: :development
 gem 'bootstrap-sass-rails'
 gem 'brcobranca', '~> 4.0.0'
 gem 'business_time'

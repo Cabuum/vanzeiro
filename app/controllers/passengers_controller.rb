@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class PassengersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_passenger, only: [:show, :edit, :update, :destroy]

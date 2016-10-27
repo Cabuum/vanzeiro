@@ -1,12 +1,13 @@
+# frozen_string_literal: true
 class BilletController < ApplicationController
   before_action :authenticate_user!
 
   SUPPORTED_FORMATS = {
-      :pdf => 'application/pdf',
-      :jpg => 'image/jpg',
-      :tif => 'image/tiff',
-      :png => 'image/png'
-  }
+    pdf: 'application/pdf',
+    jpg: 'image/jpg',
+    tif: 'image/tiff',
+    png: 'image/png'
+  }.freeze
 
   # For installments :id => :installment_id
   # GET /billets/generate_billet/pdf/1
@@ -16,7 +17,7 @@ class BilletController < ApplicationController
 
     format = params[:format].to_sym
     headers['Content-Type'] = SUPPORTED_FORMATS[format]
-    send_data @archive.to(format), :filename => "#{@archive.numero_documento}.#{format}"
+    send_data @archive.to(format), filename: "#{@archive.numero_documento}.#{format}"
   end
 
   # For contracts :id => :contract_id
@@ -37,8 +38,8 @@ class BilletController < ApplicationController
 
   def set_billet(installment)
     @archive = case installment.contract.account.bank.name.to_sym
-                 when :bb then Brcobranca::Boleto::BancoBrasil.new
-                 else Brcobranca::Boleto::Caixa.new
+               when :bb then Brcobranca::Boleto::BancoBrasil.new
+               else Brcobranca::Boleto::Caixa.new
                end
 
     @archive.cedente = current_user.name_to_billet
@@ -50,13 +51,13 @@ class BilletController < ApplicationController
     @archive.conta_corrente = installment.contract.account.account
     @archive.convenio = installment.contract.account.agreement
     @archive.numero_documento = case installment.contract.account.bank.name.to_sym
-                                  when :caixa
-                                    sprintf '%015d', installment.id
-                                  else
-                                    sprintf '%03d', installment.id
+                                when :caixa
+                                  sprintf '%015d', installment.id
+                                else
+                                  sprintf '%03d', installment.id
                                 end
     @archive.dias_vencimento = current_user.configuration.business_day_for_payments.business_days
-    .after(Date.new Time.now.year, installment.due_date.month).to_date
+                                           .after(Date.new(Time.now.year, installment.due_date.month)).to_date
 
     @archive.data_documento = Time.now.strftime('%d-%m-%Y').to_date
     @archive.instrucao1 = installment.contract.account.instruction1

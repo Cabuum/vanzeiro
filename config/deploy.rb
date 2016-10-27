@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # config valid only for Capistrano 3.1
 lock '3.2.1'
 
@@ -23,10 +24,10 @@ set :deploy_to, '/home/deploy/vanzeiro'
 # set :pty, true
 
 # Default value for :linked_files is []
-set :linked_files, %w{config/database.yml}
+set :linked_files, %w(config/database.yml)
 
 # Default value for linked_dirs is []
-set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+set :linked_dirs, %w(bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system)
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -34,19 +35,18 @@ set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public
 # Default value for keep_releases is 5
 set :keep_releases, 3
 
-#mx backup database
+# mx backup database
 set :keep_db_backups, 10
 
 namespace :deploy do
-
   puts fetch(:stage)
   before :updating, 'db:backup'
 
-  #desc 'rails migrate'
-  #task :rails_migrate do
-    #info 'executing rake migrate!'
-    #execute :rm, 'rake db:migrate RAILS_ENV=production'
-  #end
+  # desc 'rails migrate'
+  # task :rails_migrate do
+  # info 'executing rake migrate!'
+  # execute :rm, 'rake db:migrate RAILS_ENV=production'
+  # end
 
   desc 'Restart application'
   task :restart do
@@ -57,16 +57,15 @@ namespace :deploy do
   end
 
   after :publishing, :restart
-  #after :publishing, :rails_migrate
+  # after :publishing, :rails_migrate
   after :finishing, 'deploy:cleanup'
 
-  #after :restart, :clear_cache do
+  # after :restart, :clear_cache do
   #  on roles(:web), in: :groups, limit: 3, wait: 10 do
-      # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
+  # Here we can do anything such as:
+  # within release_path do
+  #   execute :rake, 'cache:clear'
+  # end
   #  end
-  #end
-
+  # end
 end

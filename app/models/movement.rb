@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Movement < ActiveRecord::Base
   before_save :negative_costs
   before_update :negative_costs
@@ -19,6 +20,6 @@ class Movement < ActiveRecord::Base
   end
 
   def negative_costs
-    self.value = self.value * -1 if self.type == MovementCategory::COSTS and self.value > 0
+    self.value = value * -1 if (type == MovementCategory::COSTS) && value > 0
   end
 end

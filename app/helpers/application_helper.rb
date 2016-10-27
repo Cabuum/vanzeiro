@@ -1,6 +1,7 @@
+# frozen_string_literal: true
 module ApplicationHelper
-	def error_tag(model, attribute)
-    if model.errors.has_key? attribute
+  def error_tag(model, attribute)
+    if model.errors.key? attribute
       content_tag(
         :div,
         model.errors[attribute].first,
