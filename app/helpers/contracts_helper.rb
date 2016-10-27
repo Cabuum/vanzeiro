@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 module ContractsHelper
   def to_last_month(contract)
     "#{to_month_name contract.closing_date}/#{contract.closing_date.strftime('%y')}"

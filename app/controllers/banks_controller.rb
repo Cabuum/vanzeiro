@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 class BanksController < ApplicationController
   before_action :set_bank, only: [:show, :edit, :update, :destroy]
 

@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 class Passenger < ActiveRecord::Base
   belongs_to :user
   has_many :contracts, dependent: :destroy

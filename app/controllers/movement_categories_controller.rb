@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 class MovementCategoriesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_movement_category, only: [:edit, :update, :destroy]

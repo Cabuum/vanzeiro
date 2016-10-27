@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 class SpectatorController < ApplicationController
   def create
     @spectator = Spectator.new(spectator_params)

@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 json.array!(@installments) do |installment|
   json.name installment.contract.passenger.passenger_name
   json.paid installment.paid ? 'Sim' : 'Não'

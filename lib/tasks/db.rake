@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 namespace :db do
   desc 'This rake task insert a new configuration in every user without a configuration.'
   task everyone_with_configuration: :environment do

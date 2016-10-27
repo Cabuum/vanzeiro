@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 module ApplicationHelper
   def error_tag(model, attribute)
     if model.errors.key? attribute

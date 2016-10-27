@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 class RegistrationsController < Devise::RegistrationsController
   # Overwrite update_resource to let users to update their user without giving their password
   def update_resource(resource, params)
