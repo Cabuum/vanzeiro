@@ -12,12 +12,13 @@
   <!-- BEGIN PAGE CONTAINER-->
   <div class="page-content">
     <div class="content">
-      <!-- BEGIN PlACE PAGE CONTENT HERE -->
+      <!-- BEGIN PlACE PAGE CONTENT HERE -->\
       <ul class="breadcrumb">
         <li>
           <p>Você esta em:</p>
         </li>
-        <li><a href="#" class="active">Cadastro de contratos</a> </li>
+        <li><%= link_to 'Contratos', contracts_path %> </li>
+        <li><%= link_to 'Cadastro de contratos', new_contract_path, class: 'active' %> </li>
       </ul>
       <div class="row-fluid">
         <div class="col-md-12">

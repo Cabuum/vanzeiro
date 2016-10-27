@@ -11,7 +11,8 @@
         <li>
           <p>Você esta em:</p>
         </li>
-        <li><a href="#" class="active">Edição de passageiro</a> </li>
+        <li><%= link_to 'Passageiros', passengers_path %> </li>
+        <li><%= link_to 'Editar passageiro', edit_passenger_path, class: 'active' %> </li>
       </ul>
       <div class="row-fluid">
         <div class="col-md-12">
