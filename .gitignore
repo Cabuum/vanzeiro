@@ -44,7 +44,6 @@ bower_components/
 
 /public/uploads
 
-Gemfile.lock
 *.swp
 *.*~
 /.bundle
