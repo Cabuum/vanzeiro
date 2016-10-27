@@ -1,0 +1,6 @@
+pt-BR:
+  activerecord:
+    models:
+      bank: 
+        one: Banco
+        other: Bancos

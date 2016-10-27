@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      movement: 
+        one: Movimentação
+        other: Movimentações
+    attributes:
+      movement:
+

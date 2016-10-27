@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      spectator: 
+        one: Espectador
+        other: Espectadores
+    attributes:
+      spectator:
+        name: Nome
+

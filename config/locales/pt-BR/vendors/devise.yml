@@ -1,7 +1,4 @@
-# encoding: UTF-8
-# pt translations for Devise
-
-pt:
+pt-BR:
    devise:
     confirmations:
       confirmed: 'Sua conta foi confirmada com sucesso. Você está logado.'
