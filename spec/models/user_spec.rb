@@ -8,8 +8,8 @@ RSpec.describe User, type: :model do
   end
 
   context 'model validations' do
-    # it { is_expected.to validate_presence_of(:email) }
-    # it { is_expected.to validate_uniqueness_of(:email).case_insensitive }
+    it { is_expected.to validate_presence_of(:email) }
+    it { is_expected.to validate_uniqueness_of(:email).case_insensitive }
 
     # it { is_expected.to validate_presence_of(:role) }
     # it { is_expected.to validate_presence_of(:profile) }
@@ -19,7 +19,10 @@ RSpec.describe User, type: :model do
   end
 
   context 'table fields' do
-    # it { is_expected.to have_db_column(:email).of_type(:string) }
+    it { is_expected.to have_db_column(:email).of_type(:string) }
+    it { is_expected.to have_db_column(:name).of_type(:string) }
+    it { is_expected.to have_db_column(:encrypted_password).of_type(:string) }
+    it { is_expected.to have_db_column(:reset_password_token).of_type(:string) }
 
     # it { is_expected.to have_db_column(:status).of_type(:integer) }
     # it { is_expected.to have_db_column(:role_id).of_type(:integer) }
@@ -29,7 +32,8 @@ RSpec.describe User, type: :model do
   end
 
   context 'table indexes' do
-    # it { is_expected.to have_db_index(:email) }
+    it { is_expected.to have_db_index(:email) }
+    it { is_expected.to have_db_index(:reset_password_token) }
   end
 
   context 'factories' do
@@ -49,7 +53,7 @@ RSpec.describe User, type: :model do
     describe '#generate_my_configuration' do
       it 'after creating a user generate a new config' do
         expect do
-          User.create(name: 'Horse', password: '12345678', email: 'no@name.com')
+          User.create(password: '12345678', email: 'ahorsewithno@name.com')
         end.to change(MyConfiguration, :count).by(1)
       end
     end
