@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class AccountsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_account, only: [:show, :edit, :update, :destroy]
@@ -17,7 +18,7 @@ class AccountsController < ApplicationController
     @account = Account.new(account_params)
 
     if @account.save
-      redirect_to eu_path, :notice => t('accounts.create.success')
+      redirect_to eu_path, notice: t('accounts.create.success')
     else
       render :new
     end
@@ -25,7 +26,7 @@ class AccountsController < ApplicationController
 
   def update
     if @account.update(account_params)
-      redirect_to eu_path, :notice => t('accounts.update.success')
+      redirect_to eu_path, notice: t('accounts.update.success')
     else
       render :edit
     end
@@ -33,10 +34,11 @@ class AccountsController < ApplicationController
 
   def destroy
     @account.destroy
-    redirect_to eu_path, :notice => t('accounts.delete.success')
+    redirect_to eu_path, notice: t('accounts.delete.success')
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_account
     @account = Account.find(params[:id])

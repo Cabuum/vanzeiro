@@ -1,10 +1,8 @@
+# frozen_string_literal: true
 class HomeController < ApplicationController
-
   def index
     @newsletter = Newsletter.new
-    unless current_user.nil?
-      redirect_to controller: :dashboards, action: :index
-    end
+    redirect_to controller: :dashboards, action: :index unless current_user.nil?
   end
 
   def plan
@@ -27,5 +25,4 @@ class HomeController < ApplicationController
       redirect_to contato_path
     end
   end
-
 end

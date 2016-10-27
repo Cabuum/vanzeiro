@@ -7,6 +7,12 @@
   <div class="page-content">
     <div class="content">
       <!-- BEGIN PlACE PAGE CONTENT HERE -->
+      <ul class="breadcrumb">
+        <li>
+          <p>Você esta em:</p>
+        </li>
+        <li><%= link_to 'Passageiros', passengers_path, class: 'active' %> </li>
+      </ul>
       <div class="row-fluid">
         <div class="span12">
           <div class="grid simple ">
@@ -26,8 +32,8 @@
                   <th>Nome</th>
                   <th>Email</th>
                   <th>Telefone</th>
-                  <th>CPF</th>
-                  <th style="width:23%">Progr. último contrato</th>
+                  <th style="width: 15%">CPF</th>
+                  <th style="width: 25%" title="Andamento do último contrato vigente">Último contrato</th>
                 </tr>
                 </thead>
                 <tbody>

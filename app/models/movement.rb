@@ -1,11 +1,13 @@
+# frozen_string_literal: true
 class Movement < ActiveRecord::Base
   before_save :negative_costs
   before_update :negative_costs
 
   self.inheritance_column = nil
 
-  scope :default, -> (user_id) { where("MONTH(`movements`.expiration) =
-                                       #{Time.now.month} AND `movements`.user_id = #{user_id}") }
+  scope :current_month, -> { where('EXTRACT(MONTH FROM expiration) = ?', Time.now.month) }
+
+  scope :by_user, -> (user_id) { where(user_id: user_id) }
 
   # Method to get only incomes and sum by current month.
   scope :incoming, -> (user_id) { default(user_id).where(type: MovementCategory::INCOME) }
@@ -18,6 +20,6 @@ class Movement < ActiveRecord::Base
   end
 
   def negative_costs
-    self.value = self.value * -1 if self.type == MovementCategory::COSTS and self.value > 0
+    self.value = value * -1 if (type == MovementCategory::COSTS) && value > 0
   end
 end

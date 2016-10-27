@@ -1,9 +1,10 @@
+# frozen_string_literal: true
 class ContractsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_contract, only: [:show, :destroy]
 
   def index
-    @contracts = if params.has_key?(:passenger_id)
+    @contracts = if params.key?(:passenger_id)
                    Contract.where(passenger_id: params[:passenger_id])
                  else
                    Contract.where(user_id: current_user.id)
@@ -35,6 +36,7 @@ class ContractsController < ApplicationController
   end
 
   private
+
   def get_initial_options
     @passengers = Passenger.where user_id: current_user.id
     @accounts = Account.where user_id: current_user.id

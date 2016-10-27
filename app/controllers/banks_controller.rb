@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class BanksController < ApplicationController
   before_action :set_bank, only: [:show, :edit, :update, :destroy]
 
@@ -37,6 +38,7 @@ class BanksController < ApplicationController
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_bank
     @bank = Bank.find(params[:id])

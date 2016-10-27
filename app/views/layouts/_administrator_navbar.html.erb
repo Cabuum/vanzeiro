@@ -31,7 +31,26 @@
     <ul>
       <!-- BEGIN ONE LEVEL MENU -->
       <li class="">
-        <%= link_to raw('<i class="fa fa-tachometer"></i> <span class="title">Dashboard</span>'), root_path %>
+        <%= link_to raw('<i class="icon-custom-home"></i> <span class="title">Dashboard</span>'), root_path %>
+      </li>
+      <!-- END ONE LEVEL MENU -->
+
+      <!-- BEGIN ONE LEVEL MENU -->
+      <li class="">
+        <%= link_to raw('<i class="fa fa-user"></i> <span class="title">Perfil</span>'), eu_path %>
+      </li>
+      <!-- END ONE LEVEL MENU -->
+
+      <!-- BEGIN ONE LEVEL MENU -->
+      <li>
+        <a href="javascript:;">
+          <i class="icon-custom-message"></i>
+          <span class="title">Suporte</span>
+          <span class="arrow open"></span>
+        </a>
+        <ul class="sub-menu">
+          <li > <a href="#"> Tickets </a> </li>
+        </ul>
       </li>
       <!-- END ONE LEVEL MENU -->
 

@@ -1,0 +1,26 @@
+Documentation:
+  Enabled: false
+
+Metrics/ModuleLength:
+  Max: 600
+
+Rails/HasAndBelongsToMany:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+AllCops:
+  TargetRubyVersion: 2.3
+  Exclude:
+    - 'Gemfile.lock'
+    - 'bin/**/*'
+    - 'db/**/*'
+    - 'tmp/**/*'
+    - 'vendor/**/*'
+    - 'log/**/*'
+    - 'db/migrate/*_schema.rb'
+    - 'config/initializers/**/*'
+
+Rails:
+  Enabled: true

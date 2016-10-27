@@ -1,9 +1,10 @@
+# frozen_string_literal: true
 class MovementsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_movement, only: [:edit, :update, :destroy]
 
   def index
-    @movements = Movement.default current_user.id
+    @movements = Movement.current_month.by_user(current_user.id)
   end
 
   def new
@@ -40,6 +41,7 @@ class MovementsController < ApplicationController
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_movement
     @movement = Movement.find params[:id]

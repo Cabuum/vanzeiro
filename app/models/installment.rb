@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Installment < ActiveRecord::Base
   belongs_to :contract
 

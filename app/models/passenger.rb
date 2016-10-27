@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Passenger < ActiveRecord::Base
   belongs_to :user
   has_many :contracts, dependent: :destroy
@@ -17,6 +18,6 @@ class Passenger < ActiveRecord::Base
   end
 
   def last_contract
-      contracts.order('contracts.closing_date DESC').first
+    contracts.order('contracts.closing_date DESC').first
   end
 end

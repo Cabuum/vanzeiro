@@ -11,7 +11,8 @@
         <li>
           <p>Você esta em:</p>
         </li>
-        <li><a href="#" class="active">Cadastro de movimentação</a> </li>
+        <li><%= link_to 'Movimentações', movements_path %> </li>
+        <li><%= link_to 'Cadastro de Movimentos', new_movement_path, class: 'active' %> </li>
       </ul>
       <div class="row-fluid">
       <div class="col-md-12">

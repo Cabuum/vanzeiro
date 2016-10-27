@@ -40,7 +40,7 @@
           <div class="row">
             <div class="col-md-8 col-md-offset-2">
               <h2 class="text-center text-white m-b-30">Quer ficar por dentro das <span class="semi-bold">novidades?</span><br />
-                Coloque seu email a baixo e surpreenda-se!</h2>
+                Coloque seu email abaixo e surpreenda-se!</h2>
               <%= form_for(@newsletter, url: { controller: :newsletters, action: 'create', method: :post}, remote: true,
                            html: {id: 'form_newsletter'}) do |f| %>
                   <% if @newsletter.errors.any? %>
@@ -127,9 +127,9 @@
         <div class="col-md-2 col-lg-2 col-sm-2  col-xs-12 ">
           <div class="bold">SIGA-NOS</div>
           <div style="font-size: 19px">
-            <a class="fa fa-facebook" href="https://facebook.com/cabuumtech">&nbsp;</a>&nbsp;
+            <a class="fa fa-facebook-square" href="https://facebook.com/cabuumtech">&nbsp;</a>&nbsp;
             <a class="fa fa-twitter" style="color: #2BCFE5" href="https://twitter.com/cabuumtech">&nbsp;</a>
-            <a class="fa fa-github-square" style="color: #000000" href="https://github.com/cabuum">&nbsp;</a>
+            <a class="fa fa-github" style="color: #000000" href="https://github.com/cabuum">&nbsp;</a>
           </div>
         </div>
       </div>

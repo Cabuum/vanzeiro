@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class MovementCategoriesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_movement_category, only: [:edit, :update, :destroy]
@@ -23,7 +24,6 @@ class MovementCategoriesController < ApplicationController
   end
 
   def update
-
     if @movement_category.update(movement_category_params)
       redirect_to movement_categories_path, notice: t('movements-categories.update.success')
       render :index, status: :ok, location: @movement_category
@@ -38,6 +38,7 @@ class MovementCategoriesController < ApplicationController
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_movement_category
     @movement_category = MovementCategory.find(params[:id])
