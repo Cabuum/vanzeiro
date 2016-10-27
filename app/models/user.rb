@@ -1,8 +1,6 @@
 class User < ActiveRecord::Base
-  devise :database_authenticatable, :registerable, :recoverable,
-         :rememberable, :trackable, :validatable, :omniauthable
-
-  after_create :generate_my_configuration
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable,
+         :trackable, :validatable, :omniauthable
 
   validates :email, presence: true
 
@@ -12,6 +10,8 @@ class User < ActiveRecord::Base
                     dependent: :destroy
 
   mount_uploader :image, ImageUploader
+
+  after_create :generate_settings
 
   def name_to_billet
     social_reason.blank? ? name : social_reason
