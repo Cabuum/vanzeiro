@@ -19,7 +19,7 @@ build:
         code: bundle exec rspec
 
 deploy:
-    steps:
-      - heroku-deploy:
-          key-name: DEPLOYMENT_KEY
-          run: rake db:migrate
+  steps:
+    - heroku-deploy:
+        key-name: DEPLOYMENT_KEY
+        run: rake db:migrate
