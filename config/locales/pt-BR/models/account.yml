@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      account: 
+        one: Conta
+        other: Contas
+    attributes:
+      account:
+

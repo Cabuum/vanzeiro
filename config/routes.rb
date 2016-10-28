@@ -1,11 +1,22 @@
 Rails.application.routes.draw do
-  get 'errors/not_found'
-  get 'errors/server_error'
+  devise_for :users, controllers: {
+    omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations'
+  }
 
-  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks',
-                                    registrations: 'registrations' }
+  localized do
+    devise_scope :user do
+      get :sign_in, to: 'devise/sessions#new', as: :new_user_session
+      get :sign_out, to: 'devise/sessions#destroy', as: :destroy_user_session
+      get :profile, to: 'users#show', as: :profile
+    end
 
-  scope(path_names: { new: 'novo', edit: 'editar', show: 'ver' }) do
+    scope :profile do
+      resources :settings
+    end
+
+    # get 'errors/not_found'
+    # get 'errors/server_error'
+
     # Errors
     get '/404' => 'errors#not_found'
     get '/422' => 'errors#server_error'
@@ -14,50 +25,44 @@ Rails.application.routes.draw do
     get '/dashboard' => 'dashboards#index'
 
     resources :newsletters
-    resources :movements, path: 'fluxo-de-caixa'
-    resources :movement_categories, path: '/fluxo-de-caixa/categorias'
-    resources :installments, path: 'parcelas'
-    resources :contracts, path: 'contratos'
-    resources :accounts, path: 'contas'
-    resources :events, path: 'eventos'
-    resources :users, path: 'usuarios'
+    resources :movements
+    resources :movement_categories
+    resources :installments
+    resources :contracts
+    resources :bank_accounts
+    resources :events
+    resources :users
 
-    resources :passengers, path: 'passageiros' do
-      resources :contracts, path: 'contrato' do
-        resources :installments, path: 'parcelas' do
+    resources :passengers do
+      resources :contracts do
+        resources :installments do
           post '/update_installment/:id/:paid' => 'installments#update'
         end
       end
     end
 
-    scope '/admin' do
-      resources :suggestions, path: 'sugestoes'
-      resources :spectator, path: 'espectadores'
-      resources :banks, path: 'bancos'
-      resources :plans, path: 'planos'
+    scope :admin do
+      root controller: :plans, action: :index
+
+      resources :suggestions
+      resources :spectator
+      resources :banks
+      resources :plans
       resources :newsletters
     end
 
-    scope '/perfil' do
-      get '/' => 'users#show', :as => :eu
-      resources :my_configurations, path: 'configuracoes'
+    resources :billet do
+      get '/generate_billet/:format/:id' => 'billet#generate_billet'
+      get '/multiple_billet/:format/:id' => 'billet#multiple_billet'
     end
+
+    # REFACTOR IT:
+    scope nil do
+      get 'planos' => 'home#plan', as: :pricing
+      get 'contato' => 'home#contact', as: :contact
+      post 'contato' => 'home#send_contact'
+    end
+
+    root controller: :home, action: :index
   end
-
-  scope '/billet' do
-    get '/generate_billet/:format/:id' => 'billet#generate_billet'
-    get '/multiple_billet/:format/:id' => 'billet#multiple_billet'
-  end
-
-  devise_scope :user do
-    get '/entrar' => 'devise/sessions#new', as: :entrar
-    get '/editar' => 'devise/registrations#edit'
-    get '/sair' => 'devise/sessions#destroy'
-  end
-
-  get '/planos' => 'home#plan', as: :pricing
-  get '/contato' => 'home#contact'
-  post '/contato' => 'home#send_contact'
-
-  root 'home#index'
 end

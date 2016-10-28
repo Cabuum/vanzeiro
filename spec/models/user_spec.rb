@@ -3,13 +3,13 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   context 'associations' do
     it { is_expected.to have_many(:authorizations) }
-    it { is_expected.to have_many(:accounts) }
-    it { is_expected.to have_one(:configuration).class_name(MyConfiguration) }
+    it { is_expected.to have_many(:bank_accounts) }
+    it { is_expected.to have_one(:setting).class_name(Setting) }
   end
 
   context 'model validations' do
-    # it { is_expected.to validate_presence_of(:email) }
-    # it { is_expected.to validate_uniqueness_of(:email).case_insensitive }
+    it { is_expected.to validate_presence_of(:email) }
+    it { is_expected.to validate_uniqueness_of(:email).case_insensitive }
 
     # it { is_expected.to validate_presence_of(:role) }
     # it { is_expected.to validate_presence_of(:profile) }
@@ -19,7 +19,10 @@ RSpec.describe User, type: :model do
   end
 
   context 'table fields' do
-    # it { is_expected.to have_db_column(:email).of_type(:string) }
+    it { is_expected.to have_db_column(:email).of_type(:string) }
+    it { is_expected.to have_db_column(:name).of_type(:string) }
+    it { is_expected.to have_db_column(:encrypted_password).of_type(:string) }
+    it { is_expected.to have_db_column(:reset_password_token).of_type(:string) }
 
     # it { is_expected.to have_db_column(:status).of_type(:integer) }
     # it { is_expected.to have_db_column(:role_id).of_type(:integer) }
@@ -29,7 +32,8 @@ RSpec.describe User, type: :model do
   end
 
   context 'table indexes' do
-    # it { is_expected.to have_db_index(:email) }
+    it { is_expected.to have_db_index(:email) }
+    it { is_expected.to have_db_index(:reset_password_token) }
   end
 
   context 'factories' do
@@ -43,14 +47,14 @@ RSpec.describe User, type: :model do
     context 'create callbacks' do
       subject { User.new._create_callbacks.map(&:filter) }
 
-      it { is_expected.to include(:generate_my_configuration) }
+      it { is_expected.to include(:generate_settings) }
     end
 
-    describe '#generate_my_configuration' do
+    describe '#generate_settings' do
       it 'after creating a user generate a new config' do
         expect do
-          User.create(name: 'Horse', password: '12345678', email: 'no@name.com')
-        end.to change(MyConfiguration, :count).by(1)
+          User.create(password: '12345678', email: 'ahorsewithno@name.com')
+        end.to change(Setting, :count).by(1)
       end
     end
   end

@@ -26,7 +26,7 @@
 
   <%= csrf_meta_tags %>
 </head>
-<% if current_page?(controller: 'devise/sessions', action: 'new') || current_page?(entrar_path) %>
+<% if current_page?(controller: 'devise/sessions', action: 'new') || current_page?(new_user_session_path) %>
     <body class="error-body no-top lazy"  data-original="<%= path_to_image('work.jpg') %>"
           style="background-image: url(<%= path_to_image('work.jpg') %>)">
 
@@ -38,7 +38,7 @@
     <body class="">
     <div class="main-wrapper">
 
-      <% if current_page?(pricing_path)  || current_page?(contato_path) %>
+      <% if current_page?(pricing_path)  || current_page?(contact_path) %>
 
       <% else %>
           <header id="ha-header" class="ha-header ha-header-hide "  >
@@ -57,9 +57,9 @@
                   <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right" >
                       <li><%= link_to 'Home', root_path %></li>
-                      <li><%= link_to 'Entrar', entrar_path %></li>
+                      <li><%= link_to 'Entrar', new_user_session_path %></li>
                       <li><%= link_to 'Planos', pricing_path %></li>
-                      <li><%= link_to 'Contato', contato_path %></li>
+                      <li><%= link_to 'Contato', contact_path %></li>
                     </ul>
                   </div><!--/.nav-collapse -->
                 </div>

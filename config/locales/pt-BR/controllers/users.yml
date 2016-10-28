@@ -1,0 +1,8 @@
+pt-BR:  
+  users:
+    new:
+      title: Cadastro
+    edit:
+      title: Editar perfil
+    show:
+      title: "Perfil: %{user_name}"

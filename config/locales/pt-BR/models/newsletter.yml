@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      newsletter: 
+        one: Newsletter
+        other: Newsletters
+    attributes:
+      newsletter:
+

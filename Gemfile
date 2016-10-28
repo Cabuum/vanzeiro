@@ -10,7 +10,6 @@ gem 'therubyracer'
 gem 'uglifier', '>= 1.3.0'
 
 gem 'carrierwave', '0.10.0'
-gem 'carrierwave-base64'
 gem 'rmagick'
 gem 'fog'
 
@@ -18,8 +17,9 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'kaminari'
+gem 'simple_form'
+gem 'route_translator'
 gem 'jbuilder', '~> 2.0'
-gem 'spring', group: :development
 gem 'bootstrap-sass-rails'
 gem 'brcobranca', '~> 4.0.0'
 gem 'business_time'
@@ -38,6 +38,7 @@ gem 'mail_form'
 
 group :development do
   gem 'quiet_assets'
+  gem 'spring'
 end
 
 group :test, :development do

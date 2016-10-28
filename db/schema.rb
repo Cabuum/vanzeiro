@@ -11,12 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141201182023) do
+ActiveRecord::Schema.define(version: 20161028021746) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "accounts", force: :cascade do |t|
+  create_table "authorizations", force: :cascade do |t|
+    t.string   "provider",   limit: 20
+    t.string   "uid"
+    t.integer  "user_id"
+    t.string   "token"
+    t.string   "secret"
+    t.string   "username",   limit: 40
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "bank_accounts", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "bank_id"
     t.string   "agency"
@@ -34,19 +45,8 @@ ActiveRecord::Schema.define(version: 20141201182023) do
     t.string   "nick",         limit: 30
   end
 
-  add_index "accounts", ["bank_id"], name: "index_accounts_on_bank_id", using: :btree
-  add_index "accounts", ["user_id"], name: "index_accounts_on_user_id", using: :btree
-
-  create_table "authorizations", force: :cascade do |t|
-    t.string   "provider",   limit: 20
-    t.string   "uid"
-    t.integer  "user_id"
-    t.string   "token"
-    t.string   "secret"
-    t.string   "username",   limit: 40
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "bank_accounts", ["bank_id"], name: "index_bank_accounts_on_bank_id", using: :btree
+  add_index "bank_accounts", ["user_id"], name: "index_bank_accounts_on_user_id", using: :btree
 
   create_table "banks", force: :cascade do |t|
     t.string   "full_name",  limit: 30
@@ -119,19 +119,6 @@ ActiveRecord::Schema.define(version: 20141201182023) do
 
   add_index "movements", ["user_id"], name: "index_movements_on_user_id", using: :btree
 
-  create_table "my_configurations", force: :cascade do |t|
-    t.integer  "business_day_for_payments"
-    t.integer  "user_id"
-    t.integer  "start_school_year"
-    t.integer  "end_school_year"
-    t.decimal  "default_value",             precision: 10, scale: 2
-    t.decimal  "default_interest",          precision: 10, scale: 2
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "my_configurations", ["user_id"], name: "index_my_configurations_on_user_id", using: :btree
-
   create_table "newsletters", force: :cascade do |t|
     t.string   "mail"
     t.boolean  "skills",     default: true
@@ -171,6 +158,19 @@ ActiveRecord::Schema.define(version: 20141201182023) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "settings", force: :cascade do |t|
+    t.integer  "business_day_for_payments"
+    t.integer  "user_id"
+    t.integer  "start_school_year"
+    t.integer  "end_school_year"
+    t.decimal  "default_value",             precision: 10, scale: 2
+    t.decimal  "default_interest",          precision: 10, scale: 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "settings", ["user_id"], name: "index_settings_on_user_id", using: :btree
 
   create_table "spectators", force: :cascade do |t|
     t.string   "mail",       limit: 80

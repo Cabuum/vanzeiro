@@ -1,4 +1,4 @@
-<% if current_page?(controller: 'devise/sessions', action: 'new') || current_page?(entrar_path) %>
+<% if current_page?(controller: 'devise/sessions', action: 'new') || current_page?(new_user_session_path) %>
     <%= stylesheet_link_tag 'login-page', media: 'all' %>
 <% elsif current_user.blank? %>
     <%= stylesheet_link_tag 'frontend', media: 'all' %>

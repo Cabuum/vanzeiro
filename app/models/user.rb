@@ -1,17 +1,17 @@
 class User < ActiveRecord::Base
-  devise :database_authenticatable, :registerable, :recoverable,
-         :rememberable, :trackable, :validatable, :omniauthable
-
-  after_create :generate_my_configuration
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable,
+         :trackable, :validatable, :omniauthable
 
   validates :email, presence: true
 
   has_many :authorizations, dependent: :destroy
-  has_many :accounts, dependent: :destroy
-  has_one :configuration, foreign_key: :user_id, class_name: MyConfiguration,
-                          dependent: :destroy
+  has_many :bank_accounts, dependent: :destroy
+  has_one :setting, foreign_key: :user_id, class_name: Setting,
+                    dependent: :destroy
 
   mount_uploader :image, ImageUploader
+
+  after_create :generate_settings
 
   def name_to_billet
     social_reason.blank? ? name : social_reason
@@ -54,8 +54,9 @@ class User < ActiveRecord::Base
     authorization.user
   end
 
-  def generate_my_configuration
-    create_configuration(business_day_for_payments: 4, start_school_year: 1,
-                         end_school_year: 12, default_value: 100.00, default_interest: 0.25)
+  def generate_settings
+    create_setting(business_day_for_payments: 4, start_school_year: 1,
+                   end_school_year: 12, default_value: 100.00,
+                   default_interest: 0.25)
   end
 end

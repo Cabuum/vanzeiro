@@ -3,7 +3,7 @@
 <div class="page-sidebar" id="main-menu">
   <div class="page-sidebar-wrapper scrollbar-dynamic" id="main-menu-wrapper">
     <!-- BEGIN MINI-PROFILE -->
-    <%= link_to eu_path do %>
+    <%= link_to root_path do %>
         <div class="user-info-wrapper">
           <div class="profile-wrapper">
             <%= image_tag(current_user.image_url(:thumb).to_s,
@@ -37,7 +37,7 @@
 
       <!-- BEGIN ONE LEVEL MENU -->
       <li class="">
-        <%= link_to raw('<i class="fa fa-user"></i> <span class="title">Perfil</span>'), eu_path %>
+        <%= link_to raw('<i class="fa fa-user"></i> <span class="title">Perfil</span>'), root_path %>
       </li>
       <!-- END ONE LEVEL MENU -->
 
