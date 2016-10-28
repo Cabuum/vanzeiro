@@ -1,74 +1,7 @@
 <% if current_page?(controller: 'devise/sessions', action: 'new') || current_page?(new_user_session_path) %>
-    <%= stylesheet_link_tag '/assets/headereffects/component', media: 'all' %>
-    <%= stylesheet_link_tag '/assets/headereffects/normalize', media: 'all' %>
-    <%= stylesheet_link_tag '/assets/pace/pace-theme-flash', media: 'screen' %>
-
-    <!-- BEGIN CORE CSS FRAMEWORK -->
-    <%= stylesheet_link_tag '/assets/boostrapv3/bootstrap.min', media: 'all' %>
-    <%= stylesheet_link_tag '/assets/boostrapv3/bootstrap-theme.min', media: 'all' %>
-    <%= stylesheet_link_tag '/assets/font-awesome/font-awesome.min', media: 'all' %>
-    <!-- END CORE CSS FRAMEWORK -->
-
-    <!-- BEGIN CSS TEMPLATE -->
-    <%= stylesheet_link_tag '/assets/style', media: 'all' %>
-    <%= stylesheet_link_tag '/assets/magic_space', media: 'all' %>
-    <%= stylesheet_link_tag '/assets/responsive', media: 'all' %>
-    <%= stylesheet_link_tag '/assets/animate.min', media: 'all' %>
-    <%= stylesheet_link_tag '/assets/rs-plugin/settings', media: 'screen' %>
-    <%= stylesheet_link_tag '/assets/custom-icon-set', media: 'all' %>
-    <!-- END CSS TEMPLATE -->
-
-    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= stylesheet_link_tag 'login-page', media: 'all' %>
 <% elsif current_user.blank? %>
-    <%= stylesheet_link_tag '/assets/front-end/owl-carousel/owl.carousel', media: 'all' %>
-    <%= stylesheet_link_tag '/assets/front-end/owl-carousel/owl.theme', media: 'all' %>
-    <%= stylesheet_link_tag '/assets/front-end/headereffects/component', media: 'all' %>
-    <%= stylesheet_link_tag '/assets/front-end/headereffects/normalize', media: 'all' %>
-    <%= stylesheet_link_tag '/assets/front-end/pace/pace-theme-flash', media: 'screen' %>
-
-    <!-- BEGIN CORE CSS FRAMEWORK -->
-    <%= stylesheet_link_tag '/assets/front-end/boostrapv3/bootstrap.min', media: 'all' %>
-    <%= stylesheet_link_tag '/assets/front-end/boostrapv3/bootstrap-theme.min', media: 'all' %>
-    <%= stylesheet_link_tag '/assets/font-awesome/font-awesome.min', media: 'all' %>
-    <!-- END CORE CSS FRAMEWORK -->
-
-    <!-- BEGIN CSS TEMPLATE -->
-    <%= stylesheet_link_tag '/assets/front-end/style', media: 'all' %>
-    <%= stylesheet_link_tag '/assets/front-end/magic_space', media: 'all' %>
-    <%= stylesheet_link_tag '/assets/front-end/responsive', media: 'all' %>
-    <%= stylesheet_link_tag '/assets/front-end/animate.min', media: 'all' %>
-    <%= stylesheet_link_tag '/assets/rs-plugin/settings', media: 'screen' %>
-    <%= stylesheet_link_tag '/assets/custom-icon-set', media: 'all' %>
-    <!-- END CSS TEMPLATE -->
-
-    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= stylesheet_link_tag 'frontend', media: 'all' %>
 <% else %>
-
-    <!-- BEGIN PLUGIN CSS -->
-    <%= stylesheet_link_tag '/assets/pace/pace-theme-flash', media: 'screen' %>
-    <%= stylesheet_link_tag '/assets/bootstrap-datepicker/datepicker', media: 'all' %>
-    <%= stylesheet_link_tag '/assets/bootstrap-select2/select2.min', media: 'screen' %>
-    <%= stylesheet_link_tag '/assets/jquery-datatable/jquery.dataTables', media: 'all' %>
-    <%= stylesheet_link_tag '/assets/datatables-responsive/datatables.responsive', media: 'screen' %>
-    <%= stylesheet_link_tag '/assets/jquery-ricksaw-chart/rickshaw', media: 'screen' %>
-    <!-- END PLUGIN CSS -->
-
-    <!-- BEGIN CORE CSS FRAMEWORK -->
-    <%= stylesheet_link_tag '/assets/boostrapv3/bootstrap.min', media: 'all' %>
-    <%= stylesheet_link_tag '/assets/boostrapv3/bootstrap-theme.min', media: 'all' %>
-    <%= stylesheet_link_tag '/assets/font-awesome/font-awesome.min', media: 'all' %>
-    <%= stylesheet_link_tag '/assets/animate.min', media: 'all' %>
-    <%= stylesheet_link_tag '/assets/jquery-scrollbar/jquery.scrollbar', media: 'all' %>
-    <!-- END CORE CSS FRAMEWORK -->
-
-    <%= stylesheet_link_tag '/assets/jquery-notifications/messenger', media: 'all' %>
-    <%= stylesheet_link_tag '/assets/jquery-notifications/messenger-theme-flat', media: 'all' %>
-
-    <!-- BEGIN CSS TEMPLATE -->
-    <%= stylesheet_link_tag '/assets/style', media: 'all' %>
-    <%= stylesheet_link_tag '/assets/responsive', media: 'all' %>
-    <%= stylesheet_link_tag '/assets/custom-icon-set', media: 'all' %>
-    <!-- END CSS TEMPLATE -->
-
-    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= stylesheet_link_tag 'backend', media: 'all' %>
 <% end %>
