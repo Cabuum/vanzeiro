@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   context 'associations' do
     it { is_expected.to have_many(:authorizations) }
-    it { is_expected.to have_many(:accounts) }
+    it { is_expected.to have_many(:bank_accounts) }
     it { is_expected.to have_one(:setting).class_name(Setting) }
   end
 

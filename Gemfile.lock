@@ -62,8 +62,6 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
-    carrierwave-base64 (2.3.1)
-      carrierwave (>= 0.8.0, < 0.12.0)
     codeclimate-test-reporter (0.6.0)
       simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.1)
@@ -396,6 +394,9 @@ GEM
     rghost (0.9.5)
     rghost_barcode (0.9)
     rmagick (2.16.0)
+    route_translator (4.4.1)
+      actionpack (>= 3.2, < 5.0)
+      activesupport (>= 3.2, < 5.0)
     rspec (3.5.0)
       rspec-core (~> 3.5.0)
       rspec-expectations (~> 3.5.0)
@@ -435,6 +436,9 @@ GEM
     shellany (0.0.1)
     shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
+    simple_form (3.3.1)
+      actionpack (> 4, < 5.1)
+      activemodel (> 4, < 5.1)
     simplecov (0.12.0)
       docile (~> 1.1.0)
       json (>= 1.8, < 3)
@@ -480,7 +484,6 @@ DEPENDENCIES
   business_time
   cancan
   carrierwave (= 0.10.0)
-  carrierwave-base64
   codeclimate-test-reporter
   coffee-rails (~> 4.0.0)
   database_cleaner
@@ -513,9 +516,11 @@ DEPENDENCIES
   rails (= 4.2.7.1)
   rails_12factor
   rmagick
+  route_translator
   rspec
   rspec-rails
   shoulda-matchers
+  simple_form
   simplecov
   spring
   therubyracer

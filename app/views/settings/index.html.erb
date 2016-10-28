@@ -1,0 +1,35 @@
+<h1>Listing settings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Business day for payments</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @settings.each do |setting| %>
+      <tr>
+        <td><%= setting.business_day_for_payments %></td>
+        <td><%= setting.user %></td>
+        <td><%= link_to 'Show', setting %></td>
+        <td><%= link_to 'Edit', edit_setting_path(setting) %></td>
+        <td><%= link_to 'Destroy', setting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New My configuration', new_setting_path %>
+
+<% if notice %>
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function(event) {
+            Messenger().post("<%= notice %>!</a>");
+        });
+    </script>
+<% end %>

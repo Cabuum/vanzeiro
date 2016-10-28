@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true
 
   has_many :authorizations, dependent: :destroy
-  has_many :accounts, dependent: :destroy
+  has_many :bank_accounts, dependent: :destroy
   has_one :setting, foreign_key: :user_id, class_name: Setting,
                     dependent: :destroy
 

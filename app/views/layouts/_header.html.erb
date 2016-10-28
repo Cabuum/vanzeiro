@@ -1,7 +1,7 @@
 <% if current_user.blank? %>
     <div class="section ha-waypoint"  data-animate-down="ha-header-hide" data-animate-up="ha-header-hide">
       <%= render 'layouts/visitor_navbar' %>
-      <% unless current_page?(pricing_path)  || current_page?(contato_path) %>
+      <% unless current_page?(pricing_path)  || current_page?(contact_path) %>
           <%= render 'layouts/visitor_slider' %>
       <% end %>
     </div>
@@ -59,11 +59,11 @@
                 </a>
                 <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="user-options">
                   <li>
-                    <%= link_to raw('<i class="fa fa-male"></i>&nbsp;&nbsp; Perfil'), eu_path %>
+                    <%= link_to raw('<i class="fa fa-male"></i>&nbsp;&nbsp; Perfil'), root_path %>
                   </li>
                   <li class="divider"></li>
                   <li>
-                    <%= link_to raw('<i class="fa fa-power-off"></i>&nbsp;&nbsp;Sair'), sair_path %>
+                    <%= link_to raw('<i class="fa fa-power-off"></i>&nbsp;&nbsp;Sair'), destroy_user_session_path %>
                   </li>
                 </ul>
                 <%= link_to raw('<div class="fa fa-lightbulb-o"></div>&nbsp;'), new_suggestion_path, title: 'Críticas e Sugestões!',

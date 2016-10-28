@@ -38,7 +38,7 @@ class ContractsController < ApplicationController
 
   def get_initial_options
     @passengers = Passenger.where user_id: current_user.id
-    @accounts = Account.where user_id: current_user.id
+    @bank_accounts = Account.where user_id: current_user.id
   end
 
   # Use callbacks to share common setup or constraints between actions.

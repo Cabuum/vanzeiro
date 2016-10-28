@@ -1,4 +1,4 @@
-<% if current_page?(pricing_path)  || current_page?(contato_path) %>
+<% if current_page?(pricing_path)  || current_page?(contact_path) %>
     <div role="navigation" class="navbar navbar-default navbar-static-top">
       <div class="container">
         <div class="compressed">
@@ -14,9 +14,9 @@
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right" >
               <li><%= link_to 'Home', root_path %></li>
-              <li><%= link_to 'Entrar', entrar_path %></li>
+              <li><%= link_to 'Entrar', new_user_session_path %></li>
               <li><%= link_to 'Planos', pricing_path %></li>
-              <li><%= link_to 'Contato', contato_path %></li>
+              <li><%= link_to 'Contato', contact_path %></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -38,9 +38,9 @@
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right" >
               <li><%= link_to 'Home', root_path %></li>
-              <li><%= link_to 'Entrar', entrar_path %></li>
+              <li><%= link_to 'Entrar', new_user_session_path %></li>
               <li><%= link_to 'Planos', pricing_path %></li>
-              <li><%= link_to 'Contato', contato_path %>
+              <li><%= link_to 'Contato', contact_path %>
             </ul>
           </div><!--/.nav-collapse -->
         </div>

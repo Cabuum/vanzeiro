@@ -29,6 +29,9 @@ module Vanzeiro
     end
 
     config.time_zone = 'Brasilia'
-    config.i18n.default_locale = :pt
+    config.i18n.default_locale = :'pt-BR'
+
+    time_path = "#{Rails.root}/config/locales/pt-BR/vendors/business_time.yml"
+    BusinessTime::Config.load(time_path)
   end
 end

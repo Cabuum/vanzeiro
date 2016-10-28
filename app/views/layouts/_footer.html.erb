@@ -1,4 +1,4 @@
-<% if current_page?(controller: 'devise/sessions', action: 'new') || current_page?(entrar_path) %>
+<% if current_page?(controller: 'devise/sessions', action: 'new') || current_page?(new_user_session_path) %>
 
     <!-- BEGIN CORE JS FRAMEWORK-->
     <%= javascript_include_tag '/assets/jquery-1.8.3.min',

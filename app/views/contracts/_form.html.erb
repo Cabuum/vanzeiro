@@ -19,7 +19,7 @@
           <%= f.label :account_id, 'Banco para pagamento', class: 'form-label' %>
           <div class="row">
             <div class="col-md-12">
-              <%= f.select :account_id, @accounts.collect {|acc| [acc.nick, acc.id]}, { },
+              <%= f.select :account_id, @bank_accounts.collect {|acc| [acc.nick, acc.id]}, { },
                            {class: 'select2', style: 'width:100%'} %>
             </div>
           </div>

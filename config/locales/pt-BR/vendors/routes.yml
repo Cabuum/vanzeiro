@@ -1,0 +1,38 @@
+pt-BR:
+  routes:
+    # common routes:
+    movements: fluxo-de-caixa
+    movement_categories: categorias
+    installments: parcelas
+    bank_accounts: contas-bancarias
+    events: eventos
+    users: usuarios
+    passengers: passageiros
+    contracts: contratos
+    installments: parcelas
+    suggestions: sugestoes
+    spectator: espectadores
+    banks: bancos
+    settings: configuracoes
+    billets: boletos
+    
+    profile: perfil
+    admin: admin
+    dashboard: dashboard
+    contact: contato
+    pricing: planos
+
+    # devise:
+    sign_in: entrar
+    sign_out: sair
+    accounts: contas
+    
+    new: novo
+    edit: editar
+
+    users: usuarios
+    invitation: convite
+    invitations: convites
+    account: senha
+    sign_up: registrar
+    password: senha

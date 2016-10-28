@@ -12,7 +12,7 @@ class SettingsController < ApplicationController
 
   def update
     if @setting.update(setting_params)
-      redirect_to eu_path, notice: t('my-configurations.update.success')
+      redirect_to root_path, notice: t('my-configurations.update.success')
     else
       render :edit
     end

@@ -34,10 +34,10 @@
                       </div>
                       <div class="grid-body no-border">
                         <div class="row-fluid">
-                          <%= form_for(@user.configuration, :url => {
-                                                                  :controller => 'my_configurations',
+                          <%= form_for(@user.setting, :url => {
+                                                                  :controller => 'settings',
                                                                   :action => 'update',
-                                                                  :id => @user.configuration.id }) do |f| %>
+                                                                  :id => @user.setting.id }) do |f| %>
                               <p>Altere aqui suas configurações pré definidas para:</p>
                               <br>
                               <label class="form-label">Vencimento de Boletos em dias úteis</label>
@@ -87,7 +87,7 @@
 
                       <h4><span class="semi-bold">Contas bancárias</span></h4>
                     </div>
-                    <%= link_to raw('Adicionar'), new_account_path, class: 'btn btn-primary btn-small' %>
+                    <%= link_to raw('Adicionar'), new_user_session_path, class: 'btn btn-primary btn-small' %>
                     <table class="table" id="banks">
                       <thead>
                       <tr>

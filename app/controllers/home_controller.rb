@@ -18,10 +18,10 @@ class HomeController < ApplicationController
     @contact.request = request
     if @contact.deliver
       flash.now[:notice] = 'Entraremos em contato em breve!'
-      redirect_to contato_path
+      redirect_to contact_path
     else
       flash.now[:error] = 'Cannot send message.'
-      redirect_to contato_path
+      redirect_to contact_path
     end
   end
 end
