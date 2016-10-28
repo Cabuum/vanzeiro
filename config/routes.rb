@@ -7,6 +7,11 @@ Rails.application.routes.draw do
     devise_scope :user do
       get :sign_in, to: 'devise/sessions#new', as: :new_user_session
       get :sign_out, to: 'devise/sessions#destroy', as: :destroy_user_session
+      get :profile, to: 'users#show', as: :profile
+    end
+
+    scope :profile do
+      resources :settings
     end
 
     # get 'errors/not_found'
@@ -44,12 +49,6 @@ Rails.application.routes.draw do
       resources :banks
       resources :plans
       resources :newsletters
-    end
-
-    scope :profile do
-      root controller: :users, action: :show
-
-      resources :settings
     end
 
     resources :billet do

@@ -14,7 +14,7 @@
               <div class="overlayer bottom-right">
                 <div class="overlayer-wrapper">
                   <div class="padding-10 hidden-xs">
-                    <%= link_to raw('<i class="fa fa-edit"></i>&nbsp;&nbsp; Editar Perfil'), editar_path, class: 'btn btn-primary btn-small' %>
+                    <%= link_to raw('<i class="fa fa-edit"></i>&nbsp;&nbsp; Editar Perfil'), edit_user_registration_path, class: 'btn btn-primary btn-small' %>
                   </div>
                 </div>
               </div>
@@ -70,7 +70,7 @@
                   <div style="margin: 10px 15px; padding: 20px;">
                     <div class="grid-title no-border">
 
-                      <% if current_user.accounts.count == 0 %>
+                      <% if current_user.bank_accounts.count == 0 %>
                           <!-- ALERT -->
                           <div class="alert alert-info">
                             <button class="close" data-dismiss="alert"></button>
@@ -98,7 +98,7 @@
                       </tr>
                       </thead>
                       <tbody>
-                      <% @user.accounts.each do |account| %>
+                      <% @user.bank_accounts.each do |account| %>
                           <tr class="index-table" title="Clique para visualizar!" data-id="<%= account.id %>">
                             <td><%= account.bank.full_name %></td>
                             <td><%= account.agency %></td>
@@ -132,7 +132,7 @@
               <!-- Modal -->
               <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="nick"
                    aria-hidden="true">
-                <%= render 'accounts/show' %>
+                <%= render 'bank_accounts/show' %>
               </div>
               <!-- /.modal -->
                   </div>

@@ -5,7 +5,7 @@ class BankAccountsController < ApplicationController
   def show; end
 
   def index
-    @bank_bank_accounts = BankAccount.find_by(user_id: current_user.id)
+    @bank_accounts = BankAccount.find_by(user_id: current_user.id)
   end
 
   def new
@@ -17,7 +17,7 @@ class BankAccountsController < ApplicationController
     @bank_account = BankAccount.new(bank_account_params)
 
     if @bank_account.save
-      redirect_to root_path, notice: t('bank_bank_accounts.create.success')
+      redirect_to root_path, notice: t('bank_accounts.create.success')
     else
       render :new
     end
@@ -25,7 +25,7 @@ class BankAccountsController < ApplicationController
 
   def update
     if @bank_account.update(bank_account_params)
-      redirect_to root_path, notice: t('bank_bank_accounts.update.success')
+      redirect_to root_path, notice: t('bank_accounts.update.success')
     else
       render :edit
     end
@@ -33,7 +33,7 @@ class BankAccountsController < ApplicationController
 
   def destroy
     @bank_account.destroy
-    redirect_to root_path, notice: t('bank_bank_accounts.delete.success')
+    redirect_to root_path, notice: t('bank_accounts.delete.success')
   end
 
   private
