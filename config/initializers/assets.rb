@@ -9,3 +9,4 @@
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 Rails.application.config.assets.precompile += %w( frontend.js login-page.js backend.js )
+Rails.application.config.assets.precompile += %w( frontend.css login-page.css backend.css )
