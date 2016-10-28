@@ -9,7 +9,7 @@ gem 'pg'
 gem 'therubyracer'
 gem 'uglifier', '>= 1.3.0'
 
-gem 'carrierwave', '0.10.0'
+gem 'carrierwave', '0.11.2'
 gem 'rmagick'
 gem 'fog'
 
