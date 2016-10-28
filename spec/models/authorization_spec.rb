@@ -34,7 +34,7 @@ RSpec.describe Authorization, type: :model do
   end
 
   context 'factories' do
-    # it { expect(build(:user)).to be_valid }
-    # it { expect(build(:invalid_user)).to_not be_valid }
+    it { expect(build(:authorization)).to be_valid }
+    it { expect(build(:invalid_authorization)).to_not be_valid }
   end
 end
