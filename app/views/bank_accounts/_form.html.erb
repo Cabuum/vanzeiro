@@ -1,4 +1,4 @@
-<%= form_for(@account, html: { class: 'form-no-horizontal-spacing', id: 'form-condensed' }) do |f| %>
+<%= form_for(@bank_account, html: { class: 'form-no-horizontal-spacing', id: 'form-condensed' }) do |f| %>
     <div class="row column-seperation">
       <div class="col-md-6">
         <h4>Informações básicas</h4>
@@ -46,13 +46,13 @@
         </div>
       </div>
     </div>
-    <% if @account.errors.any? %>
+    <% if @bank_account.errors.any? %>
         <div class="alert alert-block alert-error fade in col-md-10">
           <button type="button" class="close" data-dismiss="alert"></button>
           <h4 class="alert-heading"><i class="icon-warning-sign"></i> Atenção!</h4>
           A sua tentativa gerou <a href="#" class="link">
-          <%= pluralize(@account.errors.count,'erro') %>: </a>
-          <% @account.errors.full_messages.each do |message| %>
+          <%= pluralize(@bank_account.errors.count,'erro') %>: </a>
+          <% @bank_account.errors.full_messages.each do |message| %>
               <li><%= message %></li>
           <% end %>
         </div>

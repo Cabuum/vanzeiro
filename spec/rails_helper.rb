@@ -30,6 +30,10 @@ else
   ActiveRecord::Migration.maintain_test_schema!
 end
 
+require 'support/forgery_frozen_kinds'
+
+Dir[File.join("#{Rails.root}/spec/support/**/*.rb")].each { |f| require f }
+
 FactoryGirl.definition_file_paths = %w(spec/support/factories)
 FactoryGirl.reload
 

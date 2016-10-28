@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161028021746) do
+ActiveRecord::Schema.define(version: 20161028030625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 20161028021746) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "authorizations", ["user_id"], name: "index_authorizations_on_user_id", using: :btree
 
   create_table "bank_accounts", force: :cascade do |t|
     t.integer  "user_id"
@@ -58,17 +60,17 @@ ActiveRecord::Schema.define(version: 20161028021746) do
   create_table "contracts", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "passenger_id"
-    t.integer  "account_id"
-    t.decimal  "interest",     precision: 5,  scale: 2
+    t.integer  "bank_account_id"
+    t.decimal  "interest",        precision: 5,  scale: 2
     t.date     "start"
     t.date     "closing_date"
-    t.decimal  "value",        precision: 10, scale: 2
+    t.decimal  "value",           precision: 10, scale: 2
     t.boolean  "is_alive"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "contracts", ["account_id"], name: "index_contracts_on_account_id", using: :btree
+  add_index "contracts", ["bank_account_id"], name: "index_contracts_on_bank_account_id", using: :btree
   add_index "contracts", ["passenger_id"], name: "index_contracts_on_passenger_id", using: :btree
   add_index "contracts", ["user_id"], name: "index_contracts_on_user_id", using: :btree
 

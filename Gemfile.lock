@@ -47,6 +47,7 @@ GEM
       bootstrap-sass (~> 3.1.0.0)
       railties (>= 3.2.0)
       sass-rails (>= 3.2.0)
+    brazilian_forgery (1.2.4)
     brcobranca (4.0.0)
       activemodel (>= 3)
       parseline (~> 1.0.3)
@@ -480,6 +481,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass-rails
+  brazilian_forgery
   brcobranca (~> 4.0.0)
   business_time
   cancan

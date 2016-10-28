@@ -56,6 +56,7 @@ group :test, :development do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'forgery'
+  gem 'brazilian_forgery'
   gem 'shoulda-matchers'
   gem 'database_cleaner'
   gem 'simplecov', require: false

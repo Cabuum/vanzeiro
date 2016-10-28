@@ -28,6 +28,6 @@ class SettingsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def setting_params
     params.require(:setting).permit(:business_day_for_payments, :default_value, :user_id,
-                                             :default_interest)
+                                    :default_interest)
   end
 end

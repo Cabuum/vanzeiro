@@ -55,7 +55,7 @@
                 <% @contracts.each do |contract| %>
                     <tr class="index-table" title="Clique para visualizar!" data-id="<%= contract.id %>" data-passegerid="<%= contract.passenger.id %>">
                       <td><%= contract.passenger.passenger_name %></td>
-                      <td><%= contract.account.bank.full_name %></td>
+                      <td><%= contract.bank_account.bank.full_name %></td>
                       <td><%= distance_of_time_in_words(contract.start, contract.closing_date) %></td>
                       <td><%= to_last_month contract %></td>
                       <td><%= number_to_currency contract.value %></td>
