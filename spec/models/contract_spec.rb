@@ -39,13 +39,7 @@ RSpec.describe Contract, type: :model do
   end
 
   context 'factories' do
-    # it { expect(build(:user)).to be_valid }
-    # it { expect(build(:invalid_user)).to_not be_valid }
-  end
-
-  context 'scopes' do
-    describe '.active' do
-      it 'need to return only active rows'
-    end
+    it { expect(build(:contract)).to be_valid }
+    it { expect(build(:invalid_contract)).to_not be_valid }
   end
 end

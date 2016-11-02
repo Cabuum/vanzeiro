@@ -16,28 +16,25 @@ SimpleCov.start 'rails' do
   add_filter '/lib/'
 end
 
-require 'rails/all'
+require 'spec_helper'
+require File.expand_path('../../config/environment', __FILE__)
+
+require 'rspec/rails'
 require 'factory_girl'
 require 'forgery'
 require 'shoulda/matchers'
 require 'database_cleaner'
-require 'spec_helper'
 
-# for faster rspec start, run: SKIP_MIGRATION=1 rspec
-if ENV['SKIP_MIGRATION']
-  puts 'MIGRATION SKIPPED!'
-else
-  ActiveRecord::Migration.maintain_test_schema!
-end
+ActiveRecord::Migration.maintain_test_schema!
 
 require 'support/forgery_frozen_kinds'
+
+abort('----- PRODUCTION BROW ------') if Rails.env.production?
 
 Dir[File.join("#{Rails.root}/spec/support/**/*.rb")].each { |f| require f }
 
 FactoryGirl.definition_file_paths = %w(spec/support/factories)
 FactoryGirl.reload
-
-require File.expand_path('../../config/environment', __FILE__)
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
@@ -62,4 +59,7 @@ RSpec.configure do |config|
 
     login_as @current_user
   end
+
+  config.infer_spec_type_from_file_location!
+  config.raise_errors_for_deprecations!
 end
