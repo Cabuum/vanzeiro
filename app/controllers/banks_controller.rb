@@ -15,35 +15,29 @@ class BanksController < ApplicationController
 
   def create
     @bank = Bank.new(bank_params)
+    @bank.save
 
-    if @bank.save
-      redirect_to :index, notice: t('banks.create.success')
-    else
-      render :new
-    end
+    respond_with(@bank, location: banks_path)
   end
 
   def update
-    if @bank.update(bank_params)
-      redirect_to :index, notice: t('banks.update.success')
-    else
-      render :edit
-    end
+    @bank.update(bank_params)
+
+    respond_with(@bank, location: banks_path)
   end
 
   def destroy
     @bank.destroy
-    redirect_to support_banks_url, notice: t('banks.delete.success')
+
+    respond_with(@bank, location: banks_path)
   end
 
   private
-
 
   def set_bank
     @bank = Bank.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
   def bank_params
     params.require(:bank).permit(:full_name, :name)
   end
