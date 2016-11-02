@@ -41,7 +41,7 @@ class ContractsController < ApplicationController
     @bank_accounts = Account.where user_id: current_user.id
   end
 
-  # Use callbacks to share common setup or constraints between actions.
+  = l
   def set_contract
     @contract = Contract.find params[:id]
   end

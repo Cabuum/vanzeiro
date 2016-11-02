@@ -38,7 +38,7 @@ class MovementCategoriesController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
+
   def set_movement_category
     @movement_category = MovementCategory.find(params[:id])
   end

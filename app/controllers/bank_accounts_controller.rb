@@ -38,7 +38,7 @@ class BankAccountsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
+
   def set_bank_account
     @bank_account = BankAccount.find(params[:id])
     @banks = Bank.all
