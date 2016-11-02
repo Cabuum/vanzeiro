@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
     omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations'
-  }
+  }, skip: :sessions
 
   localized do
     devise_scope :user do
@@ -42,7 +42,7 @@ Rails.application.routes.draw do
     end
 
     scope :admin do
-      root controller: :plans, action: :index
+      # root controller: :plans, action: :index
 
       resources :suggestions
       resources :spectator

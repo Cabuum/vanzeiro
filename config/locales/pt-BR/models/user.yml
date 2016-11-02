@@ -8,6 +8,7 @@ pt-BR:
       user:
         bio: Biografia
         email: Email
+        name: Nome
         full_name: Nome completo
         location: Localização
         password: Senha

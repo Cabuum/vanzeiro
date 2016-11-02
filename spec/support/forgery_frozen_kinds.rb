@@ -1,0 +1,13 @@
+# frozen_string_literal: true
+FORGERY_LOREM_IPSUM = 'lorem_ipsum'.freeze
+FORGERY_BASIC = 'basic'.freeze
+FORGERY_MONETARY = 'monetary'.freeze
+FORGERY_DATE = 'date'.freeze
+FORGERY_EMAIL = 'email'.freeze
+FORGERY_INTERNET = 'internet'.freeze
+FORGERY_NAME = 'name'.freeze
+FORGERY_ADDRESS = 'address'.freeze
+FORGERY_BANK = 'bank'.freeze
+FORGERY_OCCUPATION = 'occupation'.freeze
+FORGERY_CNPJ = 'CNPJ'.freeze
+FORGERY_CPF = 'CPF'.freeze

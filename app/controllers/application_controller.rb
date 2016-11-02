@@ -1,12 +1,8 @@
-class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
-  before_action :redirect_subdomain
+require 'application_responder'
 
-  def redirect_subdomain
-    if request.host == 'www.vanzeiro.com'
-      redirect_to 'http://vanzeiro.com' + request.fullpath
-    end
-  end
+class ApplicationController < ActionController::Base
+  self.responder = ApplicationResponder
+  respond_to :html
+
+  protect_from_forgery with: :exception
 end

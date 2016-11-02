@@ -1,7 +1,8 @@
 class Contract < ActiveRecord::Base
   belongs_to :user
   belongs_to :passenger
-  belongs_to :account
+  belongs_to :bank_account
+
   has_many :installments, dependent: :destroy
 
   # To retrieve only the active contracts
@@ -37,8 +38,7 @@ class Contract < ActiveRecord::Base
       due_date = user.configuration.business_day_for_payments.business_days
                      .after(Date.new(Time.now.year, date.month)).to_date
 
-      i = Installment.new contract_id: id, due_date: due_date, paid: false
-      i.save
+      Installment.create(contract_id: id, due_date: due_date, paid: false)
     end
   end
 end

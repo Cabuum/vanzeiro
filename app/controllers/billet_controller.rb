@@ -36,7 +36,7 @@ class BilletController < ApplicationController
   private
 
   def set_billet(installment)
-    @archive = case installment.contract.account.bank.name.to_sym
+    @archive = case installment.contract.bank_account.bank.name.to_sym
                when :bb then Brcobranca::Boleto::BancoBrasil.new
                else Brcobranca::Boleto::Caixa.new
                end
@@ -46,10 +46,10 @@ class BilletController < ApplicationController
     @archive.sacado = installment.contract.passenger.name_to_billet
     @archive.sacado_documento = installment.contract.passenger.document_to_billet
     @archive.valor = installment.contract.value
-    @archive.agencia = installment.contract.account.agency
-    @archive.conta_corrente = installment.contract.account.account
-    @archive.convenio = installment.contract.account.agreement
-    @archive.numero_documento = case installment.contract.account.bank.name.to_sym
+    @archive.agencia = installment.contract.bank_account.agency
+    @archive.conta_corrente = installment.contract.bank_account.account
+    @archive.convenio = installment.contract.bank_account.agreement
+    @archive.numero_documento = case installment.contract.bank_account.bank.name.to_sym
                                 when :caixa
                                   sprintf '%015d', installment.id
                                 else
@@ -59,13 +59,13 @@ class BilletController < ApplicationController
                                            .after(Date.new(Time.now.year, installment.due_date.month)).to_date
 
     @archive.data_documento = Time.now.strftime('%d-%m-%Y').to_date
-    @archive.instrucao1 = installment.contract.account.instruction1
-    @archive.instrucao2 = installment.contract.account.instruction2
-    @archive.instrucao3 = installment.contract.account.instruction3
-    @archive.instrucao4 = installment.contract.account.instruction4
-    @archive.instrucao5 = installment.contract.account.instruction5
-    @archive.instrucao6 = installment.contract.account.instruction6
-    @archive.instrucao7 = installment.contract.account.instruction7
+    @archive.instrucao1 = installment.contract.bank_account.instruction1
+    @archive.instrucao2 = installment.contract.bank_account.instruction2
+    @archive.instrucao3 = installment.contract.bank_account.instruction3
+    @archive.instrucao4 = installment.contract.bank_account.instruction4
+    @archive.instrucao5 = installment.contract.bank_account.instruction5
+    @archive.instrucao6 = installment.contract.bank_account.instruction6
+    @archive.instrucao7 = installment.contract.bank_account.instruction7
     @archive.sacado_endereco = installment.contract.passenger.passenger_address
 
     @archive
