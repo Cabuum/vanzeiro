@@ -52,12 +52,12 @@ RSpec.configure do |config|
   config.after(:each) { DatabaseCleaner.clean }
 
   config.include FactoryGirl::Syntax::Methods
-  config.include Devise::TestHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :controller
 
   config.before(:each, type: :controller) do
     @current_user = FactoryGirl.create(:user)
 
-    login_as @current_user
+    sign_in @current_user
   end
 
   config.infer_spec_type_from_file_location!
